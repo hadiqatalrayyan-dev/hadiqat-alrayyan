@@ -61,19 +61,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const mkt = marketingArticles[slug];
   const pageTitle = mkt?.seoMetaTitle 
-    ? `${mkt.seoMetaTitle} | مؤسسة حدائق المستقبل`
-    : `${service.title} بالرياض وجدة وكافة مدن السعودية | مؤسسة حدائق المستقبل`;
+    ? `${mkt.seoMetaTitle} | مؤسسة حدائق المستقبل بالرياض`
+    : `${service.title} بالرياض | مؤسسة حدائق المستقبل`;
 
-  const pageDescription = `${service.shortDesc} أفضل أسعار توريد وتركيب مع ضمان معتمد يصل إلى 7 سنوات وتصميم 3D مجاناً بالرياض، جدة، الدمام، وكافة مناطق المملكة. اتصل الآن: ${siteConfig.phoneDisplay}`;
+  const pageDescription = `${service.shortDesc} أفضل أسعار توريد وتركيب مع ضمان معتمد يصل إلى 7 سنوات وتصميم 3D مجاناً بالرياض. اتصل الآن: ${siteConfig.phoneDisplay}`;
 
   const allKeywords = [
     service.title,
     `${service.title} بالرياض`,
-    `${service.title} بجدة`,
-    `${service.title} بالدمام`,
-    `${service.title} بالخبر`,
-    `${service.title} بمكة`,
-    "تنسيق حدائق السعودية",
+    `${service.title} شمال الرياض`,
+    `${service.title} شرق الرياض`,
+    "تنسيق حدائق الرياض",
     "تصميم حدائق فلل وقصور",
     "اسعار تنسيق الحدائق 2026",
     "افضل شركة لاندسكيب",
@@ -82,6 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ];
 
   const canonicalUrl = `https://futuregardens.sa/services/${slug}`;
+  const imgUrl = service.image.startsWith("http") ? service.image : `https://futuregardens.sa${service.image}`;
 
   return {
     title: pageTitle,
@@ -108,15 +107,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: pageTitle,
       description: pageDescription,
       url: canonicalUrl,
-      siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق في السعودية",
+      siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
       locale: "ar_SA",
-      type: "article",
+      type: "website",
       images: [
         {
-          url: service.image,
+          url: imgUrl,
           width: 1200,
           height: 630,
-          alt: `${service.title} - مؤسسة حدائق المستقبل`,
+          alt: `${service.title} بالرياض - مؤسسة حدائق المستقبل`,
         },
       ],
     },
@@ -124,15 +123,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: pageTitle,
       description: pageDescription,
-      images: [service.image],
-      creator: "@futuregardens_sa",
-    },
-    other: {
-      "geo.region": "SA",
-      "geo.placename": "Riyadh, Saudi Arabia",
-      "geo.position": "24.7136;46.6753",
-      "ICBM": "24.7136, 46.6753",
-      "format-detection": "telephone=yes",
+      images: [imgUrl],
     },
   };
 }

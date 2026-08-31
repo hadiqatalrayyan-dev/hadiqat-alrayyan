@@ -55,21 +55,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = detailed ? `${detailed.title} | مدونة حدائق المستقبل بالرياض` : `${article.title} | مدونة حدائق المستقبل بالرياض`;
   const description = detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt;
+  const canonicalUrl = `https://futuregardens.sa/blog/${slug}`;
+  const imgUrl = article.image.startsWith("http") ? article.image : `https://futuregardens.sa${article.image}`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://futuregardens.sa/blog/${slug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
-      url: `https://futuregardens.sa/blog/${slug}`,
-      siteName: "مؤسسة حدائق المستقبل بالرياض",
+      url: canonicalUrl,
+      siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
       locale: "ar_SA",
       type: "article",
-      images: [{ url: article.image }],
+      images: [
+        {
+          url: imgUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imgUrl],
     },
   };
 }
