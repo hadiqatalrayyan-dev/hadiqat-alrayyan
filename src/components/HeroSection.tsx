@@ -20,7 +20,7 @@ const slides: HeroSlide[] = [
     title: "تصميم وبناء الشلالات والنوافير المنزلية بالرياض",
     description:
       "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض توفر خدمة تصميم وتركيب وصيانة النوافير العصرية والحديثة والشلالات الجدارية والرخامية المزودة بأقوى المضخات الإيطالية وإضاءات ليد غاطسة هادئة مع ضمان شامل.",
-    image: "/images/service-waterfalls-fountains.jpg",
+    image: "/images/service-waterfalls-fountains.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -29,7 +29,7 @@ const slides: HeroSlide[] = [
     title: "تصميم وتركيب مظلات حدائق وسواتر وبرجولات",
     description:
       "نقوم بتصميم وتنفيذ كافة أنواع ومقاسات المظلات والبرجولات الخشبية والحديد والألمنيوم، مع تغطيات لكسان معالجة عازلة للشمس والأمطار وجلسات عائلية خارجية راقية بأيدي أمهر الفنيين والنجارين بالرياض.",
-    image: "/images/service-pergolas-canopies.jpg",
+    image: "/images/service-pergolas-canopies.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -38,7 +38,7 @@ const slides: HeroSlide[] = [
     title: "مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق العامة والخاصة بالرياض",
     description:
       "نقدم أرقى خدمات تصميم وتنسيق حدائق الفلل والقصور والاستراحات بأحدث أساليب اللاندسكيب والديكورات الزراعية المبتكرة مع المعاينة الموقعية والمخطط ثلاثي الأبعاد 3D مجاناً للعملاء.",
-    image: "/images/service-garden-design-3d.jpg",
+    image: "/images/service-garden-design-3d.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -47,7 +47,7 @@ const slides: HeroSlide[] = [
     title: "توريد وتركيب العشب الصناعي الفاخر والجداري",
     description:
       "توريد وتركيب أفضل أنواع النجيل والعشب الصناعي المعتمد والمقاوم لحرارة الشمس والأشعة فوق البنفسجية UV بكثافات متعددة للمنازل والملاعب والجدران وبديل الخشب مع ضمان معتمد يصل إلى 7 سنوات.",
-    image: "/images/service-artificial-grass.jpg",
+    image: "/images/service-artificial-grass.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -56,7 +56,7 @@ const slides: HeroSlide[] = [
     title: "تمديد وصيانة شبكات الري الأوتوماتيكية بالتنقيط والرشاشات",
     description:
       "تركيب وتمديد شبكات ري حديثة موفرة للمياه تعمل بمحابس كهربائية وتايمر إلكتروني ذكي لضبط مواعيد الري بدقة وحماية المزروعات من الجفاف، مع توفير عقود صيانة دورية ومتابعة مستمرة.",
-    image: "/images/service-automatic-irrigation.jpg",
+    image: "/images/service-automatic-irrigation.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -65,7 +65,7 @@ const slides: HeroSlide[] = [
     title: "زراعة وتكريب النخيل والأشجار والزهور الموسمية",
     description:
       "غرس وتوريد كافة أنواع أشجار الزينة والنخيل العربي والواشنطوني وتكريب وتنظيف النخيل وتلقيحه، وزراعة الورود والزهور المتفتحة، مع معالجة ومكافحة سوسة النخيل وآفات الحدائق.",
-    image: "/images/service-palm-planting.jpg",
+    image: "/images/service-palm-planting.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
   {
@@ -74,7 +74,7 @@ const slides: HeroSlide[] = [
     title: "أعمال الديكور الحجري والبحص وممرات الحدائق المودرن",
     description:
       "تنفيذ ممرات الحدائق الحجرية العصرية وبحص وادي ناصع البياض وأحواض نباتات صحراوية وأضواء أرضية ليلية تضفي لمسة أوروبية راقية على فناء الفيلا والمداخل.",
-    image: "/images/service-pebble-stone-decor.jpg",
+    image: "/images/service-pebble-stone-decor.webp",
     buttonText: "اتصل بنا للتفاصيل والأسعار",
   },
 ];
@@ -82,13 +82,22 @@ const slides: HeroSlide[] = [
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [loadedSlides, setLoadedSlides] = useState<number[]>([0]);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) => {
+      const next = prev === slides.length - 1 ? 0 : prev + 1;
+      setLoadedSlides((loaded) => (loaded.includes(next) ? loaded : [...loaded, next]));
+      return next;
+    });
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentSlide((prev) => {
+      const prevIdx = prev === 0 ? slides.length - 1 : prev - 1;
+      setLoadedSlides((loaded) => (loaded.includes(prevIdx) ? loaded : [...loaded, prevIdx]));
+      return prevIdx;
+    });
   }, []);
 
   useEffect(() => {
@@ -108,24 +117,33 @@ export default function HeroSection() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background Slides with Cross-Fade */}
-      {slides.map((s, idx) => (
-        <div
-          key={s.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            idx === currentSlide ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-105"
-          }`}
-          style={{
-            backgroundImage: `url('${s.image}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            transitionProperty: "opacity, transform",
-          }}
-        >
-          {/* Subtle Dark Gradient Overlay for Maximum Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/70" />
-        </div>
-      ))}
+      {/* Background Slides with Cross-Fade & On-Demand Image Loading */}
+      {slides.map((s, idx) => {
+        const isCurrent = idx === currentSlide;
+        const isLoaded = loadedSlides.includes(idx);
+
+        if (!isLoaded && !isCurrent) return null;
+
+        return (
+          <div
+            key={s.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              isCurrent ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-105 pointer-events-none"
+            }`}
+          >
+            <img
+              src={s.image}
+              alt={s.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading={idx === 0 ? "eager" : "lazy"}
+              decoding={idx === 0 ? "sync" : "async"}
+              fetchPriority={idx === 0 ? "high" : "auto"}
+            />
+            {/* Subtle Dark Gradient Overlay for Maximum Legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/70 z-10" />
+          </div>
+        );
+      })}
 
       {/* Main Slide Content */}
       <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-12 py-16 text-center flex flex-col items-center justify-center space-y-6">

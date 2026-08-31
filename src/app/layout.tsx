@@ -5,15 +5,16 @@ import { siteConfig } from "@/data/content";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "800"],
   variable: "--font-cairo",
   display: "swap",
+  preload: true,
 });
 
 const siteTitle = `${siteConfig.name} | أفضل شركة تنسيق حدائق بالرياض`;
 const siteDescription = "مؤسسة حدائق المستقبل الرائدة في تصميم وتنسيق الحدائق المنزلية والفلل بالرياض. توريد وتركيب عشب صناعي وطبيعي، شلالات ونوافير، مظلات وبرجولات، شبكات ري أوتوماتيكية وضمان حتى 7 سنوات مع معاينة وتصميم 3D مجاناً.";
 const siteUrl = "https://futuregardens.vercel.app";
-const ogImageUrl = "/images/og-image.jpg";
+const ogImageUrl = "/images/og-image.webp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -104,7 +105,7 @@ export default function RootLayout({
     "@type": "HomeAndConstructionBusiness",
     "name": siteConfig.name,
     "alternateName": "مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض",
-    "image": `${siteUrl}/images/og-image.jpg`,
+    "image": `${siteUrl}/images/og-image.webp`,
     "logo": `${siteUrl}/images/official-circular-logo.png`,
     "@id": `${siteUrl}/#business`,
     "url": siteUrl,
@@ -152,6 +153,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#064e3b" />
         <meta name="google-site-verification" content="HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos" />
+        <link rel="preload" as="image" href="/images/service-waterfalls-fountains.webp" fetchPriority="high" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/images/future-gardens-logo-icon.png" />

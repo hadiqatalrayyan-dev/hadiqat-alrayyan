@@ -67,7 +67,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "فريق التصميم المعماري واللاندسكيب بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -835,7 +835,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "فريق الإنتاج النباتي والتشجير البيئي بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -1635,7 +1635,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "قسم الوقاية والمكافحة الحيوية للآفات بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -2289,7 +2289,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "قسم وقاية النبات والمكافحة المتكاملة (IPM) بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -3059,7 +3059,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "قسم التصميم المعماري والمخططات التنفيذية بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -3937,7 +3937,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "قسم الديكور الجداري وتركيب الثيل الجداري بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {
@@ -4820,7 +4820,7 @@ export const detailedBlogArticles: Record<string, DetailedBlogArticle> = {
   "author": {
     "name": "مؤسسة حدائق المستقبل بالرياض",
     "role": "قسم تركيب المسطحات والعشب الصناعي على البلاط بالرياض",
-    "avatar": "/images/rabea-shaban-profile.jpg"
+    "avatar": "/images/rabea-shaban-profile.webp"
   },
   "tableOfContents": [
     {

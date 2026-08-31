@@ -83,7 +83,7 @@ export const portfolioData: PortfolioItem[] = [
     "id": "p10",
     "title": "تصميم حديقة مسبح لاندسكيب مودرن متكامل",
     "category": "تصميم وتنسيق حدائق",
-    "image": "/images/service-garden-design-3d.jpg",
+    "image": "/images/service-garden-design-3d.webp",
     "location": "الرياض - حي المونسية",
     "year": "2025"
   },
@@ -182,6 +182,7 @@ export default function PortfolioGallery() {
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300" />
                 

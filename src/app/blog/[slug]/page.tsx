@@ -569,7 +569,7 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="w-full bg-white py-8 border-t border-gray-100 flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
-            src="/images/about-team-banner.png"
+            src="/images/about-team-banner.webp"
             alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
             className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
           />

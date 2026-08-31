@@ -125,9 +125,11 @@ export default function WhyChooseUs() {
               {/* Main Luxury Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gray-900">
                 <img
-                  src="/images/why_choose_us_garden.jpg"
+                  src="/images/why_choose_us_garden.webp"
                   alt="تنسيق حدائق فلل مؤسسة حدائق المستقبل"
                   className="w-full h-[440px] sm:h-[500px] object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Gradient Shadow Overlay */}

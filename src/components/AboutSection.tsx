@@ -18,9 +18,11 @@ export default function AboutSection() {
               {/* Mascot Image (Enlarged) */}
               <div className="relative z-10 w-full flex items-center justify-center">
                 <img
-                  src="/images/gardener_mascot.jpg"
+                  src="/images/gardener_mascot.webp"
                   alt="فني ومهندس مؤسسة حدائق المستقبل لتنسيق الحدائق"
                   className="w-full max-h-[560px] sm:max-h-[620px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Floating Emblem Logo */}

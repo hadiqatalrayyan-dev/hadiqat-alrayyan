@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/about-team-banner.png",
+        url: "/images/about-team-banner.webp",
         width: 1200,
         height: 630,
         alt: "فريق ومهندسو مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "من نحن | مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
     description: "خبرة تفوق 15 عاماً في تصميم وتنفيذ أرقى الحدائق السكنية والتجارية بالرياض بأعلى معايير الجودة والضمان.",
-    images: ["/images/about-team-banner.png"],
+    images: ["/images/about-team-banner.webp"],
   },
 };
 
@@ -113,7 +113,7 @@ export default function AboutPage() {
           {/* Cartoon Landscaping Team Illustration Banner matching screenshot 100% */}
           <div className="max-w-3xl mx-auto flex items-center justify-center">
             <img
-              src="/images/about-team-banner.png"
+              src="/images/about-team-banner.webp"
               alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق"
               className="w-full max-h-[380px] object-contain "
             />
@@ -375,7 +375,7 @@ export default function AboutPage() {
       <div className="w-full bg-white py-8 border-t border-gray-100 flex items-center justify-center">
         <div className="max-w-xl mx-auto">
           <img
-            src="/images/about-team-banner.png"
+            src="/images/about-team-banner.webp"
             alt="فريق حدائق المستقبل"
             className="w-full max-h-48 object-contain opacity-90"
           />

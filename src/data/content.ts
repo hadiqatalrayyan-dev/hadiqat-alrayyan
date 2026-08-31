@@ -177,7 +177,7 @@ export const services: ServiceItem[] = [
         a: "يمكن غسله بسهولة بالماء والمنظفات الخفيفة، حيث تتسرب المياه عبر فتحات التصريف السفلية دون ترك أي برك مائية."
       }
     ],
-    image: "/images/service-artificial-grass.jpg",
+    image: "/images/service-artificial-grass.webp",
     category: "عشب صناعي",
     features: [
       "ضمان معتمد حتى 7 سنوات ضد التآكل والبهتان",
@@ -249,7 +249,7 @@ export const services: ServiceItem[] = [
         a: "يتم القص الأول بعد مرور 12 إلى 15 يوماً من الزراعة بعد التأكد من تماسك الجذور في الأرض."
       }
     ],
-    image: "/images/service-natural-grass.jpg",
+    image: "/images/service-natural-grass.webp",
     category: "عشب طبيعي",
     features: [
       "رولات طازجة مقطوعة في نفس يوم التركيب",
@@ -320,7 +320,7 @@ export const services: ServiceItem[] = [
         a: "تستغرق الحدائق المنزلية المتوسطة عادة من 4 إلى 8 أيام عمل للتسليم الكامل بأعلى جودة تشطيب."
       }
     ],
-    image: "/images/service-garden-design-3d.jpg",
+    image: "/images/service-garden-design-3d.webp",
     category: "تصميم حدائق",
     features: [
       "تصميم 3D واقعي مجاناً قبل البدء بالتنفيذ",
@@ -391,7 +391,7 @@ export const services: ServiceItem[] = [
         a: "الشلال يعمل بنظام دورة مغلقة (Closed Loop) حيث يعيد تدوير نفس الماء، والمضخات تستهلك طاقة تعادل لمبة كهربائية صغيرة."
       }
     ],
-    image: "/images/service-waterfalls-fountains.jpg",
+    image: "/images/service-waterfalls-fountains.webp",
     category: "شلالات ونوافير",
     features: [
       "مصبات ستانلس ستيل عيار 304 مقاومة للأملاح",
@@ -462,7 +462,7 @@ export const services: ServiceItem[] = [
         a: "نثبت البرجولات ببراغي صلب مجلفنة وقواعد خرسانية مدعمة لتتحمل سرعات رياح تتجاوز 120 كم/ساعة بأمان تام."
       }
     ],
-    image: "/images/service-pergolas-canopies.jpg",
+    image: "/images/service-pergolas-canopies.webp",
     category: "مظلات وبرجولات",
     features: [
       "عزل حراري ومائي كامل بنسبة 100%",
@@ -533,7 +533,7 @@ export const services: ServiceItem[] = [
         a: "خاماتنا الصناعية مصنوعة من مواد بوليمرية ملساء معالجة لا توفر بيئة لتكاثر الحشرات أو العناكب إطلاقاً."
       }
     ],
-    image: "/images/service-wall-grass.jpg",
+    image: "/images/service-wall-grass.webp",
     category: "جدران خضراء",
     features: [
       "عشب جداري عالي الكثافة بتدرجات أوراق ثلاثية الأبعاد",
@@ -604,7 +604,7 @@ export const services: ServiceItem[] = [
         a: "توفر شبكات الري بالتنقيط والرشاشات المؤقتة ما بين 40% إلى 60% من استهلاك المياه مقارنة بالري اليدوي بالخرطوم."
       }
     ],
-    image: "/images/service-automatic-irrigation.jpg",
+    image: "/images/service-automatic-irrigation.webp",
     category: "شبكات ري",
     features: [
       "توفير فائق للمياه يصل إلى 60% مقارنة بالري التقليدي",
@@ -671,7 +671,7 @@ export const services: ServiceItem[] = [
         a: "نستخدم أحجاراً طبيعية وبازلت معالج بمواد حماية ضد الأشعة الشمسية تضمن احتفاظه بألوانه ورونقه الطبيعي لعشرات السنين."
       }
     ],
-    image: "/images/service-pebble-stone-decor.jpg",
+    image: "/images/service-pebble-stone-decor.webp",
     category: "ديكورات وممرات",
     features: [
       "أحجار بازلت ورخام وحجر عشوائي طبيعي عالي المتانة",
@@ -738,7 +738,7 @@ export const services: ServiceItem[] = [
         a: "الياسمين الهندي، البوانسيانا، النيم، والأكاسيا جلوكا من أفضل الخيارات المقاومة للحرارة والجفاف."
       }
     ],
-    image: "/images/service-palm-planting.jpg",
+    image: "/images/service-palm-planting.webp",
     category: "زراعة وتشجير",
     features: [
       "أشجار ونخيل منتقاة تقاوم حرارة الصيف الشديدة والملوحة",
@@ -805,7 +805,7 @@ export const services: ServiceItem[] = [
         a: "نعم، كافة مبيداتنا مرخصة وصديقة للبيئة وبدون رائحة، ويكفي الابتعاد عن منطقة الرش لمدة ساعة واحدة فقط حتى تجف تماماً."
       }
     ],
-    image: "/images/service-pest-control.jpg",
+    image: "/images/service-pest-control.webp",
     category: "مكافحة وصيانة",
     features: [
       "مبيدات بدون رائحة مرخصة من وزارة البيئة والزراعة",
@@ -872,7 +872,7 @@ export const services: ServiceItem[] = [
         a: "نقوم بعزل الأحواض بطبقات عزل مزدوجة مع عمل ماسورة تصريف مخصصة لضمان عدم ملامسة الرطوبة لجدران الفيلا نهائياً."
       }
     ],
-    image: "/images/service-garden-maintenance.jpg",
+    image: "/images/service-garden-maintenance.webp",
     category: "ديكورات وممرات",
     features: [
       "أحواض فيبر جلاس وخرسانية وخشبية مقاومة للرطوبة",
@@ -939,7 +939,7 @@ export const services: ServiceItem[] = [
         a: "تمشيط دوري كل شهر لإعادة توزيع حبيبات المطاط والحفاظ على استقامة الشعيرات."
       }
     ],
-    image: "/images/service-artificial-grass.jpg",
+    image: "/images/service-artificial-grass.webp",
     category: "عشب صناعي",
     features: [
       "عشب ملاعب معتمد عالي الكثافة ومقاوم للاحتكاك",
@@ -978,7 +978,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "طريقة تزيين الحدائق المنزلية",
     day: "08",
     month: "يوليو",
-    image: "/images/service-garden-design-3d.jpg",
+    image: "/images/service-garden-design-3d.webp",
     category: "ديكورات وتنسيق",
     readTime: "4 دقائق",
     author: "م. فهد القحطاني - كبير مهندسي اللاندسكيب",
@@ -1002,7 +1002,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "أفضل الشتلات لحديقة المنزل",
     day: "05",
     month: "يوليو",
-    image: "/images/service-palm-planting.jpg",
+    image: "/images/service-palm-planting.webp",
     category: "زراعة وتشجير",
     readTime: "5 دقائق",
     author: "م. إبراهيم الدوسري - خبير زراعي",
@@ -1023,7 +1023,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "التخلص من النمل في الحديقة",
     day: "02",
     month: "يوليو",
-    image: "/images/service-pest-control.jpg",
+    image: "/images/service-pest-control.webp",
     category: "مكافحة وصيانة",
     readTime: "3 دقائق",
     author: "قسم الوقاية والمكافحة الزراعية",
@@ -1044,7 +1044,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "حشرات الحدائق المنزلية",
     day: "29",
     month: "يونيو",
-    image: "/images/service-pest-control.jpg",
+    image: "/images/service-pest-control.webp",
     category: "مكافحة وصيانة",
     readTime: "4 دقائق",
     author: "م. وليد الشهري",
@@ -1068,7 +1068,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "خطوات إنشاء مخطط حديقة منزلية",
     day: "26",
     month: "يونيو",
-    image: "/images/service-garden-design-3d.jpg",
+    image: "/images/service-garden-design-3d.webp",
     category: "تصميم وتخطيط",
     readTime: "5 دقائق",
     author: "قسم التصميم الهندسي 3D",
@@ -1090,7 +1090,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "طريقة لصق العشب الصناعي على الجدار",
     day: "19",
     month: "يونيو",
-    image: "/images/service-wall-grass.jpg",
+    image: "/images/service-wall-grass.webp",
     category: "ديكورات وجدران",
     readTime: "4 دقائق",
     author: "فريق التركيبات والديكور",
@@ -1111,7 +1111,7 @@ export const articlesData: ArticleItem[] = [
     pillText: "تركيب الثيلة على البلاط",
     day: "15",
     month: "يونيو",
-    image: "/images/service-artificial-grass.jpg",
+    image: "/images/service-artificial-grass.webp",
     category: "عشب صناعي",
     readTime: "4 دقائق",
     author: "قسم تركيبات العشب الصناعي",

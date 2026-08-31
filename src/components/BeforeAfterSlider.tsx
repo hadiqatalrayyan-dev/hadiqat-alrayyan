@@ -13,8 +13,8 @@ interface Props {
 }
 
 export default function BeforeAfterSlider({
-  beforeImage = "/images/garden-before.jpg",
-  afterImage = "/images/garden-after.jpg",
+  beforeImage = "/images/garden-before.webp",
+  afterImage = "/images/garden-after.webp",
   beforeLabel = "قبل التنسيق (أرض خرسانية)",
   afterLabel = "بعد التنسيق والتصميم (واحة خضراء)",
   title = "شاهد الفرق المذهل: قبل وبعد التنسيق",
@@ -65,6 +65,8 @@ export default function BeforeAfterSlider({
           src={afterImage}
           alt={afterLabel}
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          loading="lazy"
+          decoding="async"
         />
 
         {/* Before Image (Clipped Left) */}
@@ -77,6 +79,8 @@ export default function BeforeAfterSlider({
             alt={beforeLabel}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none max-w-none"
             style={{ width: "100%", height: "100%" }}
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

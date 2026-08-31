@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og-image.webp",
         width: 1200,
         height: 630,
         alt: "كافة خدمات تنسيق وتصميم الحدائق بالرياض - مؤسسة حدائق المستقبل",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "خدمات تنسيق وتصميم الحدائق المنزلية بالرياض | مؤسسة حدائق المستقبل",
     description: "باقات وعروض متكاملة لتنسيق حدائق الفلل والقصور والاستراحات مع المعاينة والتصميم 3D مجاناً والضمان حتى 7 سنوات.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.webp"],
   },
 };
 

@@ -44,8 +44,8 @@ export default function PortfolioPage() {
           {/* Interactive Before & After Slider */}
           <div className="max-w-4xl mx-auto mb-12">
             <BeforeAfterSlider
-              beforeImage="/images/garden-before.jpg"
-              afterImage="/images/garden-after.jpg"
+              beforeImage="/images/garden-before.webp"
+              afterImage="/images/garden-after.webp"
               beforeLabel="قبل التنسيق (أرض خرسانية صامتة)"
               afterLabel="بعد التنسيق والتصميم (واحة خضراء فخمة)"
               title="مقارنة حية: قبل وبعد التنسيق"
@@ -224,7 +224,7 @@ export default function PortfolioPage() {
       <div className="w-full bg-white py-10 border-t border-gray-100 flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
-            src="/images/about-team-banner.png"
+            src="/images/about-team-banner.webp"
             alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
             className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
           />

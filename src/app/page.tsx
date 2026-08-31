@@ -1,25 +1,46 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import FeaturesBar from "@/components/FeaturesBar";
 import AboutSection from "@/components/AboutSection";
 import StatsSection from "@/components/StatsSection";
 import ServicesGrid from "@/components/ServicesGrid";
-import PortfolioGallery from "@/components/PortfolioGallery";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import VideoSection from "@/components/VideoSection";
-import BlogSection from "@/components/BlogSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import FaqSection from "@/components/FaqSection";
-import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import GardenCostCalculator from "@/components/GardenCostCalculator";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import FreeInspectionModal from "@/components/FreeInspectionModal";
-import { Calendar, ArrowLeft } from "lucide-react";
+import { Calendar } from "lucide-react";
+
+// Dynamic imports for below-the-fold & interactive modal components to reduce initial JS execution and TBT
+const BeforeAfterSlider = dynamic(() => import("@/components/BeforeAfterSlider"), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const PortfolioGallery = dynamic(() => import("@/components/PortfolioGallery"), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const GardenCostCalculator = dynamic(() => import("@/components/GardenCostCalculator"), {
+  loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const VideoSection = dynamic(() => import("@/components/VideoSection"), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const BlogSection = dynamic(() => import("@/components/BlogSection"), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const FaqSection = dynamic(() => import("@/components/FaqSection"), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const ContactSection = dynamic(() => import("@/components/ContactSection"), {
+  loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
+});
+const FreeInspectionModal = dynamic(() => import("@/components/FreeInspectionModal"), {
+  ssr: false,
+});
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,8 +95,8 @@ export default function HomePage() {
       <section className="py-16 sm:py-20 bg-gradient-to-b from-[#fcfdfa] to-white border-y border-gray-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <BeforeAfterSlider
-            beforeImage="/images/garden-before.jpg"
-            afterImage="/images/garden-after.jpg"
+            beforeImage="/images/garden-before.webp"
+            afterImage="/images/garden-after.webp"
             beforeLabel="قبل التنسيق (أرض خرسانية صامتة)"
             afterLabel="بعد التنسيق والتصميم (واحة خضراء فخمة)"
             title="شاهد التحول الحقيقي: قبل وبعد التنسيق"

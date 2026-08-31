@@ -13,7 +13,7 @@ export default function ProfileCard({
   name = "Rabea Shaban",
   title = "مهندس برمجيات Full Stack | MERN Stack Developer",
   description = "متخصص في تطوير تطبيقات الويب الحديثة والقابلة للتوسع باستخدام React.js و Next.js و TypeScript و Node.js و MongoDB، مع التركيز على بناء حلول عالية الأداء وتجربة مستخدم احترافية.",
-  imageSrc = "/images/rabea-shaban-profile.jpg",
+  imageSrc = "/images/rabea-shaban-profile.webp",
   whatsappNumber = "201156807072",
   className = "",
 }: ProfileCardProps) {
