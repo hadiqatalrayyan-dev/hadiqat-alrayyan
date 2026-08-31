@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     "مؤسسة حدائق المستقبل"
   ],
   alternates: {
-    canonical: "https://futuregardens.sa/services",
+    canonical: "https://futuregardens.vercel.app/services",
   },
   openGraph: {
     title: "خدمات تنسيق وتصميم الحدائق المنزلية بالرياض | مؤسسة حدائق المستقبل",
     description: "باقات وعروض متكاملة لتنسيق حدائق الفلل والقصور والاستراحات مع المعاينة والتصميم 3D مجاناً والضمان حتى 7 سنوات.",
-    url: "https://futuregardens.sa/services",
+    url: "https://futuregardens.vercel.app/services",
     siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق",
     locale: "ar_SA",
     type: "website",

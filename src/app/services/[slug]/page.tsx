@@ -79,8 +79,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(mkt?.targetKeywords || []),
   ];
 
-  const canonicalUrl = `https://futuregardens.sa/services/${slug}`;
-  const imgUrl = service.image.startsWith("http") ? service.image : `https://futuregardens.sa${service.image}`;
+  const canonicalUrl = `https://futuregardens.vercel.app/services/${slug}`;
+  const imgUrl = service.image.startsWith("http") ? service.image : `https://futuregardens.vercel.app${service.image}`;
 
   return {
     title: pageTitle,
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: canonicalUrl,
     },
-    authors: [{ name: "مؤسسة حدائق المستقبل لتنسيق الحدائق", url: "https://futuregardens.sa" }],
+    authors: [{ name: "مؤسسة حدائق المستقبل لتنسيق الحدائق", url: "https://futuregardens.vercel.app" }],
     creator: "مؤسسة حدائق المستقبل",
     publisher: "مؤسسة حدائق المستقبل لتنسيق الحدائق",
     robots: {
@@ -149,13 +149,13 @@ export default async function ServiceDetailPage({ params }: Props) {
     "serviceType": service.category,
     "description": service.shortDesc,
     "image": service.image,
-    "url": `https://futuregardens.sa/services/${slug}`,
+    "url": `https://futuregardens.vercel.app/services/${slug}`,
     "provider": {
       "@type": "HomeAndConstructionBusiness",
       "name": "مؤسسة حدائق المستقبل لتنسيق الحدائق",
       "telephone": siteConfig.phone,
       "email": siteConfig.email,
-      "url": "https://futuregardens.sa",
+      "url": "https://futuregardens.vercel.app",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "SA",
@@ -201,19 +201,19 @@ export default async function ServiceDetailPage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "الرئيسية",
-        "item": "https://futuregardens.sa"
+        "item": "https://futuregardens.vercel.app"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "خدماتنا",
-        "item": "https://futuregardens.sa/services"
+        "item": "https://futuregardens.vercel.app/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://futuregardens.sa/services/${slug}`
+        "item": `https://futuregardens.vercel.app/services/${slug}`
       }
     ]
   };

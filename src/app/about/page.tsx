@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     "مهندسو تنسيق حدائق",
   ],
   alternates: {
-    canonical: "https://futuregardens.sa/about",
+    canonical: "https://futuregardens.vercel.app/about",
   },
   openGraph: {
     title: "من نحن | مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
     description: "خبرة تفوق 15 عاماً في تصميم وتنفيذ أرقى الحدائق السكنية والتجارية بالرياض بأعلى معايير الجودة والضمان.",
-    url: "https://futuregardens.sa/about",
+    url: "https://futuregardens.vercel.app/about",
     siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق",
     locale: "ar_SA",
     type: "website",

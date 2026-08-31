@@ -12,7 +12,7 @@ const cairo = Cairo({
 
 const siteTitle = `${siteConfig.name} | أفضل شركة تنسيق حدائق بالرياض`;
 const siteDescription = "مؤسسة حدائق المستقبل الرائدة في تصميم وتنسيق الحدائق المنزلية والفلل بالرياض. توريد وتركيب عشب صناعي وطبيعي، شلالات ونوافير، مظلات وبرجولات، شبكات ري أوتوماتيكية وضمان حتى 7 سنوات مع معاينة وتصميم 3D مجاناً.";
-const siteUrl = "https://futuregardens.sa";
+const siteUrl = "https://futuregardens.vercel.app";
 const ogImageUrl = "/images/og-image.jpg";
 
 export const metadata: Metadata = {

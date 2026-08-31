@@ -55,8 +55,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = detailed ? `${detailed.title} | مدونة حدائق المستقبل بالرياض` : `${article.title} | مدونة حدائق المستقبل بالرياض`;
   const description = detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt;
-  const canonicalUrl = `https://futuregardens.sa/blog/${slug}`;
-  const imgUrl = article.image.startsWith("http") ? article.image : `https://futuregardens.sa${article.image}`;
+  const canonicalUrl = `https://futuregardens.vercel.app/blog/${slug}`;
+  const imgUrl = article.image.startsWith("http") ? article.image : `https://futuregardens.vercel.app${article.image}`;
 
   return {
     title,
@@ -109,25 +109,25 @@ export default async function BlogPostPage({ params }: Props) {
     "@type": "Article",
     "headline": detailed ? detailed.title : article.title,
     "description": detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt,
-    "image": `https://futuregardens.sa${article.image}`,
+    "image": `https://futuregardens.vercel.app${article.image}`,
     "author": {
       "@type": "Organization",
       "name": "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
-      "url": "https://futuregardens.sa"
+      "url": "https://futuregardens.vercel.app"
     },
     "publisher": {
       "@type": "Organization",
       "name": "مؤسسة حدائق المستقبل",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://futuregardens.sa/images/logo.png"
+        "url": "https://futuregardens.vercel.app/images/logo.png"
       }
     },
     "datePublished": "2026-01-15T08:00:00+03:00",
     "dateModified": new Date().toISOString(),
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://futuregardens.sa/blog/${slug}`
+      "@id": `https://futuregardens.vercel.app/blog/${slug}`
     }
   };
 
@@ -311,7 +311,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Top Share Bar */}
             <ArticleShareBar
               title={detailed ? detailed.title : article.title}
-              url={`https://futuregardens.sa/blog/${slug}`}
+              url={`https://futuregardens.vercel.app/blog/${slug}`}
             />
 
             {/* Subtitle / Executive Summary Card */}
@@ -491,7 +491,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Bottom Share Bar */}
             <ArticleShareBar
               title={detailed ? detailed.title : article.title}
-              url={`https://futuregardens.sa/blog/${slug}`}
+              url={`https://futuregardens.vercel.app/blog/${slug}`}
             />
 
             {/* Next / Previous Article Navigation */}
