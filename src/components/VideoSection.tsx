@@ -9,12 +9,11 @@ export default function VideoSection() {
 
   return (
     <section id="videos" className="relative py-20 sm:py-24 bg-emerald-950 text-white overflow-hidden select-none">
-      {/* Background Image with Dark Green Overlay matching screenshot */}
+      {/* Background Image with Dark Green Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1592417817098-8f3d6eb228cc?q=80&w=1920&auto=format&fit=crop')",
+          backgroundImage: "url('/images/why_choose_us_garden.webp')",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a2012]/92 via-[#0d2e1a]/88 to-[#0a2012]/95" />
@@ -43,9 +42,13 @@ export default function VideoSection() {
             <div className="relative w-full h-full cursor-pointer" onClick={() => setIsPlaying(true)}>
               {/* Real Garden Video Thumbnail */}
               <img
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1200&auto=format&fit=crop"
+                src="/images/service-garden-design-3d.webp"
                 alt="تنسيق حديقة منزلية صغيرة - حدائق المستقبل لتنسيق الحدائق في السعودية"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={675}
               />
 
               {/* Gradient Shade */}

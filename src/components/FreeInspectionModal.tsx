@@ -64,9 +64,10 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
         <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
           
           <div className="space-y-1">
-            <label className="font-bold text-gray-700 block">الاسم الكريم:</label>
+            <label htmlFor="modal-name" className="font-bold text-gray-700 block">الاسم الكريم:</label>
             <div className="relative">
               <input
+                id="modal-name"
                 type="text"
                 required
                 placeholder="أدخل اسمك"
@@ -79,9 +80,10 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
           </div>
 
           <div className="space-y-1">
-            <label className="font-bold text-gray-700 block">رقم الجوال:</label>
+            <label htmlFor="modal-phone" className="font-bold text-gray-700 block">رقم الجوال:</label>
             <div className="relative">
               <input
+                id="modal-phone"
                 type="tel"
                 required
                 placeholder="05xxxxxxxx"
@@ -95,9 +97,10 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="font-bold text-gray-700 block">الحي بالرياض:</label>
+              <label htmlFor="modal-district" className="font-bold text-gray-700 block">الحي بالرياض:</label>
               <div className="relative">
                 <input
+                  id="modal-district"
                   type="text"
                   placeholder="مثال: النرجس، الملقا..."
                   value={district}
@@ -109,8 +112,10 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
             </div>
 
             <div className="space-y-1">
-              <label className="font-bold text-gray-700 block">الموعد المفضل:</label>
+              <label htmlFor="modal-preferred-day" className="font-bold text-gray-700 block">الموعد المفضل:</label>
               <select
+                id="modal-preferred-day"
+                aria-label="الموعد المفضل للمعاينة"
                 value={preferredDay}
                 onChange={(e) => setPreferredDay(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#4d8834] bg-white font-semibold text-gray-700"
@@ -124,8 +129,10 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
           </div>
 
           <div className="space-y-1">
-            <label className="font-bold text-gray-700 block">الخدمة المطلوبة:</label>
+            <label htmlFor="modal-service" className="font-bold text-gray-700 block">الخدمة المطلوبة:</label>
             <select
+              id="modal-service"
+              aria-label="الخدمة المطلوبة"
               value={service}
               onChange={(e) => setService(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#4d8834] bg-white font-semibold text-gray-700"

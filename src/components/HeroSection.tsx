@@ -205,18 +205,25 @@ export default function HeroSection() {
       </button>
 
       {/* Slide Pagination Dots */}
-      <div className="absolute bottom-6 inset-x-0 z-30 flex items-center justify-center gap-2">
+      <div className="absolute bottom-6 inset-x-0 z-30 flex items-center justify-center gap-1">
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentSlide(idx)}
-            className={`transition-all duration-300 rounded-full ${
-              idx === currentSlide
-                ? "w-8 h-2.5 bg-[#4d8834] shadow-md"
-                : "w-2.5 h-2.5 bg-white/50 hover:bg-white/80"
-            }`}
+            onClick={() => {
+              setCurrentSlide(idx);
+              setLoadedSlides((loaded) => (loaded.includes(idx) ? loaded : [...loaded, idx]));
+            }}
+            className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-full"
             aria-label={`الانتقال إلى الشريحة ${idx + 1}`}
-          />
+          >
+            <span
+              className={`transition-all duration-300 rounded-full block ${
+                idx === currentSlide
+                  ? "w-8 h-2.5 bg-[#4d8834] shadow-md"
+                  : "w-2.5 h-2.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </section>

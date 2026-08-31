@@ -140,15 +140,17 @@ export default function GardenCostCalculator() {
         {/* 1. Ground Area */}
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
           <div className="flex justify-between items-center text-xs sm:text-sm font-bold text-gray-800">
-            <span>مساحة الأرضية (حوش / سطح):</span>
+            <label htmlFor="calc-ground-area">مساحة الأرضية (حوش / سطح):</label>
             <span className="text-[#4d8834] font-black text-base">{area} م²</span>
           </div>
           <input
+            id="calc-ground-area"
             type="range"
             min={10}
             max={300}
             step={5}
             value={area}
+            aria-label="مساحة الأرضية بالمتر المربع"
             onChange={(e) => setArea(Number(e.target.value))}
             className="w-full accent-[#4d8834] cursor-pointer"
           />
@@ -161,10 +163,12 @@ export default function GardenCostCalculator() {
 
         {/* 2. Turf Type */}
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
-          <label className="block text-xs sm:text-sm font-bold text-gray-800">
+          <label htmlFor="calc-turf-type" className="block text-xs sm:text-sm font-bold text-gray-800">
             نوع الثيل / العشب الأرضي:
           </label>
           <select
+            id="calc-turf-type"
+            aria-label="نوع الثيل أو العشب الأرضي"
             value={grassType}
             onChange={(e) => setGrassType(e.target.value)}
             className="w-full bg-white border border-gray-300 rounded-xl p-2.5 text-xs sm:text-sm text-gray-800 font-semibold focus:outline-none focus:border-[#4d8834]"
@@ -179,15 +183,17 @@ export default function GardenCostCalculator() {
         {/* 3. Wall Grass Area */}
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
           <div className="flex justify-between items-center text-xs sm:text-sm font-bold text-gray-800">
-            <span>مساحة العشب الجداري / السور:</span>
+            <label htmlFor="calc-wall-area">مساحة العشب الجداري / السور:</label>
             <span className="text-[#4d8834] font-black text-base">{wallGrassArea} م²</span>
           </div>
           <input
+            id="calc-wall-area"
             type="range"
             min={0}
             max={100}
             step={5}
             value={wallGrassArea}
+            aria-label="مساحة العشب الجداري بالمتر المربع"
             onChange={(e) => setWallGrassArea(Number(e.target.value))}
             className="w-full accent-[#4d8834] cursor-pointer"
           />
@@ -200,10 +206,12 @@ export default function GardenCostCalculator() {
 
         {/* 4. Waterfall */}
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
-          <label className="block text-xs sm:text-sm font-bold text-gray-800">
+          <label htmlFor="calc-waterfall-type" className="block text-xs sm:text-sm font-bold text-gray-800">
             إضافة شلال أو نافورة مائية:
           </label>
           <select
+            id="calc-waterfall-type"
+            aria-label="إضافة شلال أو نافورة مائية"
             value={waterfall}
             onChange={(e) => setWaterfall(e.target.value)}
             className="w-full bg-white border border-gray-300 rounded-xl p-2.5 text-xs sm:text-sm text-gray-800 font-semibold focus:outline-none focus:border-[#4d8834]"
@@ -216,10 +224,12 @@ export default function GardenCostCalculator() {
 
         {/* 5. Pergola */}
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
-          <label className="block text-xs sm:text-sm font-bold text-gray-800">
+          <label htmlFor="calc-pergola-type" className="block text-xs sm:text-sm font-bold text-gray-800">
             جلسة مظللة / برجولة خارجية:
           </label>
           <select
+            id="calc-pergola-type"
+            aria-label="جلسة مظللة أو برجولة خارجية"
             value={pergola}
             onChange={(e) => setPergola(e.target.value)}
             className="w-full bg-white border border-gray-300 rounded-xl p-2.5 text-xs sm:text-sm text-gray-800 font-semibold focus:outline-none focus:border-[#4d8834]"

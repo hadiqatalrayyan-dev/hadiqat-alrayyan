@@ -67,12 +67,11 @@ export default function TestimonialsSection() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background Image with Dark Green Overlay matching screenshot */}
+      {/* Background Image with Dark Green Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105 transition-transform duration-1000"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105 transition-transform duration-1000"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1592417817098-8f3d6eb228cc?q=80&w=1920&auto=format&fit=crop')",
+          backgroundImage: "url('/images/why_choose_us_garden.webp')",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a2012]/90 via-[#0d2e1a]/85 to-[#0a2012]/95" />
@@ -154,18 +153,22 @@ export default function TestimonialsSection() {
         </div>
 
         {/* 3 Dots Pagination Indicator */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="flex items-center justify-center gap-1 mt-8">
           {customerReviews.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`transition-all duration-300 rounded-full focus:outline-none ${
-                idx === currentSlide
-                  ? "w-2.5 h-2.5 bg-white scale-125"
-                  : "w-2 h-2 bg-white/40 hover:bg-white/70"
-              }`}
+              className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-full"
               aria-label={`الرأي رقم ${idx + 1}`}
-            />
+            >
+              <span
+                className={`transition-all duration-300 rounded-full block ${
+                  idx === currentSlide
+                    ? "w-2.5 h-2.5 bg-white scale-125 shadow"
+                    : "w-2 h-2 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            </button>
           ))}
         </div>
 

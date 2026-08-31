@@ -23,6 +23,8 @@ export default function AboutSection() {
                   className="w-full max-h-[560px] sm:max-h-[620px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   decoding="async"
+                  width={665}
+                  height={891}
                 />
 
                 {/* Floating Emblem Logo */}
