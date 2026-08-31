@@ -98,8 +98,9 @@ export default function ServicesGrid() {
                     href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`السلام عليكم، أود الاستفسار وطلب معاينة لخدمة: ${item.title}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`تواصل واتساب مباشر لخدمة ${item.title}`}
                     className="inline-flex items-center justify-center w-9 h-9 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-xl shadow-sm transition-all hover:scale-105"
-                    title="محادثة واتساب مباشرة"
+                    title={`محادثة واتساب بخصوص ${item.title}`}
                   >
                     <MessageCircle className="w-4 h-4" />
                   </a>

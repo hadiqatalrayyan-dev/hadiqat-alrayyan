@@ -149,22 +149,22 @@ export default function HeroSection() {
       <div className="relative z-20 max-w-5xl mx-auto px-6 sm:px-12 py-16 text-center flex flex-col items-center justify-center space-y-6">
         
         {/* Pill Tag */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-emerald-300 text-xs sm:text-sm font-black border border-white/20 shadow-lg animate-fadeIn">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-emerald-300 text-xs sm:text-sm font-black border border-white/20 shadow-lg">
           <span>{slide.tag}</span>
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-wide drop-shadow-2xl max-w-4xl animate-fadeIn">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-wide drop-shadow-2xl max-w-4xl">
           {slide.title}
         </h1>
 
         {/* Description */}
-        <p className="text-sm sm:text-base md:text-lg text-white/95 font-medium max-w-3xl leading-relaxed drop-shadow-md animate-fadeIn">
+        <p className="text-sm sm:text-base md:text-lg text-white/95 font-medium max-w-3xl leading-relaxed drop-shadow-md">
           {slide.description}
         </p>
 
         {/* CTA Buttons Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2 animate-fadeIn">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
           <a
             href={`tel:${siteConfig.phone}`}
             className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl text-gray-900 font-black text-sm sm:text-base bg-white hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:scale-105"
@@ -177,6 +177,7 @@ export default function HeroSection() {
             href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`السلام عليكم، أود الاستفسار وطلب معاينة لخدمة: ${slide.title}`)}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`تواصل واتساب لطلب معاينة ${slide.title}`}
             className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-black text-sm sm:text-base bg-[#25D366] hover:bg-[#1EBE5D] transition-all duration-300 shadow-2xl hover:scale-105"
           >
             <MessageCircle className="w-5 h-5 text-white" />

@@ -64,9 +64,9 @@ export default function HomePage() {
               🎁
             </span>
             <div>
-              <h4 className="text-xs sm:text-sm font-black text-gray-900">
+              <h3 className="text-xs sm:text-sm font-black text-gray-900">
                 عرض خاص: معاينة ورفع مقاسات وتصميم 3D مجاناً بالرياض
-              </h4>
+              </h3>
               <p className="text-[11px] text-gray-600">
                 فريقنا الهندسي يزور موقعك خلال 24 ساعة لتقديم أفضل تصميم ومقايسة أسعار.
               </p>
