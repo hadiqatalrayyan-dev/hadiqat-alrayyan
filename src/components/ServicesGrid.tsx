@@ -88,7 +88,8 @@ export default function ServicesGrid() {
                 <div className="flex items-center gap-2">
                   <a
                     href={`tel:${siteConfig.phone}`}
-                    className="inline-flex items-center gap-1.5 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all hover:scale-105"
+                    aria-label={`اتصل بنا هاتفياً لخدمة ${item.title}`}
+                    className="inline-flex items-center gap-1.5 bg-[#245f14] hover:bg-[#1a470e] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all hover:scale-105"
                   >
                     <Phone className="w-3.5 h-3.5" />
                     <span>اتصل بنا</span>
@@ -99,7 +100,7 @@ export default function ServicesGrid() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`تواصل واتساب مباشر لخدمة ${item.title}`}
-                    className="inline-flex items-center justify-center w-9 h-9 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-xl shadow-sm transition-all hover:scale-105"
+                    className="inline-flex items-center justify-center w-9 h-9 bg-[#1ea851] hover:bg-[#16823e] text-white rounded-xl shadow-sm transition-all hover:scale-105"
                     title={`محادثة واتساب بخصوص ${item.title}`}
                   >
                     <MessageCircle className="w-4 h-4" />
@@ -109,7 +110,8 @@ export default function ServicesGrid() {
                 {/* Yellow Service Link leading to dedicated service page */}
                 <Link
                   href={`/services/${item.slug}`}
-                  className="inline-flex items-center gap-1 text-[#e07b22] hover:text-[#c96a1a] font-bold text-xs sm:text-sm hover:underline transition-colors group/link"
+                  aria-label={`تصفح كافة تفاصيل وأسعار خدمة ${item.title}`}
+                  className="inline-flex items-center gap-1 text-[#b45309] hover:text-[#92400e] font-bold text-xs sm:text-sm hover:underline transition-colors group/link"
                 >
                   <span>تصفح الخدمة</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />

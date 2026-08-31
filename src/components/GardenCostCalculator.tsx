@@ -141,7 +141,7 @@ export default function GardenCostCalculator() {
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
           <div className="flex justify-between items-center text-xs sm:text-sm font-bold text-gray-800">
             <label htmlFor="calc-ground-area">مساحة الأرضية (حوش / سطح):</label>
-            <span className="text-[#4d8834] font-black text-base">{area} م²</span>
+            <span className="text-[#1d5512] font-black text-base">{area} م²</span>
           </div>
           <input
             id="calc-ground-area"
@@ -152,9 +152,9 @@ export default function GardenCostCalculator() {
             value={area}
             aria-label="مساحة الأرضية بالمتر المربع"
             onChange={(e) => setArea(Number(e.target.value))}
-            className="w-full accent-[#4d8834] cursor-pointer"
+            className="w-full accent-[#1d5512] cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-gray-400">
+          <div className="flex justify-between text-[11px] font-bold text-gray-600">
             <span>10 م²</span>
             <span>150 م²</span>
             <span>300 م²</span>
@@ -171,7 +171,7 @@ export default function GardenCostCalculator() {
             aria-label="نوع الثيل أو العشب الأرضي"
             value={grassType}
             onChange={(e) => setGrassType(e.target.value)}
-            className="w-full bg-white border border-gray-300 rounded-xl p-2.5 text-xs sm:text-sm text-gray-800 font-semibold focus:outline-none focus:border-[#4d8834]"
+            className="w-full bg-white border border-gray-300 rounded-xl p-2.5 text-xs sm:text-sm text-gray-800 font-semibold focus:outline-none focus:border-[#1d5512]"
           >
             <option value="artificial-35">عشب صناعي 35 ملم (الأكثر طلباً)</option>
             <option value="artificial-45">عشب صناعي 45 ملم سوبر كثيف</option>
@@ -184,7 +184,7 @@ export default function GardenCostCalculator() {
         <div className="space-y-2 bg-gray-50 p-4 rounded-2xl border border-gray-200">
           <div className="flex justify-between items-center text-xs sm:text-sm font-bold text-gray-800">
             <label htmlFor="calc-wall-area">مساحة العشب الجداري / السور:</label>
-            <span className="text-[#4d8834] font-black text-base">{wallGrassArea} م²</span>
+            <span className="text-[#1d5512] font-black text-base">{wallGrassArea} م²</span>
           </div>
           <input
             id="calc-wall-area"
@@ -195,9 +195,9 @@ export default function GardenCostCalculator() {
             value={wallGrassArea}
             aria-label="مساحة العشب الجداري بالمتر المربع"
             onChange={(e) => setWallGrassArea(Number(e.target.value))}
-            className="w-full accent-[#4d8834] cursor-pointer"
+            className="w-full accent-[#1d5512] cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-gray-400">
+          <div className="flex justify-between text-[11px] font-bold text-gray-600">
             <span>0 م²</span>
             <span>50 م²</span>
             <span>100 م²</span>

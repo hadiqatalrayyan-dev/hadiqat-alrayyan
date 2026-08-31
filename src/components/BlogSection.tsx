@@ -45,7 +45,7 @@ export default function BlogSection() {
                   />
 
                   {/* Green Date Badge in Top Left */}
-                  <div className="absolute top-2 left-2 bg-[#4d8834] text-white px-2.5 py-1 text-center shadow-md leading-tight">
+                  <div className="absolute top-2 left-2 bg-[#1d5512] text-white px-2.5 py-1 text-center shadow-md leading-tight">
                     <span className="block text-sm font-black">{item.day}</span>
                     <span className="block text-[10px] font-medium">{item.month}</span>
                   </div>
@@ -58,7 +58,7 @@ export default function BlogSection() {
                   </div>
 
                   {/* Watermark bar */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-[#4d8834]/80 py-0.5 text-center">
+                  <div className="absolute bottom-0 left-0 right-0 bg-[#1d5512]/90 py-0.5 text-center">
                     <span className="text-[9px] font-bold text-white tracking-widest uppercase">
                       FUTUREGARDENS.SA
                     </span>
@@ -67,7 +67,7 @@ export default function BlogSection() {
 
                 {/* Title */}
                 <div className="px-6 pt-5 pb-2">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#4d8834] transition-colors line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#1d5512] transition-colors line-clamp-2">
                     <Link href={`/blog/${item.slug}`}>
                       {item.title}
                     </Link>
@@ -86,7 +86,8 @@ export default function BlogSection() {
               <div className="px-6 pb-6 pt-1 flex justify-center">
                 <Link
                   href={`/blog/${item.slug}`}
-                  className="px-6 py-1.5 rounded-full border border-[#4d8834] text-[#4d8834] hover:bg-[#4d8834] hover:text-white font-bold text-xs transition-colors duration-200 shadow-sm inline-block"
+                  aria-label={`قراءة مقال ${item.title}`}
+                  className="px-6 py-1.5 rounded-full border-2 border-[#1d5512] text-[#1d5512] hover:bg-[#1d5512] hover:text-white font-bold text-xs transition-colors duration-200 shadow-sm inline-block"
                 >
                   اقرأني الآن
                 </Link>

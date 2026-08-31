@@ -58,20 +58,20 @@ export default function ContactSection() {
         
         {/* Section Header with Brand Colors */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="block text-gray-500 text-sm sm:text-base font-semibold mb-2">
+          <span className="block text-[#1d5512] text-sm sm:text-base font-black mb-2">
             احجز موعدك الآن
           </span>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight leading-tight">
-            تواصل معنا الآن لتحصل على <span className="text-[#4d8834]">أفضل عرض سعر</span>
+            تواصل معنا الآن لتحصل على <span className="text-[#1d5512]">أفضل عرض سعر</span>
           </h2>
 
-          <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-4">
+          <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-4 font-medium">
             فريقنا الهندسي جاهز لزيارة موقعك وتقديم معاينة وتصميم ثلاثي الأبعاد 3D وعرض سعر فوري مجاناً.
           </p>
 
           {/* Orange underline accent matching brand */}
-          <div className="w-12 h-1 bg-[#e07b22] mx-auto rounded-full" />
+          <div className="w-12 h-1 bg-[#b45309] mx-auto rounded-full" />
         </div>
 
         {/* 2-Column Layout */}
@@ -289,7 +289,7 @@ export default function ContactSection() {
                   {/* Submit Button with Green Brand Color */}
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-base shadow-md transition-all flex items-center justify-center gap-2 hover:shadow-lg hover:-translate-y-0.5"
+                    className="w-full py-4 rounded-xl bg-[#1d5512] hover:bg-[#143e0c] text-white font-bold text-base shadow-md transition-all flex items-center justify-center gap-2 hover:shadow-lg hover:-translate-y-0.5"
                   >
                     <Send className="w-5 h-5" />
                     <span>ارسل طلب المعاينة وعرض السعر مجاناً</span>

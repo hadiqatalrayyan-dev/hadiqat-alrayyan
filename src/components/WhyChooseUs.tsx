@@ -97,7 +97,8 @@ export default function WhyChooseUs() {
             <div className="pt-4 flex flex-col sm:flex-row items-center gap-3">
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
+                aria-label={`اتصل بنا لطلب المعاينة على ${siteConfig.phoneDisplay}`}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#1d5512] hover:bg-[#143e0c] text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
               >
                 <Phone className="w-4 h-4" />
                 <span>اتصل بنا لطلب المعاينة: {siteConfig.phoneDisplay}</span>
@@ -107,7 +108,8 @@ export default function WhyChooseUs() {
                 href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود الاستفسار عن عروض تنسيق الحدائق وضمان الـ 7 سنوات")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#e5a823] hover:bg-[#d69919] text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
+                aria-label="استشارة واتساب فورية عن عروض تنسيق الحدائق"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#b45309] hover:bg-[#92400e] text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>استشارة واتساب فورية</span>

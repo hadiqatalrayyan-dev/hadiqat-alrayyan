@@ -77,7 +77,7 @@ export default function Header() {
       
       {/* 1. Top Green Bar (Visible before scroll down) */}
       {!isScrolled && (
-        <div className="bg-[#4d8834] text-white text-[13px] py-1.5 px-4 shadow-sm border-b border-black/5 transition-all duration-300">
+        <div className="bg-[#1d5512] text-white text-[13px] py-1.5 px-4 shadow-sm border-b border-black/5 transition-all duration-300">
           <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
             
             {/* Tagline */}
@@ -90,14 +90,14 @@ export default function Header() {
               {/* Email */}
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="hidden lg:flex items-center gap-1.5 text-white/95 hover:text-white transition-colors"
+                className="hidden lg:flex items-center gap-1.5 text-white hover:text-amber-200 transition-colors py-1"
               >
                 <Mail className="w-3.5 h-3.5 text-white" />
                 <span>راسلنا عبر البريد الإلكتروني</span>
               </a>
 
               {/* Working Hours */}
-              <div className="flex items-center gap-1 text-white/95" dir="ltr">
+              <div className="flex items-center gap-1 text-white" dir="ltr">
                 <Clock className="w-3.5 h-3.5 text-white" />
                 <span>{siteConfig.workingHours}</span>
               </div>
@@ -105,7 +105,7 @@ export default function Header() {
               {/* Phone */}
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="flex items-center gap-1 text-white font-bold hover:underline"
+                className="flex items-center gap-1 text-white font-bold hover:underline py-1"
                 dir="ltr"
               >
                 <Phone className="w-3.5 h-3.5 text-white" />
@@ -115,12 +115,12 @@ export default function Header() {
               <span className="text-white/40 hidden sm:inline">|</span>
 
               {/* Social Icons */}
-              <div className="flex items-center gap-2 text-white">
+              <div className="flex items-center gap-1 text-white">
                 <a
                   href={siteConfig.socials.facebook}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="p-1.5 hover:text-amber-300 transition-colors inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="Facebook"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ export default function Header() {
                   href={siteConfig.socials.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="p-1.5 hover:text-amber-300 transition-colors inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="Instagram"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ export default function Header() {
                   href={siteConfig.socials.twitter}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="p-1.5 hover:text-amber-300 transition-colors inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="Twitter"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -153,7 +153,7 @@ export default function Header() {
                   href={siteConfig.socials.pinterest}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors font-bold text-xs"
+                  className="p-1.5 hover:text-amber-300 transition-colors font-bold text-xs inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="Pinterest"
                 >
                   <span>P</span>
@@ -162,7 +162,7 @@ export default function Header() {
                   href={siteConfig.socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="p-1.5 hover:text-amber-300 transition-colors inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -173,7 +173,7 @@ export default function Header() {
                   href={siteConfig.socials.youtube}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-amber-300 transition-colors"
+                  className="p-1.5 hover:text-amber-300 transition-colors inline-flex items-center justify-center min-w-[32px] min-h-[32px]"
                   aria-label="YouTube"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
