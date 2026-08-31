@@ -149,7 +149,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ar" dir="rtl" className={`${cairo.variable} scroll-smooth`}>
+    <html lang="ar" dir="rtl" className={`${cairo.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#064e3b" />
         <meta name="google-site-verification" content="HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos" />
@@ -163,7 +163,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrgLocalBusiness) }}
         />
       </head>
-      <body className="font-sans antialiased bg-gray-50 text-gray-900 selection:bg-emerald-600 selection:text-white">
+      <body
+        className="font-sans antialiased bg-gray-50 text-gray-900 selection:bg-emerald-600 selection:text-white"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
