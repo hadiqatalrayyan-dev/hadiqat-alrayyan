@@ -89,6 +89,9 @@ export const metadata: Metadata = {
     ],
     shortcut: "/favicon.ico",
   },
+  verification: {
+    google: "HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos",
+  },
 };
 
 export default function RootLayout({
@@ -148,6 +151,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={`${cairo.variable} scroll-smooth`}>
       <head>
         <meta name="theme-color" content="#064e3b" />
+        <meta name="google-site-verification" content="HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/images/future-gardens-logo-icon.png" />
