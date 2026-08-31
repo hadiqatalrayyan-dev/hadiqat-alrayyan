@@ -1,0 +1,27 @@
+{
+  "name": "حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض",
+  "short_name": "حدائق المستقبل",
+  "description": "أفضل شركة تصميم وتنسيق حدائق وتركيب عشب وشلالات ومظلات بالرياض",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#1d5512",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
