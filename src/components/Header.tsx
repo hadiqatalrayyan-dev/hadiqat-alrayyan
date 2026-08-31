@@ -291,6 +291,8 @@ export default function Header() {
                   <div className="flex items-center gap-2 border-2 border-[#4d8834] focus-within:border-[#e07b22] rounded-xl px-3 py-2 bg-gray-50 transition-colors shadow-inner">
                     <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
                     <input
+                      id="desktop-search-input"
+                      aria-label="ابحث عن الخدمات والمقالات"
                       type="text"
                       placeholder="ابحث عن خدمة، شلال، عشب، مظلات..."
                       value={searchQuery}
@@ -301,6 +303,7 @@ export default function Header() {
                     {searchQuery && (
                       <button
                         onClick={() => setSearchQuery("")}
+                        aria-label="مسح البحث"
                         className="text-gray-400 hover:text-gray-600"
                       >
                         <X className="w-3.5 h-3.5" />
@@ -421,7 +424,8 @@ export default function Header() {
             {/* Desktop 'اتصل بنا' Button */}
             <a
               href={`tel:${siteConfig.phone}`}
-              className="hidden sm:inline-flex bg-[#e5a823] hover:bg-[#d69919] text-white font-bold text-xs px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1"
+              aria-label={`اتصل بنا هاتفياً على ${siteConfig.phoneDisplay}`}
+              className="hidden sm:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1"
             >
               <span>اتصل بنا</span>
             </a>
@@ -431,6 +435,7 @@ export default function Header() {
               href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود الحصول على عرض سعر لتنسيق حديقة")}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="طلب عرض أسعار عبر الواتساب"
               className="hidden sm:inline-flex bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1"
             >
               <span>عرض أسعار</span>
