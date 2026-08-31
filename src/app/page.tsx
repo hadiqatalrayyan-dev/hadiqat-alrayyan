@@ -15,27 +15,35 @@ import { Calendar } from "lucide-react";
 
 // Dynamic imports for below-the-fold & interactive modal components to reduce initial JS execution and TBT
 const BeforeAfterSlider = dynamic(() => import("@/components/BeforeAfterSlider"), {
+  ssr: false,
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const PortfolioGallery = dynamic(() => import("@/components/PortfolioGallery"), {
+  ssr: false,
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const GardenCostCalculator = dynamic(() => import("@/components/GardenCostCalculator"), {
+  ssr: false,
   loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const VideoSection = dynamic(() => import("@/components/VideoSection"), {
+  ssr: false,
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const BlogSection = dynamic(() => import("@/components/BlogSection"), {
+  ssr: false,
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const TestimonialsSection = dynamic(() => import("@/components/TestimonialsSection"), {
+  ssr: false,
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const FaqSection = dynamic(() => import("@/components/FaqSection"), {
+  ssr: false,
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const ContactSection = dynamic(() => import("@/components/ContactSection"), {
+  ssr: false,
   loading: () => <div className="h-80 w-full animate-pulse bg-gray-100 rounded-3xl" />,
 });
 const FreeInspectionModal = dynamic(() => import("@/components/FreeInspectionModal"), {
