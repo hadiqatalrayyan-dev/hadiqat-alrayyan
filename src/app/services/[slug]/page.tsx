@@ -257,8 +257,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1558904541-efa8c4a08931?q=80&w=1920&auto=format&fit=crop')",
+            backgroundImage: "url('/images/why_choose_us_garden.webp')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#07240d]/95 via-[#0b3414]/90 to-[#07240d]/95" />

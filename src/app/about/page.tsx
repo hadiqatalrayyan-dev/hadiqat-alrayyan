@@ -131,16 +131,20 @@ export default function AboutPage() {
             <div className="lg:col-span-5 grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img
-                  src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600&auto=format&fit=crop"
+                  src="/images/service-garden-design-3d.webp"
                   alt="تنسيق وصيانة الحدائق"
                   className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-md border-2 border-emerald-100"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-4 pt-8">
                 <img
-                  src="https://images.unsplash.com/photo-1592417817098-8f3d6eb228cc?q=80&w=600&auto=format&fit=crop"
+                  src="/images/service-artificial-grass.webp"
                   alt="مشتل وزراعة نباتات"
                   className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-md border-2 border-emerald-100"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -321,8 +325,7 @@ export default function AboutPage() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1558904541-efa8c4a08931?q=80&w=1920&auto=format&fit=crop')",
+            backgroundImage: "url('/images/why_choose_us_garden.webp')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#07240d]/95 via-[#0b3414]/90 to-[#07240d]/95" />

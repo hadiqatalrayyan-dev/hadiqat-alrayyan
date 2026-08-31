@@ -58,8 +58,7 @@ export default function ServicesPage() {
         <div
           className="absolute inset-0 bg-cover bg-center opacity-35 scale-105"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1592417817098-8f3d6eb228cc?q=80&w=1920&auto=format&fit=crop')",
+            backgroundImage: "url('/images/why_choose_us_garden.webp')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a2012]/92 via-[#0d2e1a]/88 to-[#0a2012]/95" />

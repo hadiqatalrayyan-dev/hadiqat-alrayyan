@@ -650,6 +650,7 @@ export default function Header() {
             href={`https://wa.me/${siteConfig.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="محادثة واتساب مباشرة مع المبيعات"
             className="flex items-center justify-center gap-2 w-full bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs py-3 rounded-xl shadow-sm transition-colors"
           >
             <span>واتساب مباشر</span>

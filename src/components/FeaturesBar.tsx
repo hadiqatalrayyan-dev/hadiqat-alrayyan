@@ -59,9 +59,9 @@ export default function FeaturesBar() {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 leading-snug">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 leading-snug">
                 {item.title}
-              </h3>
+              </h2>
 
               {/* Description */}
               <p className="text-xs sm:text-[13px] md:text-sm text-gray-600 leading-relaxed max-w-sm">

@@ -89,7 +89,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. فهد بن خالد السبيعي",
       role: "كبير مهندسي اللاندسكيب والتطوير الحضري",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "خبير معتمد في تصميم وتنسيق الحدائق والملاعب بخبرة تزيد عن 14 عاماً في كبرى مشاريع الفلل والقصور بمدينة الرياض."
     }
   },
@@ -144,7 +144,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. إبراهيم الدوسري",
       role: "استشاري الإنتاج النباتي والمسطحات الخضراء",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس زراعي متخصص في إدارة المسطحات الخضراء وشبكات الري الأوتوماتيكية في البيئات الجافة لأكثر من 16 عاماً."
     }
   },
@@ -184,7 +184,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. وليد الشهري",
       role: "رئيس قسم التصميم المعماري واللاندسكيب",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس معماري متخصص في تنسيق المواقع والحدائق السكنية الفاخرة، حاصل على جوائز في التصميم المستدام بالرياض."
     }
   },
@@ -222,7 +222,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. طارق المنصور",
       role: "كبير مهندسي الأعمال الكهروميكانيكية والشلالات",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "خبير في الأنظمة المائية والعزل الإنشائي للشلالات والبحيرات الصناعية بخبرة تتجاوز 12 عاماً في السعودية."
     }
   },
@@ -260,7 +260,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. خالد العتيبي",
       role: "رئيس قسم الإنشاءات المعدنية والبرجولات",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس إنشائي متخصص في تصميم وتنفيذ المظلات المعلقة والبرجولات الهندسية المقاومة للرياح والحرارة."
     }
   },
@@ -298,7 +298,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. حسام الغامدي",
       role: "استشاري الديكور والتكسيات المعمارية",
-      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مصمم ديكور متخصص في واجهات وتكسيات اللاندسكيب الحديثة وتوظيف بدائل الخشب والرخام."
     }
   },
@@ -336,7 +336,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. ماجد الزهراني",
       role: "كبير مهندسي أنظمة الري والتحكم الآلي",
-      avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس هيدروليكي متخصص في تصميم شبكات الري الموفرة للمياه والأتمتة الذكية للمشاريع السكنية والزراعية."
     }
   },
@@ -374,7 +374,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. سامي الحربي",
       role: "استشاري تشكيل الأحجار والأرضيات الخارجية",
-      avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس ديكور متخصص في توظيف الأحجار الطبيعية والبازلت في أعمال اللاندسكيب والممرات المعمارية."
     }
   },
@@ -412,7 +412,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "د. عبد الرحمن الفيفي",
       role: "كبير الخبراء والمهندسين الزراعيين",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "دكتوراه في العلوم الزراعية وفسيولوجيا النبات، مستشار لكبرى مزارع النخيل ومشاريع التشجير في المملكة."
     }
   },
@@ -450,7 +450,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. عادل المطيري",
       role: "رئيس قسم وقاية النبات والمكافحة المتكاملة",
-      avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس وقاية نبات متخصص في مكافحة سوسة النخيل والآفات الحشرية بخبرة تتجاوز 15 عاماً بالرياض."
     }
   },
@@ -488,7 +488,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. ناصر الرشيدي",
       role: "استشاري التشكيل المعماري والديكورات الزراعية",
-      avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس ديكور متخصص في تصميم وتصنيع أحواض النباتات المعمارية وتنسيق المداخل السكنية الفاخرة."
     }
   },
@@ -526,7 +526,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
     authorBio: {
       name: "م. عبد العزيز الشمري",
       role: "مدير مشاريع المنشآت والملاعب الرياضية",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      avatar: "/images/rabea-shaban-profile.webp",
       bioText: "مهندس مشاريع متخصص في إنشاء وتجهيز الملاعب الرياضية الدولية وملاعب البادل وفق معايير الاتحاد الدولي."
     }
   }
