@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="32" height="32">
+  <defs>
+    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#22c55e" />
+      <stop offset="100%" stopColor="#4d8834" />
+    </linearGradient>
+    <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#15803d" />
+      <stop offset="100%" stopColor="#14532d" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#fbbf24" />
+      <stop offset="100%" stopColor="#d97706" />
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="#edf7ea" stroke="url(#leafGrad1)" stroke-width="4" />
+  <circle cx="60" cy="45" r="16" fill="url(#goldGrad)" />
+  <path d="M60 100 C40 85 24 65 30 45 C35 30 52 35 60 55 C60 75 60 90 60 100 Z" fill="url(#leafGrad1)" />
+  <path d="M60 100 C75 85 92 65 88 45 C84 32 68 36 60 55 C60 75 60 90 60 100 Z" fill="url(#leafGrad2)" />
+  <path d="M58 55 Q60 25 60 20 Q60 25 62 55 Z" fill="url(#goldGrad)" />
+</svg>
