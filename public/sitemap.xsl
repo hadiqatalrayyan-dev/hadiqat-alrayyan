@@ -7,7 +7,7 @@
   <xsl:template match="/">
     <html lang="ar" dir="rtl">
       <head>
-        <title>خريطة الموقع XML | مؤسسة حدائق المستقبل بالرياض</title>
+        <title>خريطة الموقع XML | مؤسسة حدائق الريان بالرياض</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style type="text/css">
           body {
@@ -115,7 +115,7 @@
           <div class="header">
             <div>
               <h1>خريطة الموقع الرسمية (XML Sitemap)</h1>
-              <p class="subtitle">مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض</p>
+              <p class="subtitle">مؤسسة حدائق الريان لتنسيق وتصميم الحدائق بالرياض</p>
             </div>
             <div class="badge">
               إجمالي الروابط: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/>
