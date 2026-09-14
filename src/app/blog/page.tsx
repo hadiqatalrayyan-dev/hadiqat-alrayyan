@@ -178,7 +178,7 @@ export default function BlogIndexPage() {
                   <div className="text-[11px] sm:text-xs text-gray-500 font-medium space-x-2 space-x-reverse">
                     <span>منشور في: {article.day} {article.month} 2026</span>
                     <span>•</span>
-                    <span>بواسطة: {article.author || "مؤسسة حدائق المستقبل"}</span>
+                    <span>بواسطة: {article.author || "مؤسسة حدائق الريان"}</span>
                   </div>
 
                   {/* 4. Featured Image with Date Badge & Custom Overlay matching screenshot */}
@@ -205,7 +205,7 @@ export default function BlogIndexPage() {
                             </span>
                           </div>
                           <span className="mt-1 text-[10px] text-white/90 bg-black/60 px-3 py-0.5 rounded-full">
-                            futuregardens.sa
+                            hadiqat-alrayan.com
                           </span>
                         </div>
                       </div>
@@ -269,7 +269,7 @@ export default function BlogIndexPage() {
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
             src="/images/about-team-banner.webp"
-            alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
+            alt="فريق عمل مؤسسة حدائق الريان لتنسيق الحدائق بالرياض"
             className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
           />
         </div>

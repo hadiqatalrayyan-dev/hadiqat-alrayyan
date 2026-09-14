@@ -55,14 +55,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!service) {
     return {
-      title: "الخدمة غير موجودة | مؤسسة حدائق المستقبل",
+      title: "الخدمة غير موجودة | مؤسسة حدائق الريان",
     };
   }
 
   const mkt = marketingArticles[slug];
   const pageTitle = mkt?.seoMetaTitle 
-    ? `${mkt.seoMetaTitle} | مؤسسة حدائق المستقبل بالرياض`
-    : `${service.title} بالرياض | مؤسسة حدائق المستقبل`;
+    ? `${mkt.seoMetaTitle} | مؤسسة حدائق الريان بالرياض`
+    : `${service.title} بالرياض | مؤسسة حدائق الريان`;
 
   const pageDescription = `${service.shortDesc} أفضل أسعار توريد وتركيب مع ضمان معتمد يصل إلى 7 سنوات وتصميم 3D مجاناً بالرياض. اتصل الآن: ${siteConfig.phoneDisplay}`;
 
@@ -75,12 +75,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     "تصميم حدائق فلل وقصور",
     "اسعار تنسيق الحدائق 2026",
     "افضل شركة لاندسكيب",
-    "مؤسسة حدائق المستقبل",
+    "مؤسسة حدائق الريان",
     ...(mkt?.targetKeywords || []),
   ];
 
-  const canonicalUrl = `https://futuregardens.vercel.app/services/${slug}`;
-  const imgUrl = service.image.startsWith("http") ? service.image : `https://futuregardens.vercel.app${service.image}`;
+  const canonicalUrl = `https://hadiqat-alrayan.com/services/${slug}`;
+  const imgUrl = service.image.startsWith("http") ? service.image : `https://hadiqat-alrayan.com${service.image}`;
 
   return {
     title: pageTitle,
@@ -89,9 +89,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: canonicalUrl,
     },
-    authors: [{ name: "مؤسسة حدائق المستقبل لتنسيق الحدائق", url: "https://futuregardens.vercel.app" }],
-    creator: "مؤسسة حدائق المستقبل",
-    publisher: "مؤسسة حدائق المستقبل لتنسيق الحدائق",
+    authors: [{ name: "مؤسسة حدائق الريان لتنسيق الحدائق", url: "https://hadiqat-alrayan.com" }],
+    creator: "مؤسسة حدائق الريان",
+    publisher: "مؤسسة حدائق الريان لتنسيق الحدائق",
     robots: {
       index: true,
       follow: true,
@@ -107,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: pageTitle,
       description: pageDescription,
       url: canonicalUrl,
-      siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
+      siteName: "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       locale: "ar_SA",
       type: "website",
       images: [
@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: imgUrl,
           width: 1200,
           height: 630,
-          alt: `${service.title} بالرياض - مؤسسة حدائق المستقبل`,
+          alt: `${service.title} بالرياض - مؤسسة حدائق الريان`,
         },
       ],
     },
@@ -149,13 +149,13 @@ export default async function ServiceDetailPage({ params }: Props) {
     "serviceType": service.category,
     "description": service.shortDesc,
     "image": service.image,
-    "url": `https://futuregardens.vercel.app/services/${slug}`,
+    "url": `https://hadiqat-alrayan.com/services/${slug}`,
     "provider": {
       "@type": "HomeAndConstructionBusiness",
-      "name": "مؤسسة حدائق المستقبل لتنسيق الحدائق",
+      "name": "مؤسسة حدائق الريان لتنسيق الحدائق",
       "telephone": siteConfig.phone,
       "email": siteConfig.email,
-      "url": "https://futuregardens.vercel.app",
+      "url": "https://hadiqat-alrayan.com",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "SA",
@@ -201,19 +201,19 @@ export default async function ServiceDetailPage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "الرئيسية",
-        "item": "https://futuregardens.vercel.app"
+        "item": "https://hadiqat-alrayan.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "خدماتنا",
-        "item": "https://futuregardens.vercel.app/services"
+        "item": "https://hadiqat-alrayan.com/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://futuregardens.vercel.app/services/${slug}`
+        "item": `https://hadiqat-alrayan.com/services/${slug}`
       }
     ]
   };
@@ -270,7 +270,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="text-xs sm:text-sm text-emerald-300/80 font-semibold space-x-2 space-x-reverse">
                 <Link href="/" className="hover:text-white transition-colors">
-                  حدائق المستقبل لتنسيق الحدائق
+                  حدائق الريان لتنسيق الحدائق
                 </Link>
                 <span>»</span>
                 <Link href="/services" className="hover:text-white transition-colors">
@@ -637,7 +637,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <div className="bg-emerald-900 text-white rounded-2xl p-6 sm:p-8 space-y-4 shadow-lg">
                       <h3 className="text-lg sm:text-xl font-bold text-amber-400 flex items-center gap-2">
                         <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                        <span>نصائح ذهبية من خبراء حدائق المستقبل قبل الشراء والتركيب:</span>
+                        <span>نصائح ذهبية من خبراء حدائق الريان قبل الشراء والتركيب:</span>
                       </h3>
                       <ul className="space-y-3">
                         {mkt.proTips.map((tip, idx) => (
@@ -813,7 +813,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-sm border border-gray-100">
                 <h3 className="text-xl font-black text-gray-900 mb-6 flex items-center gap-2 pb-3 border-b border-gray-100">
                   <Star className="w-5 h-5 text-[#e5a823] fill-amber-400" />
-                  <span>لماذا تختار حدائق المستقبل لهذه الخدمة؟</span>
+                  <span>لماذا تختار حدائق الريان لهذه الخدمة؟</span>
                 </h3>
                 <ul className="space-y-3">
                   {service.benefits.map((benefit, idx) => (

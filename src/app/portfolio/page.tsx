@@ -225,7 +225,7 @@ export default function PortfolioPage() {
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
             src="/images/about-team-banner.webp"
-            alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
+            alt="فريق عمل مؤسسة حدائق الريان لتنسيق الحدائق بالرياض"
             className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
           />
         </div>

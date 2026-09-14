@@ -4,37 +4,37 @@ import React from "react";
 import Link from "next/link";
 import { siteConfig, services } from "@/data/content";
 import Logo from "@/components/Logo";
+import { ChevronLeft } from "lucide-react";
+import {
+  FaPhoneVolume,
+  FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaPinterestP,
+  FaLinkedinIn,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = 2026;
 
   const contactList = [
     {
-      label: "0560877272",
-      href: "tel:0560877272",
-      icon: (
-        <svg className="w-4 h-4 text-[#e07b22] fill-current" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z" />
-        </svg>
-      ),
+      label: "0556226376",
+      href: "tel:0556226376",
+      icon: <FaPhoneVolume className="w-3.5 h-3.5 text-[#e07b22]" />,
     },
     {
-      label: "966560877272",
-      href: "tel:+966560877272",
-      icon: (
-        <svg className="w-4 h-4 text-[#e07b22] fill-current" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z" />
-        </svg>
-      ),
+      label: "966556226376",
+      href: "tel:+966556226376",
+      icon: <FaWhatsapp className="w-4 h-4 text-[#25D366]" />,
     },
     {
-      label: "info@futuregardens.sa",
-      href: "mailto:info@futuregardens.sa",
-      icon: (
-        <svg className="w-4 h-4 text-[#e07b22] fill-current" viewBox="0 0 24 24">
-          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-        </svg>
-      ),
+      label: "info@hadiqat-alrayan.com",
+      href: "mailto:info@hadiqat-alrayan.com",
+      icon: <FaEnvelope className="w-3.5 h-3.5 text-[#e07b22]" />,
     },
   ];
 
@@ -82,7 +82,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-600 text-xs sm:text-[13px] leading-relaxed">
-              مؤسسة حدائق المستقبل هي أفضل شركة لتنسيق الحدائق بالرياض، حيث نقوم بتصميم وتنسيق الحدائق المنزلية والعامة، وتوريد وتركيب العشب الصناعي للحدائق والملاعب وكذلك زراعة العشب الطبيعي وزراعة الاشجار والورود والنخيل، وتركيب شلالات ونوافير منزلية، وعمل ديكورات زراعية متنوعة، بالإضافة إلى تصميم وتركيب مظلات وبرجولات على أعلى مستوى.
+              مؤسسة حدائق الريان هي أفضل شركة لتنسيق الحدائق بالرياض، حيث نقوم بتصميم وتنسيق الحدائق المنزلية والعامة، وتوريد وتركيب العشب الصناعي للحدائق والملاعب وكذلك زراعة العشب الطبيعي وزراعة الاشجار والورود والنخيل، وتركيب شلالات ونوافير منزلية، وعمل ديكورات زراعية متنوعة، بالإضافة إلى تصميم وتركيب مظلات وبرجولات على أعلى مستوى.
             </p>
           </div>
 
@@ -115,19 +115,17 @@ export default function Footer() {
               <span className="block text-gray-800 font-bold text-sm mb-3 text-right">
                 تابعنا على:
               </span>
-              <div className="flex items-center justify-start gap-2.5">
+              <div className="flex items-center justify-start gap-2">
                 
                 {/* Facebook */}
                 <a
                   href={siteConfig.socials.facebook}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#1877F2] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="Facebook"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.593 0 9 1.583 9 4.615V8z" />
-                  </svg>
+                  <FaFacebookF className="w-3.5 h-3.5" />
                 </a>
 
                 {/* Instagram */}
@@ -135,12 +133,10 @@ export default function Footer() {
                   href={siteConfig.socials.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#E4405F] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="Instagram"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
-                  </svg>
+                  <FaInstagram className="w-3.5 h-3.5" />
                 </a>
 
                 {/* Twitter / X */}
@@ -148,12 +144,10 @@ export default function Footer() {
                   href={siteConfig.socials.twitter}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-black hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="Twitter"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
+                  <FaXTwitter className="w-3.5 h-3.5" />
                 </a>
 
                 {/* Pinterest */}
@@ -161,12 +155,10 @@ export default function Footer() {
                   href={siteConfig.socials.pinterest}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#BD081C] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="Pinterest"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
-                  </svg>
+                  <FaPinterestP className="w-3.5 h-3.5" />
                 </a>
 
                 {/* LinkedIn */}
@@ -174,12 +166,10 @@ export default function Footer() {
                   href={siteConfig.socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#0A66C2] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="LinkedIn"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                  </svg>
+                  <FaLinkedinIn className="w-3.5 h-3.5" />
                 </a>
 
                 {/* YouTube */}
@@ -187,12 +177,10 @@ export default function Footer() {
                   href={siteConfig.socials.youtube}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#4d8834] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
+                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#FF0000] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
                   aria-label="YouTube"
                 >
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
+                  <FaYoutube className="w-3.5 h-3.5" />
                 </a>
 
               </div>
@@ -209,11 +197,9 @@ export default function Footer() {
                 <li key={idx}>
                   <Link
                     href={s.href}
-                    className="flex items-center gap-2 text-gray-600 hover:text-[#4d8834] transition-colors py-0.5 group"
+                    className="flex items-center gap-1.5 text-gray-600 hover:text-[#4d8834] transition-colors py-0.5 group"
                   >
-                    <span className="text-[#4d8834] font-black text-xs group-hover:-translate-x-1 transition-transform flex-shrink-0">
-                      &gt;
-                    </span>
+                    <ChevronLeft className="w-3.5 h-3.5 text-[#4d8834] group-hover:-translate-x-1 transition-transform flex-shrink-0" />
                     <span className="leading-snug">{s.label}</span>
                   </Link>
                 </li>
@@ -231,11 +217,9 @@ export default function Footer() {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 text-gray-600 hover:text-[#4d8834] transition-colors py-0.5 group"
+                    className="flex items-center gap-1.5 text-gray-600 hover:text-[#4d8834] transition-colors py-0.5 group"
                   >
-                    <span className="text-[#4d8834] font-black text-xs group-hover:-translate-x-1 transition-transform flex-shrink-0">
-                      &gt;
-                    </span>
+                    <ChevronLeft className="w-3.5 h-3.5 text-[#4d8834] group-hover:-translate-x-1 transition-transform flex-shrink-0" />
                     <span className="leading-snug">{link.label}</span>
                   </Link>
                 </li>
@@ -249,7 +233,7 @@ export default function Footer() {
         <div className="pt-6 border-t border-[#4d8834]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-gray-600">
           <div>
             <span>© {currentYear} جميع الحقوق محفوظة لصالح </span>
-            <span className="font-bold text-[#4d8834]">مؤسسة حدائق المستقبل</span>
+            <span className="font-bold text-[#4d8834]">مؤسسة حدائق الريان</span>
           </div>
           <div className="text-xs text-gray-500 font-medium flex items-center gap-2">
             <span>تصميم وتطوير الموقع:</span>

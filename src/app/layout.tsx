@@ -12,8 +12,8 @@ const cairo = Cairo({
 });
 
 const siteTitle = `${siteConfig.name} | أفضل شركة تنسيق حدائق بالرياض`;
-const siteDescription = "مؤسسة حدائق المستقبل الرائدة في تصميم وتنسيق الحدائق المنزلية والفلل بالرياض. توريد وتركيب عشب صناعي وطبيعي، شلالات ونوافير، مظلات وبرجولات، شبكات ري أوتوماتيكية وضمان حتى 7 سنوات مع معاينة وتصميم 3D مجاناً.";
-const siteUrl = "https://futuregardens.vercel.app";
+const siteDescription = "مؤسسة حدائق الريان الرائدة في تصميم وتنسيق الحدائق المنزلية والفلل بالرياض. توريد وتركيب عشب صناعي وطبيعي، شلالات ونوافير، مظلات وبرجولات، شبكات ري أوتوماتيكية وضمان حتى 7 سنوات مع معاينة وتصميم 3D مجاناً.";
+const siteUrl = "https://hadiqat-alrayan.com";
 const ogImageUrl = "/images/og-image.webp";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "نوافير منزلية بالرياض",
     "مظلات وبرجولات الرياض",
     "شبكات ري أوتوماتيكية",
-    "مؤسسة حدائق المستقبل لتنسيق الحدائق",
+    "مؤسسة حدائق الريان لتنسيق الحدائق",
     "اسعار تنسيق الحدائق بالرياض",
     "ارقام منسقي حدائق بالرياض",
   ],
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     images: [ogImageUrl],
-    creator: "@futuregardens",
+    creator: "@hadiqat_alrayan",
   },
   robots: {
     index: true,
@@ -110,9 +110,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "name": siteConfig.name,
-    "alternateName": "مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض",
+    "alternateName": "مؤسسة حدائق الريان لتنسيق وتصميم الحدائق بالرياض",
     "image": `${siteUrl}/images/og-image.webp`,
-    "logo": `${siteUrl}/images/official-circular-logo.png`,
+    "logo": `${siteUrl}/logo.png`,
     "@id": `${siteUrl}/#business`,
     "url": siteUrl,
     "telephone": siteConfig.phone,

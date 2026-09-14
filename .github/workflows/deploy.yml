@@ -1,0 +1,70 @@
+name: Deploy to Hostinger Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: hostinger-production-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy to Hostinger
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # Step 2: Set up Node.js with caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run Linter (Ensures Code Quality)
+      - name: Run Linter
+        run: npm run lint
+
+      # Step 5: Build Next.js Static Export
+      - name: Build Next.js Static Production Export
+        run: npm run build
+
+      # Step 6: Ensure .htaccess is included in static export
+      - name: Copy .htaccess to out folder
+        run: cp public/.htaccess out/.htaccess
+
+      # Step 7: Verify Build Artifacts
+      - name: Verify Export Output
+        run: |
+          if [ ! -f "out/index.html" ]; then
+            echo "::error::Build verification failed! out/index.html was not generated."
+            exit 1
+          fi
+          echo "Build verified successfully. Files ready for deployment:"
+          ls -la out/
+
+      # Step 7: Deploy to Hostinger via Secure FTP / FTPS
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_PASSWORD }}
+          port: ${{ secrets.HOSTINGER_PORT || 21 }}
+          server-dir: ${{ secrets.HOSTINGER_SERVER_DIR || './public_html/' }}
+          local-dir: ./out/
+          protocol: ftp
+          dangerous-clean-slate: false

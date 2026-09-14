@@ -6,7 +6,8 @@ const formatNumber = (num: number) => {
 
 
 import React, { useState } from "react";
-import { Calculator, CheckCircle2, MessageCircle, Phone, RefreshCw } from "lucide-react";
+import { Calculator, CheckCircle2, RefreshCw } from "lucide-react";
+import { FaWhatsapp, FaPhoneVolume } from "react-icons/fa6";
 import { siteConfig } from "@/data/content";
 
 export default function GardenCostCalculator() {
@@ -286,16 +287,16 @@ export default function GardenCostCalculator() {
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <button
             onClick={handleWhatsAppQuote}
-            className="flex items-center justify-center gap-2 bg-[#e5a823] hover:bg-[#d69919] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all hover:scale-105"
+            className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all hover:scale-105"
           >
-            <MessageCircle className="w-4 h-4" />
+            <FaWhatsapp className="w-4 h-4" />
             <span>إرسال المقايسة لواتساب</span>
           </button>
           <a
             href={`tel:${siteConfig.phone}`}
             className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl border border-white/20 transition-all"
           >
-            <Phone className="w-4 h-4" />
+            <FaPhoneVolume className="w-3.5 h-3.5" />
             <span>اتصال بالمهندس</span>
           </a>
         </div>

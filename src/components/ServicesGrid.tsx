@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig, services } from "@/data/content";
-import { Phone, MessageCircle, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { FaWhatsapp, FaPhoneVolume } from "react-icons/fa6";
 
 export default function ServicesGrid() {
   return (
@@ -21,7 +22,7 @@ export default function ServicesGrid() {
           </div>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight tracking-tight">
-            خدمات مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق
+            خدمات مؤسسة حدائق الريان لتنسيق وتصميم الحدائق
           </h2>
 
           <div className="w-16 h-1.5 bg-[#e07b22] mx-auto rounded-full" />
@@ -89,9 +90,9 @@ export default function ServicesGrid() {
                   <a
                     href={`tel:${siteConfig.phone}`}
                     aria-label={`اتصل بنا هاتفياً لخدمة ${item.title}`}
-                    className="inline-flex items-center gap-1.5 bg-[#245f14] hover:bg-[#1a470e] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all hover:scale-105"
+                    className="inline-flex items-center gap-1.5 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow-xs transition-all hover:scale-105"
                   >
-                    <Phone className="w-3.5 h-3.5" />
+                    <FaPhoneVolume className="w-3 h-3 text-amber-200" />
                     <span>اتصل بنا</span>
                   </a>
 
@@ -100,10 +101,10 @@ export default function ServicesGrid() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`تواصل واتساب مباشر لخدمة ${item.title}`}
-                    className="inline-flex items-center justify-center w-9 h-9 bg-[#1ea851] hover:bg-[#16823e] text-white rounded-xl shadow-sm transition-all hover:scale-105"
+                    className="inline-flex items-center justify-center w-9 h-9 bg-[#25D366] hover:bg-[#1EBE5D] text-white rounded-xl shadow-sm transition-all hover:scale-105"
                     title={`محادثة واتساب بخصوص ${item.title}`}
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <FaWhatsapp className="w-4 h-4" />
                   </a>
                 </div>
 

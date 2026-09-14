@@ -1,24 +1,24 @@
-# حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض
+# حدائق الريان لتنسيق وتصميم الحدائق بالرياض
 
 > أفضل مؤسسة متخصصة في تصميم وتنسيق الحدائق المنزلية والفلل والاستراحات وتركيب العشب الصناعي والشلالات والمظلات بالرياض.
 
 ## الخدمات الرئيسية
-- [تركيب العشب الصناعي والجداري](https://futuregardens.vercel.app/services/artificial-grass/): توريد وتركيب نجيل صناعي معتمد ومقاوم لحرارة الشمس مع ضمان حتى 7 سنوات.
-- [توريد وزراعة العشب الطبيعي](https://futuregardens.vercel.app/services/natural-grass/): رولات ثيل طبيعي سي ثري، باسبالم، وبرمودا.
-- [تصميم وبناء الشلالات والنوافير](https://futuregardens.vercel.app/services/waterfalls-fountains/): شلالات جدارية ومودرن ونوافير رخامية ومصبات ستيل.
-- [تركيب المظلات والبرجولات](https://futuregardens.vercel.app/services/pergolas-canopies/): برجولات خشبية وحديد وألمنيوم مع أغطية لكسان عازلة.
-- [تمديد شبكات الري الذكية](https://futuregardens.vercel.app/services/automatic-irrigation/): شبكات ري أوتوماتيكية بالتنقيط والرشاشات مع محابس وتايمر إلكتروني.
-- [زراعة وتكريب النخيل والأشجار](https://futuregardens.vercel.app/services/palm-planting/): نخيل عربي وواشنطوني وأشجار زينة وزهور موسمية.
-- [أعمال الديكور الحجري والممرات](https://futuregardens.vercel.app/services/pebble-stone-decor/): ممرات حجرية وبحص وادي ناصع البياض وإضاءة لاندسكيب.
+- [تركيب العشب الصناعي والجداري](https://hadiqat-alrayan.com/services/artificial-grass/): توريد وتركيب نجيل صناعي معتمد ومقاوم لحرارة الشمس مع ضمان حتى 7 سنوات.
+- [توريد وزراعة العشب الطبيعي](https://hadiqat-alrayan.com/services/natural-grass/): رولات ثيل طبيعي سي ثري، باسبالم، وبرمودا.
+- [تصميم وبناء الشلالات والنوافير](https://hadiqat-alrayan.com/services/waterfalls-fountains/): شلالات جدارية ومودرن ونوافير رخامية ومصبات ستيل.
+- [تركيب المظلات والبرجولات](https://hadiqat-alrayan.com/services/pergolas-canopies/): برجولات خشبية وحديد وألمنيوم مع أغطية لكسان عازلة.
+- [تمديد شبكات الري الذكية](https://hadiqat-alrayan.com/services/automatic-irrigation/): شبكات ري أوتوماتيكية بالتنقيط والرشاشات مع محابس وتايمر إلكتروني.
+- [زراعة وتكريب النخيل والأشجار](https://hadiqat-alrayan.com/services/palm-planting/): نخيل عربي وواشنطوني وأشجار زينة وزهور موسمية.
+- [أعمال الديكور الحجري والممرات](https://hadiqat-alrayan.com/services/pebble-stone-decor/): ممرات حجرية وبحص وادي ناصع البياض وإضاءة لاندسكيب.
 
 ## صفحات الموقع
-- [الرئيسية](https://futuregardens.vercel.app/)
-- [من نحن](https://futuregardens.vercel.app/about/)
-- [خدماتنا](https://futuregardens.vercel.app/services/)
-- [معرض الأعمال](https://futuregardens.vercel.app/portfolio/)
-- [المدونة والمقالات الزراعية](https://futuregardens.vercel.app/blog/)
-- [اتصل بنا](https://futuregardens.vercel.app/contact/)
+- [الرئيسية](https://hadiqat-alrayan.com/)
+- [من نحن](https://hadiqat-alrayan.com/about/)
+- [خدماتنا](https://hadiqat-alrayan.com/services/)
+- [معرض الأعمال](https://hadiqat-alrayan.com/portfolio/)
+- [المدونة والمقالات الزراعية](https://hadiqat-alrayan.com/blog/)
+- [اتصل بنا](https://hadiqat-alrayan.com/contact/)
 
 ## معلومات التواصل
-- [الهاتف والواتساب](https://wa.me/966560877272): +966560877272
-- [الموقع الإلكتروني](https://futuregardens.vercel.app): الرياض، المملكة العربية السعودية
+- [الهاتف والواتساب](https://wa.me/966556226376): +966556226376
+- [الموقع الإلكتروني](https://hadiqat-alrayan.com): الرياض، المملكة العربية السعودية

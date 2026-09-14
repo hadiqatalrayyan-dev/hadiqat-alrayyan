@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.futuregardens.app',
-  appName: 'حدائق المستقبل',
+  appName: 'حدائق الريان',
   webDir: 'out',
   server: {
     androidScheme: 'https',

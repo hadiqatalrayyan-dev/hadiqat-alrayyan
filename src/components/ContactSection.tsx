@@ -3,14 +3,13 @@
 import React, { useState } from "react";
 import { siteConfig } from "@/data/content";
 import {
-  Phone,
-  MessageCircle,
   MapPin,
   Clock,
   Send,
   CheckCircle2,
   ShieldCheck,
 } from "lucide-react";
+import { FaPhoneVolume, FaWhatsapp } from "react-icons/fa6";
 
 export default function ContactSection() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -24,7 +23,7 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `طلب عرض سعر ومعاينة من موقع حدائق المستقبل:
+    const text = `طلب عرض سعر ومعاينة من موقع حدائق الريان:
 الاسم: ${formData.name}
 رقم الجوال: ${formData.phone}
 المدينة: ${formData.city}
@@ -87,7 +86,7 @@ export default function ContactSection() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-[#edf7ea] text-[#4d8834] flex items-center justify-center group-hover:bg-[#4d8834] group-hover:text-white transition-colors">
-                  <Phone className="w-6 h-6" />
+                  <FaPhoneVolume className="w-5 h-5" />
                 </div>
                 <div className="text-right">
                   <span className="block text-xs text-gray-500 font-semibold">اتصال هاتفي مباشر</span>
@@ -109,8 +108,8 @@ export default function ContactSection() {
               className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#22c55e] transition-all duration-300 flex items-center justify-between group"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#10b981] flex items-center justify-center group-hover:bg-[#10b981] group-hover:text-white transition-colors">
-                  <MessageCircle className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#10b981] flex items-center justify-center group-hover:bg-[#25D366] group-hover:text-white transition-colors">
+                  <FaWhatsapp className="w-6 h-6" />
                 </div>
                 <div className="text-right">
                   <span className="block text-xs text-gray-500 font-semibold">محادثة واتساب فورية</span>

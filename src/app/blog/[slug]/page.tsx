@@ -49,14 +49,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) {
     return {
-      title: "المقال غير موجود | مؤسسة حدائق المستقبل بالرياض",
+      title: "المقال غير موجود | مؤسسة حدائق الريان بالرياض",
     };
   }
 
-  const title = detailed ? `${detailed.title} | مدونة حدائق المستقبل بالرياض` : `${article.title} | مدونة حدائق المستقبل بالرياض`;
+  const title = detailed ? `${detailed.title} | مدونة حدائق الريان بالرياض` : `${article.title} | مدونة حدائق الريان بالرياض`;
   const description = detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt;
-  const canonicalUrl = `https://futuregardens.vercel.app/blog/${slug}`;
-  const imgUrl = article.image.startsWith("http") ? article.image : `https://futuregardens.vercel.app${article.image}`;
+  const canonicalUrl = `https://hadiqat-alrayan.com/blog/${slug}`;
+  const imgUrl = article.image.startsWith("http") ? article.image : `https://hadiqat-alrayan.com${article.image}`;
 
   return {
     title,
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: canonicalUrl,
-      siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
+      siteName: "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       locale: "ar_SA",
       type: "article",
       images: [
@@ -109,25 +109,25 @@ export default async function BlogPostPage({ params }: Props) {
     "@type": "Article",
     "headline": detailed ? detailed.title : article.title,
     "description": detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt,
-    "image": `https://futuregardens.vercel.app${article.image}`,
+    "image": `https://hadiqat-alrayan.com${article.image}`,
     "author": {
       "@type": "Organization",
-      "name": "مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
-      "url": "https://futuregardens.vercel.app"
+      "name": "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
+      "url": "https://hadiqat-alrayan.com"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "مؤسسة حدائق المستقبل",
+      "name": "مؤسسة حدائق الريان",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://futuregardens.vercel.app/images/logo.png"
+        "url": "https://hadiqat-alrayan.com/images/logo.png"
       }
     },
     "datePublished": "2026-01-15T08:00:00+03:00",
     "dateModified": new Date().toISOString(),
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://futuregardens.vercel.app/blog/${slug}`
+      "@id": `https://hadiqat-alrayan.com/blog/${slug}`
     }
   };
 
@@ -194,7 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
             <div className="flex items-center gap-1.5 bg-black/20 px-3 py-1.5 rounded-lg border border-white/5">
               <User className="w-4 h-4 text-amber-400" />
-              <span>{detailed?.author?.name || "مؤسسة حدائق المستقبل"}</span>
+              <span>{detailed?.author?.name || "مؤسسة حدائق الريان"}</span>
             </div>
           </div>
 
@@ -311,7 +311,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Top Share Bar */}
             <ArticleShareBar
               title={detailed ? detailed.title : article.title}
-              url={`https://futuregardens.vercel.app/blog/${slug}`}
+              url={`https://hadiqat-alrayan.com/blog/${slug}`}
             />
 
             {/* Subtitle / Executive Summary Card */}
@@ -491,7 +491,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Bottom Share Bar */}
             <ArticleShareBar
               title={detailed ? detailed.title : article.title}
-              url={`https://futuregardens.vercel.app/blog/${slug}`}
+              url={`https://hadiqat-alrayan.com/blog/${slug}`}
             />
 
             {/* Next / Previous Article Navigation */}
@@ -531,7 +531,7 @@ export default async function BlogPostPage({ params }: Props) {
             {detailed && (
               <div className="bg-gradient-to-r from-[#0b3414] to-[#124d20] text-white p-8 sm:p-10 rounded-3xl shadow-xl text-center space-y-4">
                 <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">
-                  مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض
+                  مؤسسة حدائق الريان لتنسيق الحدائق بالرياض
                 </span>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-black leading-tight">
                   جاهز لتحويل حديقة منزلك إلى واحة أحلامك؟
@@ -570,7 +570,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
             src="/images/about-team-banner.webp"
-            alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
+            alt="فريق عمل مؤسسة حدائق الريان لتنسيق الحدائق بالرياض"
             className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
           />
         </div>

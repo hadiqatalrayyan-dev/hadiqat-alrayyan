@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Calendar, User, Phone, MapPin, CheckCircle2, MessageCircle } from "lucide-react";
+import { X, Calendar, User, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 import { siteConfig } from "@/data/content";
 
 interface Props {
@@ -148,9 +149,9 @@ export default function FreeInspectionModal({ isOpen, onClose }: Props) {
 
           <button
             type="submit"
-            className="w-full bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm mt-2"
+            className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-sm mt-2"
           >
-            <MessageCircle className="w-4 h-4" />
+            <FaWhatsapp className="w-5 h-5" />
             <span>تأكيد طلب المعاينة عبر واتساب</span>
           </button>
         </form>

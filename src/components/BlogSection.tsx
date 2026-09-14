@@ -12,7 +12,7 @@ export default function BlogSection() {
         {/* Section Header matching screenshot 100% */}
         <div className="text-center max-w-4xl mx-auto mb-14">
           <span className="block text-gray-400 text-sm sm:text-base font-semibold mb-2">
-            أبرز المقالات من مدونة حدائق المستقبل لتنسيق الحدائق في السعودية
+            أبرز المقالات من مدونة حدائق الريان لتنسيق الحدائق في السعودية
           </span>
 
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 tracking-tight leading-tight">
@@ -60,7 +60,7 @@ export default function BlogSection() {
                   {/* Watermark bar */}
                   <div className="absolute bottom-0 left-0 right-0 bg-[#1d5512]/90 py-0.5 text-center">
                     <span className="text-[9px] font-bold text-white tracking-widest uppercase">
-                      FUTUREGARDENS.SA
+                      HADIQAT-ALRAYAN.COM
                     </span>
                   </div>
                 </Link>

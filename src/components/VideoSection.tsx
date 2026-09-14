@@ -34,7 +34,7 @@ export default function VideoSection() {
             <iframe
               className="w-full h-full"
               src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-              title="فيديو من أعمال مؤسسة حدائق المستقبل لتنسيق الحدائق"
+              title="فيديو من أعمال مؤسسة حدائق الريان لتنسيق الحدائق"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
@@ -43,7 +43,7 @@ export default function VideoSection() {
               {/* Real Garden Video Thumbnail */}
               <img
                 src="/images/service-garden-design-3d.webp"
-                alt="تنسيق حديقة منزلية صغيرة - حدائق المستقبل لتنسيق الحدائق في السعودية"
+                alt="تنسيق حديقة منزلية صغيرة - حدائق الريان لتنسيق الحدائق في السعودية"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
@@ -65,10 +65,10 @@ export default function VideoSection() {
                   </div>
                   <div>
                     <span className="block text-xs sm:text-sm font-bold text-white leading-tight">
-                      تنسيق حديقة منزلية صغيرة - حدائق المستقبل لتنسيق الحدائق في السعودية
+                      تنسيق حديقة منزلية صغيرة - حدائق الريان لتنسيق الحدائق في السعودية
                     </span>
                     <span className="block text-[10px] text-[#e5a823] font-semibold">
-                      حدائق المستقبل لتنسيق الحدائق في السعودية
+                      حدائق الريان لتنسيق الحدائق في السعودية
                     </span>
                   </div>
                 </div>

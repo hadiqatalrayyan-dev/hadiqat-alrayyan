@@ -32,7 +32,7 @@ export default function ContactPage() {
     e.preventDefault();
     setFormSubmitted(true);
     // WhatsApp direct integration
-    const text = `السلام عليكم، أود طلب خدمة من مؤسسة حدائق المستقبل بالرياض:
+    const text = `السلام عليكم، أود طلب خدمة من مؤسسة حدائق الريان بالرياض:
 - الاسم: ${formData.name}
 - الجوال: ${formData.phone}
 - الخدمة: ${formData.service}
@@ -65,7 +65,7 @@ export default function ContactPage() {
           {/* Breadcrumbs */}
           <div className="text-xs sm:text-sm text-emerald-300 font-semibold space-x-2 space-x-reverse">
             <Link href="/" className="hover:underline">
-              حدائق المستقبل
+              حدائق الريان
             </Link>
             <span>»</span>
             <span>تواصل معنا</span>
@@ -73,7 +73,7 @@ export default function ContactPage() {
 
           {/* Main Hero Title */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight drop-shadow-md">
-            تواصل مع مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض
+            تواصل مع مؤسسة حدائق الريان لتنسيق الحدائق بالرياض
           </h1>
 
           <p className="text-xs sm:text-sm text-emerald-100/90 max-w-xl mx-auto font-medium">
@@ -247,9 +247,9 @@ export default function ContactPage() {
       <div className="w-full bg-white py-8 border-t border-gray-100 flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 text-center">
           <img
-            src="/images/about-team-banner.webp"
-            alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض"
-            className="w-full max-h-56 sm:max-h-72 object-contain mx-auto"
+            src="/images/about-team-banner.png"
+            alt="فريق عمل مؤسسة حدائق الريان لتنسيق الحدائق بالرياض"
+            className="w-full max-h-56 sm:max-h-72 object-contain mx-auto drop-shadow-sm"
           />
         </div>
       </div>

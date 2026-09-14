@@ -18,7 +18,7 @@ export default function BeforeAfterSlider({
   beforeLabel = "قبل التنسيق (أرض خرسانية)",
   afterLabel = "بعد التنسيق والتصميم (واحة خضراء)",
   title = "شاهد الفرق المذهل: قبل وبعد التنسيق",
-  subtitle = "اسحب المقبض يميناً ويساراً لمشاهدة تحول الفناء الكامل بأيدي مهندسي حدائق المستقبل بالرياض",
+  subtitle = "اسحب المقبض يميناً ويساراً لمشاهدة تحول الفناء الكامل بأيدي مهندسي حدائق الريان بالرياض",
 }: Props) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);

@@ -15,23 +15,22 @@ export default function AboutSection() {
           <div className="lg:col-span-5 xl:col-span-6 flex items-center justify-center relative order-2 lg:order-1">
             <div className="relative w-full max-w-md sm:max-w-lg xl:max-w-xl flex items-center justify-center">
               
-              {/* Mascot Image (Enlarged) */}
+              {/* Team Illustration Banner */}
               <div className="relative z-10 w-full flex items-center justify-center">
                 <img
-                  src="/images/gardener_mascot.webp"
-                  alt="فني ومهندس مؤسسة حدائق المستقبل لتنسيق الحدائق"
-                  className="w-full max-h-[560px] sm:max-h-[620px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                  src="/images/about-team-banner.png"
+                  alt="فريق ومهندسو مؤسسة حدائق الريان لتنسيق الحدائق"
+                  className="w-full max-h-[460px] sm:max-h-[520px] object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   decoding="async"
-                  width={665}
-                  height={891}
+                  width={900}
+                  height={500}
                 />
 
                 {/* Floating Emblem Logo */}
-                <div className="absolute -left-2 sm:-left-6 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center animate-bounce duration-1000 z-20">
-                  <Logo size="lg" showText={false} />
-                  <span className="text-xs font-black text-gray-900 mt-2">حدائق المستقبل</span>
-                  <span className="text-[10px] font-bold text-[#e07b22]">ضمان 7 سنوات</span>
+                <div className="absolute -left-2 sm:-left-6 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md px-4 py-3 sm:px-5 sm:py-4 rounded-3xl shadow-2xl border border-gray-100 flex flex-col items-center animate-bounce duration-1000 z-20">
+                  <Logo size="sm" />
+                  <span className="text-[11px] font-extrabold text-[#e07b22] mt-1.5">ضمان معتمد 7 سنوات</span>
                 </div>
               </div>
 
@@ -44,7 +43,7 @@ export default function AboutSection() {
             {/* Heading */}
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3">
-                نبذة عن حدائق المستقبل: أفضل شركة تنسيق حدائق بالرياض
+                نبذة عن حدائق الريان: أفضل شركة تنسيق حدائق بالرياض
               </h2>
               {/* Orange underline accent matching screenshot */}
               <div className="w-16 h-1.5 bg-[#e07b22] rounded-full" />
@@ -52,12 +51,12 @@ export default function AboutSection() {
 
             {/* Paragraph 1 */}
             <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              مؤسسة حدائق المستقبل هي أفضل شركة لتنسيق الحدائق بالرياض، حيث نقوم بتصميم وتنسيق الحدائق المنزلية والعامة، وتوريد وتركيب العشب الصناعي للحدائق والملاعب وكذلك زراعة العشب الطبيعي وزراعة الاشجار والورود والنخيل، وتركيب شلالات ونوافير منزلية، وعمل ديكورات زراعية متنوعة، بالإضافة إلى تصميم وتركيب مظلات وبرجولات على أعلى مستوى.
+              مؤسسة حدائق الريان هي أفضل شركة لتنسيق الحدائق بالرياض، حيث نقوم بتصميم وتنسيق الحدائق المنزلية والعامة، وتوريد وتركيب العشب الصناعي للحدائق والملاعب وكذلك زراعة العشب الطبيعي وزراعة الاشجار والورود والنخيل، وتركيب شلالات ونوافير منزلية، وعمل ديكورات زراعية متنوعة، بالإضافة إلى تصميم وتركيب مظلات وبرجولات على أعلى مستوى.
             </p>
 
             {/* Paragraph 2 */}
             <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              توفر مؤسسة حدائق المستقبل لتنسيق الحدائق في السعودية أيضاً خدمة صيانة الحدائق والإشراف عليها ومكافحة حشرات وآفات الحدائق بأحدث الأساليب والمواد والأجهزة. نقوم أيضاً بنقل الشلالات والنوافير والمظلات والبرجولات من مكان لآخر مع ضمان عدم تعرضها لأي ضرر أو خدوش.
+              توفر مؤسسة حدائق الريان لتنسيق الحدائق في السعودية أيضاً خدمة صيانة الحدائق والإشراف عليها ومكافحة حشرات وآفات الحدائق بأحدث الأساليب والمواد والأجهزة. نقوم أيضاً بنقل الشلالات والنوافير والمظلات والبرجولات من مكان لآخر مع ضمان عدم تعرضها لأي ضرر أو خدوش.
             </p>
 
             {/* Paragraph 3 */}

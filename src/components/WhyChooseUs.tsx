@@ -58,7 +58,7 @@ export default function WhyChooseUs() {
             الجودة والمصداقية
           </span>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">
-            لماذا تختار شركة <span className="text-[#4d8834]">حدائق المستقبل</span> لتنسيق حديقتك؟
+            لماذا تختار شركة <span className="text-[#4d8834]">حدائق الريان</span> لتنسيق حديقتك؟
           </h2>
           <div className="w-14 h-1 bg-[#e07b22] mx-auto rounded-full mb-4" />
           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -128,7 +128,7 @@ export default function WhyChooseUs() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-gray-900">
                 <img
                   src="/images/why_choose_us_garden.webp"
-                  alt="تنسيق حدائق فلل مؤسسة حدائق المستقبل"
+                  alt="تنسيق حدائق فلل مؤسسة حدائق الريان"
                   className="w-full h-[440px] sm:h-[500px] object-cover hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                   decoding="async"

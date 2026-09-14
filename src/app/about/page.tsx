@@ -25,23 +25,23 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "من نحن | مؤسسة حدائق المستقبل لتنسيق وتصميم الحدائق بالرياض",
-  description: "تعرف على مؤسسة حدائق المستقبل، الرائدة في تصميم وتنسيق الحدائق المنزلية والعامة، توريد العشب الصناعي والطبيعي، الشلالات والمظلات في مدينة الرياض وكافة أحيائها بضمان 7 سنوات.",
+  title: "من نحن | مؤسسة حدائق الريان لتنسيق وتصميم الحدائق بالرياض",
+  description: "تعرف على مؤسسة حدائق الريان، الرائدة في تصميم وتنسيق الحدائق المنزلية والعامة، توريد العشب الصناعي والطبيعي، الشلالات والمظلات في مدينة الرياض وكافة أحيائها بضمان 7 سنوات.",
   keywords: [
-    "من نحن حدائق المستقبل",
+    "من نحن حدائق الريان",
     "شركة تنسيق حدائق بالرياض",
     "افضل مؤسسة لاندسكيب بالرياض",
-    "تاريخ حدائق المستقبل",
+    "تاريخ حدائق الريان",
     "مهندسو تنسيق حدائق",
   ],
   alternates: {
-    canonical: "https://futuregardens.vercel.app/about",
+    canonical: "https://hadiqat-alrayan.com/about",
   },
   openGraph: {
-    title: "من نحن | مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
+    title: "من نحن | مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
     description: "خبرة تفوق 15 عاماً في تصميم وتنفيذ أرقى الحدائق السكنية والتجارية بالرياض بأعلى معايير الجودة والضمان.",
-    url: "https://futuregardens.vercel.app/about",
-    siteName: "مؤسسة حدائق المستقبل لتنسيق الحدائق",
+    url: "https://hadiqat-alrayan.com/about",
+    siteName: "مؤسسة حدائق الريان لتنسيق الحدائق",
     locale: "ar_SA",
     type: "website",
     images: [
@@ -49,15 +49,15 @@ export const metadata: Metadata = {
         url: "/images/about-team-banner.webp",
         width: 1200,
         height: 630,
-        alt: "فريق ومهندسو مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
+        alt: "فريق ومهندسو مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "من نحن | مؤسسة حدائق المستقبل لتنسيق الحدائق بالرياض",
+    title: "من نحن | مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
     description: "خبرة تفوق 15 عاماً في تصميم وتنفيذ أرقى الحدائق السكنية والتجارية بالرياض بأعلى معايير الجودة والضمان.",
-    images: ["/images/about-team-banner.webp"],
+    images: ["/images/about-team-banner.png"],
   },
 };
 
@@ -96,14 +96,14 @@ export default function AboutPage() {
           {/* Breadcrumb */}
           <div className="text-xs sm:text-sm text-gray-500 font-semibold space-x-2 space-x-reverse mb-2">
             <Link href="/" className="text-[#4d8834] hover:underline">
-              حدائق المستقبل
+              حدائق الريان
             </Link>
             <span>»</span>
             <span>من نحن</span>
           </div>
 
           <span className="block text-xs sm:text-sm text-gray-500 font-medium mb-1">
-            معلومات عن حدائق المستقبل لتنسيق الحدائق بالرياض
+            معلومات عن حدائق الريان لتنسيق الحدائق بالرياض
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-6">
@@ -111,11 +111,12 @@ export default function AboutPage() {
           </h1>
 
           {/* Cartoon Landscaping Team Illustration Banner matching screenshot 100% */}
-          <div className="max-w-3xl mx-auto flex items-center justify-center">
+          <div className="max-w-4xl mx-auto flex items-center justify-center">
             <img
-              src="/images/about-team-banner.webp"
-              alt="فريق عمل مؤسسة حدائق المستقبل لتنسيق الحدائق"
-              className="w-full max-h-[380px] object-contain "
+              src="/images/about-team-banner.png"
+              alt="فريق عمل مؤسسة حدائق الريان لتنسيق الحدائق"
+              className="w-full max-h-[420px] object-contain drop-shadow-sm"
+              loading="eager"
             />
           </div>
 
@@ -162,7 +163,7 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-gray-700 text-sm sm:text-base leading-loose">
                 <p>
-                  <strong>مؤسسة حدائق المستقبل</strong> هي الشركة الرائدة والموثوقة في مجال تصميم وتنسيق وتطوير الحدائق المنزلية والقصور والاستراحات والمشاريع التجارية في كافة أنحاء الرياض العربية السعودية.
+                  <strong>مؤسسة حدائق الريان</strong> هي الشركة الرائدة والموثوقة في مجال تصميم وتنسيق وتطوير الحدائق المنزلية والقصور والاستراحات والمشاريع التجارية في كافة أنحاء الرياض العربية السعودية.
                 </p>
                 <p>
                   حيث نقوم بتصميم وتنسيق الحدائق بأسلوب معماري عصري، وتوريد وتركيب أجود أنواع العشب الصناعي عالي الكثافة المعتمد والمقاوم للحرارة، وزراعة الثيل الطبيعي المروي بأنظمة ري أوتوماتيكية موفرة للمياه، إلى جانب زراعة وتكريب النخيل والأشجار والورود العطرية.
@@ -196,13 +197,13 @@ export default function AboutPage() {
           
           {/* Subtitle */}
           <span className="block text-xs sm:text-sm text-gray-500 font-semibold mb-2">
-            مميزات مؤسسة حدائق المستقبل لتنسيق الحدائق
+            مميزات مؤسسة حدائق الريان لتنسيق الحدائق
           </span>
 
           {/* Main Heading with Orange Dash Underline */}
           <div className="relative inline-block mb-16">
             <h2 className="text-2xl sm:text-4xl font-black text-[#0b3414] leading-tight">
-              لماذا تختار <span className="text-[#4d8834] relative">مؤسسة حدائق المستقبل</span> لتنسيق الحدائق؟
+              لماذا تختار <span className="text-[#4d8834] relative">مؤسسة حدائق الريان</span> لتنسيق الحدائق؟
             </h2>
             <div className="w-16 h-1 bg-[#e07b22] mx-auto mt-2 rounded-full" />
           </div>
@@ -220,7 +221,7 @@ export default function AboutPage() {
                   اختيار تصميمات الحدائق قبل التركيب
                 </h3>
                 <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
-                  تقوم مؤسسة حدائق المستقبل باختيار وتوفير أي ديكور لأي حديقة قبل التركيب لتكوين وجهة نظر شاملة عن الديكور المناسب لحديقتك وتنسيقها.
+                  تقوم مؤسسة حدائق الريان باختيار وتوفير أي ديكور لأي حديقة قبل التركيب لتكوين وجهة نظر شاملة عن الديكور المناسب لحديقتك وتنسيقها.
                 </p>
               </div>
 
@@ -241,46 +242,14 @@ export default function AboutPage() {
 
             {/* Center Graphic: Official Circular Logo with Typography */}
             <div className="lg:col-span-4 flex flex-col items-center justify-center py-4 space-y-4">
-              {/* Circular Emblem Vector */}
-              <div className="w-36 h-36 sm:w-44 sm:h-44 relative flex items-center justify-center">
-                <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm">
-                  {/* Outer Green Ring */}
-                  <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#437b2d" strokeWidth="4.5" />
-                  
-                  {/* Orange Semi-circle / Sun at Top Center */}
-                  <path d="M40 32 Q50 20 60 32 Z" fill="#e6881c" />
-                  
-                  {/* Orange Vertical Stem */}
-                  <rect x="47.5" y="24" width="5" height="24" rx="2" fill="#e6881c" />
-
-                  {/* Left Leaf (Light Vibrant Green) */}
-                  <path
-                    d="M50 76 C32 64 24 46 32 34 C38 24 50 32 50 48 Z"
-                    fill="#6ca843"
-                  />
-
-                  {/* Right Leaf (Dark Emerald Green) */}
-                  <path
-                    d="M50 76 C68 64 76 46 68 34 C62 24 50 32 50 48 Z"
-                    fill="#3c6c27"
-                  />
-
-                  {/* Bottom Curved Crescent Smile Arc */}
-                  <path
-                    d="M32 68 Q50 82 68 68 Q50 76 32 68 Z"
-                    fill="#3c6c27"
-                  />
-                </svg>
-              </div>
-
-              {/* Brand Typography */}
-              <div className="text-center space-y-1">
-                <h3 className="text-3xl sm:text-4xl font-black text-[#111827] tracking-tight">
-                  حدائق المستقبل
-                </h3>
-                <p className="text-sm sm:text-base font-bold text-[#e07b22]">
-                  لتنسيق الحدائق بالرياض
-                </p>
+              <div className="w-full max-w-[280px] sm:max-w-[320px] relative flex items-center justify-center">
+                <img
+                  src="/logo.png"
+                  alt="مؤسسة حدائق الريان لتنسيق الحدائق"
+                  className="w-full h-auto object-contain drop-shadow-md"
+                  width={320}
+                  height={110}
+                />
               </div>
             </div>
 
@@ -296,7 +265,7 @@ export default function AboutPage() {
                   أفضل أسعار تنسيق حدائق بالرياض
                 </h3>
                 <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed">
-                  تضمن مؤسسة حدائق المستقبل أفضل العروض والأسعار بالرياض على جميع خدمات تنسيق وتصميم وصيانة الحدائق.
+                  تضمن مؤسسة حدائق الريان أفضل العروض والأسعار بالرياض على جميع خدمات تنسيق وتصميم وصيانة الحدائق.
                 </p>
               </div>
 
@@ -379,7 +348,7 @@ export default function AboutPage() {
         <div className="max-w-xl mx-auto">
           <img
             src="/images/about-team-banner.webp"
-            alt="فريق حدائق المستقبل"
+            alt="فريق حدائق الريان"
             className="w-full max-h-48 object-contain opacity-90"
           />
         </div>
