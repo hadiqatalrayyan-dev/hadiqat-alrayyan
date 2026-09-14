@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
   },
   verification: {
-    google: "HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos",
+    google: "IIp7Th_4N5vVBGytCbONXYH77cuOxjvXSkAkGibSEHw",
   },
 };
 
@@ -158,7 +158,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={`${cairo.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#064e3b" />
-        <meta name="google-site-verification" content="HuV4p5UQHTwmSBauPVmJxeVUpw_74Hsv1wbASRvRsos" />
+        <meta name="google-site-verification" content="IIp7Th_4N5vVBGytCbONXYH77cuOxjvXSkAkGibSEHw" />
         <link rel="preload" as="image" href="/images/service-waterfalls-fountains.webp" fetchPriority="high" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
