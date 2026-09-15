@@ -146,14 +146,14 @@ export default async function BlogPostPage({ params }: Props) {
       "name": "مؤسسة حدائق الريان",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://hadiqat-alrayan.com/images/logo.png"
+        "url": "https://hadiqat-alrayan.com/logo.png"
       }
     },
     "datePublished": "2026-01-15T08:00:00+03:00",
     "dateModified": new Date().toISOString(),
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://hadiqat-alrayan.com/blog/${slug}/`
+      "@id": `https://hadiqat-alrayan.com/blog/${slug}`
     }
   };
 

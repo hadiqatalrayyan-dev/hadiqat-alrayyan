@@ -144,22 +144,29 @@ export default async function ServiceDetailPage({ params }: Props) {
   const otherServices = services.filter((s) => s.slug !== slug).slice(0, 6);
 
   // Schema.org Structured Data (JSON-LD)
+  const serviceImgUrl = service.image.startsWith("http")
+    ? service.image
+    : `https://hadiqat-alrayan.com${service.image}`;
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": service.title,
     "serviceType": service.category,
     "description": service.shortDesc,
-    "image": service.image,
-    "url": `https://hadiqat-alrayan.com/services/${slug}/`,
+    "image": serviceImgUrl,
+    "url": `https://hadiqat-alrayan.com/services/${slug}`,
     "provider": {
       "@type": "HomeAndConstructionBusiness",
-      "name": "مؤسسة حدائق الريان لتنسيق الحدائق",
+      "name": "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       "telephone": siteConfig.phone,
       "email": siteConfig.email,
       "url": "https://hadiqat-alrayan.com",
+      "logo": "https://hadiqat-alrayan.com/logo.png",
+      "image": "https://hadiqat-alrayan.com/images/og-image.webp",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "طريق الملك فهد، حي الصحافة",
         "addressCountry": "SA",
         "addressRegion": "Riyadh",
         "addressLocality": "الرياض"
@@ -173,26 +180,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       { "@type": "City", "name": "الدمام" },
       { "@type": "City", "name": "الخبر" },
       { "@type": "Country", "name": "المملكة العربية السعودية" }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "باقات وعروض تنسيق الحدائق",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": service.title
-          }
-        }
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "148",
-      "bestRating": "5"
-    }
+    ]
   };
 
   const breadcrumbSchema = {
