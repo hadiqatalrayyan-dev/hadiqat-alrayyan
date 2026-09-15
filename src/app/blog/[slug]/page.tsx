@@ -36,9 +36,21 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return articlesData.map((article) => ({
-    slug: article.slug,
+  const slugs = new Set<string>();
+
+  articlesData.forEach((article) => {
+    if (article.slug) slugs.add(article.slug);
+  });
+
+  Object.keys(detailedBlogArticles).forEach((slugKey) => {
+    if (slugKey) slugs.add(slugKey);
+  });
+
+  return Array.from(slugs).map((slug) => ({
+    slug,
   }));
 }
 
