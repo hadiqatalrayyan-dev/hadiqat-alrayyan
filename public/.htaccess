@@ -12,24 +12,26 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-            # 1.1 Arabic and Unicode URL Slugs Routing (Internal rewrite to ASCII index.html)
+    # 1.1 Arabic and Unicode URL Slugs Routing
     RewriteCond %{REQUEST_URI} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC,OR]
     RewriteCond %{THE_REQUEST} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC]
-    RewriteRule ^.*$ /blog/landscaping-riyadh-guide/index.html [L]
+    RewriteRule ^ /blog/landscaping-riyadh-guide/index.html [L]
 
     RewriteCond %{REQUEST_URI} (افضل-شركة|%D8%A7%D9%81%D8%B6%D9%84) [NC,OR]
     RewriteCond %{THE_REQUEST} (افضل-شركة|%D8%A7%D9%81%D8%B6%D9%84) [NC]
-    RewriteRule ^.*$ /blog/best-landscaping-company-riyadh/index.html [L]
+    RewriteRule ^ /blog/best-landscaping-company-riyadh/index.html [L]
 
-    # Handle Directory Trailing Slashes & Direct HTML Serving
-    RewriteCond %{REQUEST_FILENAME} !-f
+    # Handle Directory Index Serving (e.g. /blog/landscaping-riyadh-guide/ -> /blog/landscaping-riyadh-guide/index.html)
+    RewriteCond %{REQUEST_FILENAME} -d
     RewriteCond %{REQUEST_FILENAME}/index.html -f
-    RewriteRule ^(.*)/$ $1/index.html [L]
+    RewriteRule ^(.*)$ /$1/index.html [L]
 
-    # Fallback for paths without trailing slash if matching html exists
-    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME}/index.html -f
+    RewriteRule ^(.*)$ /$1/index.html [L]
+
+    # Fallback for direct HTML files (e.g. /about -> /about.html)
     RewriteCond %{REQUEST_FILENAME}.html -f
-    RewriteRule ^(.*)$ $1.html [L]
+    RewriteRule ^(.*)$ /$1.html [L]
 </IfModule>
 
 # 2. Custom 404 Error Document
