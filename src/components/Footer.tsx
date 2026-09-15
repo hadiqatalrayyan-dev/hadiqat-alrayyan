@@ -40,16 +40,16 @@ export default function Footer() {
 
   const serviceLinks = services.slice(0, 7).map((s) => ({
     label: s.title,
-    href: `/services/${s.slug}/`,
+    href: `/services/${s.slug}`,
   }));
 
   const importantLinks = [
-    { label: "من نحن", href: "/about/" },
-    { label: "خدماتنا", href: "/services/" },
-    { label: "معلومات ونصائح عن تنسيق الحدائق", href: "/blog/" },
-    { label: "أعمالنا في تنسيق الحدائق", href: "/portfolio/" },
-    { label: "أفضل شركات تنسيق حدائق", href: "/about/" },
-    { label: "أسعار تنسيق الحدائق", href: "/contact/" },
+    { label: "من نحن", href: "/about" },
+    { label: "خدماتنا", href: "/services" },
+    { label: "معلومات ونصائح عن تنسيق الحدائق", href: "/blog" },
+    { label: "أعمالنا في تنسيق الحدائق", href: "/portfolio" },
+    { label: "أفضل شركات تنسيق حدائق", href: "/about" },
+    { label: "أسعار تنسيق الحدائق", href: "/contact" },
   ];
 
   return (
