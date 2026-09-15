@@ -56,15 +56,39 @@ jobs:
           echo "Build verified successfully. Files ready for deployment:"
           ls -la out/
 
-      # Step 7: Deploy to Hostinger via Secure FTP / FTPS
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.HOSTINGER_HOST }}
-          username: ${{ secrets.HOSTINGER_USERNAME }}
-          password: ${{ secrets.HOSTINGER_PASSWORD }}
-          port: ${{ secrets.HOSTINGER_PORT || 21 }}
-          server-dir: ${{ secrets.HOSTINGER_SERVER_DIR || './public_html/' }}
-          local-dir: ./out/
-          protocol: ftp
-          dangerous-clean-slate: false
+      # Step 7: Deploy to Hostinger via Secure FTP
+      - name: Deploy to Hostinger via Direct FTP
+        env:
+          FTP_HOST: ${{ secrets.HOSTINGER_HOST }}
+          FTP_USER: ${{ secrets.HOSTINGER_USERNAME }}
+          FTP_PASS: ${{ secrets.HOSTINGER_PASSWORD }}
+          FTP_PORT: ${{ secrets.HOSTINGER_PORT || 21 }}
+          FTP_DIR: ${{ secrets.HOSTINGER_SERVER_DIR || 'public_html' }}
+        run: |
+          node -e '
+          const ftp = require("basic-ftp");
+          async function upload() {
+            const client = new ftp.Client();
+            client.ftp.verbose = true;
+            try {
+              console.log("Connecting to Hostinger FTP server...");
+              await client.access({
+                host: process.env.FTP_HOST,
+                user: process.env.FTP_USER,
+                password: process.env.FTP_PASS,
+                port: parseInt(process.env.FTP_PORT || "21"),
+                secure: false
+              });
+              console.log("Connected successfully. Uploading out/ to " + process.env.FTP_DIR + "...");
+              await client.uploadFromDir("out", process.env.FTP_DIR);
+              console.log("🎉 All files deployed successfully to Hostinger!");
+            } catch (err) {
+              console.error("FTP Deployment Error:", err);
+              process.exit(1);
+            } finally {
+              client.close();
+            }
+          }
+          upload();
+          '
+
