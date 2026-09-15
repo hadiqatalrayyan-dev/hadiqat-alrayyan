@@ -212,14 +212,14 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/about"
+              href="/about/"
               className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               من نحن
             </Link>
 
             <Link
-              href="/portfolio"
+              href="/portfolio/"
               className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               أعمالنا
@@ -232,7 +232,7 @@ export default function Header() {
               onMouseLeave={() => setServicesDropdown(false)}
             >
               <Link
-                href="/services"
+                href="/services/"
                 className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
               >
                 <span>خدماتنا</span>
@@ -242,7 +242,7 @@ export default function Header() {
               {servicesDropdown && (
                 <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-3 z-50 animate-fadeIn">
                   <Link
-                    href="/services"
+                    href="/services/"
                     className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-50 hover:bg-emerald-50"
                     onClick={() => setServicesDropdown(false)}
                   >
@@ -251,7 +251,7 @@ export default function Header() {
                   {navServices.map((srv) => (
                     <Link
                       key={srv.id}
-                      href={`/services/${srv.slug}`}
+                      href={`/services/${srv.slug}/`}
                       className="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => setServicesDropdown(false)}
                     >
@@ -263,13 +263,13 @@ export default function Header() {
             </div>
 
             <Link
-              href="/contact"
+              href="/contact/"
               className="hover:text-[#4d8834] transition-colors py-2"
             >
               تواصل معنا
             </Link>
 
-            <Link href="/blog" className="hover:text-[#4d8834] transition-colors py-2">
+            <Link href="/blog/" className="hover:text-[#4d8834] transition-colors py-2">
               مدونة تنسيق الحدائق
             </Link>
 
@@ -344,7 +344,7 @@ export default function Header() {
                             {filteredServices.map((srv) => (
                               <Link
                                 key={srv.id}
-                                href={`/services/${srv.slug}`}
+                                href={`/services/${srv.slug}/`}
                                 onClick={() => {
                                   setSearchOpen(false);
                                   setSearchQuery("");
@@ -380,7 +380,7 @@ export default function Header() {
                             {filteredArticles.map((art) => (
                               <Link
                                 key={art.id}
-                                href={`/blog/${art.slug}`}
+                                href={`/blog/${art.slug}/`}
                                 onClick={() => {
                                   setSearchOpen(false);
                                   setSearchQuery("");
@@ -568,7 +568,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/about"
+              href="/about/"
               className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
@@ -576,7 +576,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/portfolio"
+              href="/portfolio/"
               className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
@@ -600,7 +600,7 @@ export default function Header() {
               {servicesDropdown && (
                 <div className="bg-gray-50/80 py-1.5 px-4 space-y-1">
                   <Link
-                    href="/services"
+                    href="/services/"
                     className="block px-4 py-2 text-xs font-bold text-[#4d8834] hover:underline"
                     onClick={() => {
                       setIsOpen(false);
@@ -612,7 +612,7 @@ export default function Header() {
                   {navServices.map((srv) => (
                     <Link
                       key={srv.id}
-                      href={`/services/${srv.slug}`}
+                      href={`/services/${srv.slug}/`}
                       className="block px-4 py-2 text-xs text-gray-700 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => {
                         setIsOpen(false);
@@ -627,7 +627,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="/contact"
+              href="/contact/"
               className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
@@ -635,7 +635,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/blog"
+              href="/blog/"
               className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >

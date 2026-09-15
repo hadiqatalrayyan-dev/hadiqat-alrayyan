@@ -109,7 +109,7 @@ export default function BlogIndexPage() {
                   <div key={item.id} className="pt-3 flex items-start gap-3 group">
                     <div className="flex-1 text-right space-y-1">
                       <Link
-                        href={`/blog/${item.slug}`}
+                        href={`/blog/${item.slug}/`}
                         className="block text-xs sm:text-[13px] font-bold text-gray-800 group-hover:text-[#4d8834] transition-colors leading-snug"
                       >
                         {item.title}
@@ -120,7 +120,7 @@ export default function BlogIndexPage() {
                     </div>
 
                     <Link
-                      href={`/blog/${item.slug}`}
+                      href={`/blog/${item.slug}/`}
                       className="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100 border border-gray-200 group-hover:opacity-90 transition-opacity"
                     >
                       <img
@@ -167,7 +167,7 @@ export default function BlogIndexPage() {
                   {/* 2. Main Title with Orange Dash Underline matching screenshot */}
                   <div className="space-y-2">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 hover:text-[#4d8834] transition-colors leading-snug px-2">
-                      <Link href={`/blog/${article.slug}`}>
+                      <Link href={`/blog/${article.slug}/`}>
                         {article.title}
                       </Link>
                     </h2>
@@ -183,7 +183,7 @@ export default function BlogIndexPage() {
 
                   {/* 4. Featured Image with Date Badge & Custom Overlay matching screenshot */}
                   <div className="relative rounded-2xl overflow-hidden shadow-md group border border-gray-100 max-w-2xl mx-auto">
-                    <Link href={`/blog/${article.slug}`}>
+                    <Link href={`/blog/${article.slug}/`}>
                       <div className="relative aspect-[16/10] w-full bg-gray-100">
                         <img
                           src={article.image}
@@ -220,7 +220,7 @@ export default function BlogIndexPage() {
                   {/* 6. Green Outline 'متابعة القراءة' Button matching screenshot */}
                   <div className="pt-2">
                     <Link
-                      href={`/blog/${article.slug}`}
+                      href={`/blog/${article.slug}/`}
                       className="inline-flex items-center gap-2 border-2 border-[#4d8834] text-[#4d8834] hover:bg-[#4d8834] hover:text-white font-bold text-xs sm:text-sm px-8 py-2.5 rounded-xl transition-all shadow-sm"
                     >
                       <span>متابعة القراءة</span>
