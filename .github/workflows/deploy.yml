@@ -70,6 +70,7 @@ jobs:
           async function upload() {
             const client = new ftp.Client();
             client.ftp.verbose = true;
+            client.ftp.encoding = "utf-8";
             try {
               console.log("Connecting to Hostinger FTP server...");
               await client.access({
@@ -79,6 +80,11 @@ jobs:
                 port: parseInt(process.env.FTP_PORT || "21"),
                 secure: false
               });
+              try {
+                await client.send("OPTS UTF8 ON");
+              } catch (e) {
+                console.log("OPTS UTF8 response:", e.message);
+              }
               console.log("Connected successfully. Uploading out/ to " + process.env.FTP_DIR + "...");
               await client.uploadFromDir("out", process.env.FTP_DIR);
               console.log("🎉 All files deployed successfully to Hostinger!");

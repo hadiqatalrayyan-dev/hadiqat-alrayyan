@@ -12,6 +12,9 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # 1.1 Arabic and Unicode URL Slugs Routing
+    RewriteRule ^blog/(.*)(%D8%A7%D9%81%D8%B6%D9%84|افضل)(.*)$ /blog/best-landscaping-company-riyadh/index.html [L,NC,NE]
+
     # Handle Directory Trailing Slashes & Direct HTML Serving
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME}/index.html -f
