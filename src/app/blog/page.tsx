@@ -106,7 +106,7 @@ export default function BlogIndexPage() {
 
               <div className="divide-y divide-gray-100 space-y-3 pt-1">
                 {articlesData.map((item) => (
-                  <div key={item.id} className="pt-3 flex items-start gap-3 group">
+                  <div key={item.id || item.slug} className="pt-3 flex items-start gap-3 group">
                     <div className="flex-1 text-right space-y-1">
                       <Link
                         href={`/blog/${item.slug}/`}

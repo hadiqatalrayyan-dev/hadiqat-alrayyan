@@ -31,7 +31,7 @@ export default function BlogSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articlesData.map((item) => (
             <div
-              key={item.id}
+              key={item.id || item.slug}
               className="bg-white rounded-none shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden border border-gray-100/90 text-center group"
             >
               {/* Card Image with Date Badge and Floating Pill */}
