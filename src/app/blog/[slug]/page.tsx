@@ -42,11 +42,23 @@ export async function generateStaticParams() {
   const slugs = new Set<string>();
 
   articlesData.forEach((article) => {
-    if (article.slug) slugs.add(article.slug);
+    if (article.slug) {
+      slugs.add(article.slug);
+      try {
+        slugs.add(encodeURIComponent(article.slug));
+        slugs.add(decodeURIComponent(article.slug));
+      } catch {}
+    }
   });
 
   Object.keys(detailedBlogArticles).forEach((slugKey) => {
-    if (slugKey) slugs.add(slugKey);
+    if (slugKey) {
+      slugs.add(slugKey);
+      try {
+        slugs.add(encodeURIComponent(slugKey));
+        slugs.add(decodeURIComponent(slugKey));
+      } catch {}
+    }
   });
 
   return Array.from(slugs).map((slug) => ({
@@ -55,9 +67,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const article = getArticleBySlug(slug);
-  const detailed = detailedBlogArticles[slug];
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug || "");
+  const article = getArticleBySlug(slug) || getArticleBySlug(rawSlug);
+  const detailed = detailedBlogArticles[slug] || detailedBlogArticles[rawSlug];
 
   if (!article) {
     return {
@@ -102,18 +115,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const { slug: rawSlug } = await params;
+  const slug = decodeURIComponent(rawSlug || "");
+  const article = getArticleBySlug(slug) || getArticleBySlug(rawSlug);
 
   if (!article) {
     notFound();
   }
 
-  const detailed = detailedBlogArticles[slug];
-  const currentIndex = articlesData.findIndex((a) => a.slug === slug);
+  const detailed = detailedBlogArticles[slug] || detailedBlogArticles[rawSlug];
+  const currentIndex = articlesData.findIndex((a) => a.slug === slug || a.slug === rawSlug || a.slug === decodeURIComponent(rawSlug));
   const prevArticle = currentIndex > 0 ? articlesData[currentIndex - 1] : null;
   const nextArticle = currentIndex < articlesData.length - 1 ? articlesData[currentIndex + 1] : null;
-  const relatedArticles = articlesData.filter((a) => a.slug !== slug).slice(0, 4);
+  const relatedArticles = articlesData.filter((a) => a.slug !== slug && a.slug !== rawSlug).slice(0, 4);
 
   // SEO JSON-LD Schema
   const articleSchema = {
