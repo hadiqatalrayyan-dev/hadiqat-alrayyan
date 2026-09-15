@@ -343,6 +343,48 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             )}
 
+            {/* Fallback for articles without detailed object */}
+            {!detailed && article.fullContent && (
+              <div className="space-y-6 text-gray-800 text-sm sm:text-base leading-loose prose prose-emerald max-w-none">
+                {article.fullContent.split("\n\n").map((chunk, cIdx) => {
+                  if (chunk.startsWith("### ")) {
+                    return (
+                      <h3 key={cIdx} className="text-lg sm:text-xl font-black text-[#0b3414] pt-4 border-t border-gray-100 flex items-center gap-2">
+                        <span className="w-2 h-4 bg-[#4d8834] rounded-full inline-block" />
+                        <span>{chunk.replace("### ", "")}</span>
+                      </h3>
+                    );
+                  }
+                  if (chunk.startsWith("## ")) {
+                    return (
+                      <h2 key={cIdx} className="text-xl sm:text-2xl font-black text-gray-900 pt-6 border-t border-gray-100 flex items-center gap-2">
+                        <span className="w-2.5 h-6 bg-[#4d8834] rounded-full inline-block" />
+                        <span>{chunk.replace("## ", "")}</span>
+                      </h2>
+                    );
+                  }
+                  if (chunk.startsWith("* ") || chunk.startsWith("- ")) {
+                    const lines = chunk.split("\n").filter((l) => l.trim().length > 0);
+                    return (
+                      <ul key={cIdx} className="space-y-2 pt-2">
+                        {lines.map((line, lIdx) => (
+                          <li key={lIdx} className="flex items-start gap-2.5 bg-gray-50 p-3 rounded-xl border border-gray-100 text-xs sm:text-sm">
+                            <Check className="w-4 h-4 text-[#4d8834] shrink-0 mt-0.5" />
+                            <span>{line.replace(/^[\*\-]\s+/, "")}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  return (
+                    <p key={cIdx} className="text-gray-700 leading-relaxed">
+                      {chunk}
+                    </p>
+                  );
+                })}
+              </div>
+            )}
+
             {/* Introduction Section */}
             {detailed && detailed.introduction && (
               <section id="intro" className="space-y-4 text-gray-700 text-sm sm:text-base leading-loose">
@@ -528,17 +570,16 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             {/* Summary Box & High-Converting CTA Banner */}
-            {detailed && (
-              <div className="bg-gradient-to-r from-[#0b3414] to-[#124d20] text-white p-8 sm:p-10 rounded-3xl shadow-xl text-center space-y-4">
-                <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">
-                  مؤسسة حدائق الريان لتنسيق الحدائق بالرياض
-                </span>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black leading-tight">
-                  جاهز لتحويل حديقة منزلك إلى واحة أحلامك؟
-                </h3>
-                <p className="text-xs sm:text-sm text-emerald-100/90 max-w-xl mx-auto leading-relaxed">
-                  {detailed.summaryBox}
-                </p>
+            <div className="bg-gradient-to-r from-[#0b3414] to-[#124d20] text-white p-8 sm:p-10 rounded-3xl shadow-xl text-center space-y-4">
+              <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">
+                مؤسسة حدائق الريان لتنسيق الحدائق بالرياض
+              </span>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black leading-tight">
+                جاهز لتحويل حديقة منزلك إلى واحة أحلامك؟
+              </h3>
+              <p className="text-xs sm:text-sm text-emerald-100/90 max-w-xl mx-auto leading-relaxed">
+                {detailed?.summaryBox || "احصل الآن على معاينة مجانية وتصميم 3D لحديقة منزلك مع ضمان معتمد حتى 7 سنوات وأسعار تنافسية تناسب ميزانيتك في كافة أحياء الرياض."}
+              </p>
                 <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
                   <a
                     href={`tel:${siteConfig.phone}`}
@@ -558,7 +599,6 @@ export default async function BlogPostPage({ params }: Props) {
                   </a>
                 </div>
               </div>
-            )}
 
           </main>
 
