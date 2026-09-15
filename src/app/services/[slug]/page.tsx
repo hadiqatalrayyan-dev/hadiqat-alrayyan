@@ -151,7 +151,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     "serviceType": service.category,
     "description": service.shortDesc,
     "image": service.image,
-    "url": `https://hadiqat-alrayan.com/services/${slug}`,
+    "url": `https://hadiqat-alrayan.com/services/${slug}/`,
     "provider": {
       "@type": "HomeAndConstructionBusiness",
       "name": "مؤسسة حدائق الريان لتنسيق الحدائق",

@@ -153,7 +153,7 @@ export default async function BlogPostPage({ params }: Props) {
     "dateModified": new Date().toISOString(),
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://hadiqat-alrayan.com/blog/${slug}`
+      "@id": `https://hadiqat-alrayan.com/blog/${slug}/`
     }
   };
 
