@@ -12,14 +12,14 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-        # 1.1 Arabic and Unicode URL Slugs Routing (matches raw URI and encoded forms)
+            # 1.1 Arabic and Unicode URL Slugs Routing (Internal rewrite to ASCII index.html)
+    RewriteCond %{REQUEST_URI} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC,OR]
+    RewriteCond %{THE_REQUEST} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC]
+    RewriteRule ^.*$ /blog/landscaping-riyadh-guide/index.html [L]
+
     RewriteCond %{REQUEST_URI} (افضل-شركة|%D8%A7%D9%81%D8%B6%D9%84) [NC,OR]
     RewriteCond %{THE_REQUEST} (افضل-شركة|%D8%A7%D9%81%D8%B6%D9%84) [NC]
     RewriteRule ^.*$ /blog/best-landscaping-company-riyadh/index.html [L]
-
-    RewriteCond %{REQUEST_URI} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82-%D8%AD%D8%AF%D8%A7%D8%A6%D9%82-%D8%A8%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6) [NC,OR]
-    RewriteCond %{THE_REQUEST} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82-%D8%AD%D8%AF%D8%A7%D8%A6%D9%82-%D8%A8%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6) [NC]
-    RewriteRule ^.*$ /blog/تنسيق-حدائق-بالرياض/index.html [L]
 
     # Handle Directory Trailing Slashes & Direct HTML Serving
     RewriteCond %{REQUEST_FILENAME} !-f
