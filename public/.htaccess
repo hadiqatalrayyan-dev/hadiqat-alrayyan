@@ -13,6 +13,10 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # 1.1 Arabic and Unicode URL Slugs Routing
+    RewriteCond %{REQUEST_URI} (تصميم-وتنفيذ-حدائق|شركة-تنسيق-حدائق-بالرياض-تصميم) [NC,OR]
+    RewriteCond %{THE_REQUEST} (تصميم-وتنفيذ-حدائق|شركة-تنسيق-حدائق-بالرياض-تصميم) [NC]
+    RewriteRule ^ /blog/landscaping-company-riyadh-quality/index.html [L]
+
     RewriteCond %{REQUEST_URI} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC,OR]
     RewriteCond %{THE_REQUEST} (تنسيق-حدائق-بالرياض|%D8%AA%D9%86%D8%B3%D9%8A%D9%82) [NC]
     RewriteRule ^ /blog/landscaping-riyadh-guide/index.html [L]
