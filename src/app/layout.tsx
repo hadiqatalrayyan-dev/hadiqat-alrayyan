@@ -11,8 +11,8 @@ const cairo = Cairo({
   preload: true,
 });
 
-const siteTitle = `${siteConfig.name} | أفضل شركة تنسيق حدائق بالرياض`;
-const siteDescription = "مؤسسة حدائق الريان الرائدة في تصميم وتنسيق الحدائق المنزلية والفلل بالرياض. توريد وتركيب عشب صناعي وطبيعي، شلالات ونوافير، مظلات وبرجولات، شبكات ري أوتوماتيكية وضمان حتى 7 سنوات مع معاينة وتصميم 3D مجاناً.";
+const siteTitle = "مؤسسة حدائق الريان | أفضل شركة تنسيق حدائق بالرياض";
+const siteDescription = "مؤسسة حدائق الريان لتصميم وتنسيق الحدائق المنزلية والفلل بالرياض. عشب صناعي وطبيعي، شلالات جدارية، مظلات وبرجولات، شبكات ري، تصميم 3D مجاني وضمان 7 سنوات 0556226376.";
 const siteUrl = "https://hadiqat-alrayan.com";
 const ogImageUrl = "/images/og-image.webp";
 
@@ -20,29 +20,32 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteTitle,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s | حدائق الريان بالرياض`,
   },
   description: siteDescription,
-  applicationName: siteConfig.name,
-  authors: [{ name: siteConfig.name, url: siteUrl }],
-  creator: siteConfig.name,
-  publisher: siteConfig.name,
+  applicationName: "مؤسسة حدائق الريان",
+  authors: [{ name: "مؤسسة حدائق الريان لتنسيق الحدائق", url: siteUrl }],
+  creator: "مؤسسة حدائق الريان",
+  publisher: "مؤسسة حدائق الريان",
   keywords: [
     "تنسيق حدائق بالرياض",
     "شركة تنسيق حدائق بالرياض",
+    "افضل شركة تنسيق حدائق بالرياض",
     "تصميم حدائق فلل بالرياض",
-    "عشب صناعي الرياض",
-    "عشب طبيعي الرياض",
-    "شلالات جدارية الرياض",
+    "تركيب عشب صناعي بالرياض",
+    "توريد ثيل طبيعي بالرياض",
+    "شلالات جدارية بالرياض",
     "نوافير منزلية بالرياض",
-    "مظلات وبرجولات الرياض",
-    "شبكات ري أوتوماتيكية",
-    "مؤسسة حدائق الريان لتنسيق الحدائق",
-    "اسعار تنسيق الحدائق بالرياض",
-    "ارقام منسقي حدائق بالرياض",
+    "مظلات وبرجولات حدائق بالرياض",
+    "شبكات ري اوتوماتيكية بالرياض",
+    "مؤسسة حدائق الريان",
+    "اسعار تنسيق الحدائق بالرياض 2026",
+    "ارقام شركات تنسيق حدائق بالرياض",
+    "لاندسكيب الرياض",
+    "عشب جداري وبديل خشب بالرياض",
   ],
   alternates: {
-    canonical: siteUrl,
+    canonical: "https://hadiqat-alrayan.com/",
   },
   openGraph: {
     title: siteTitle,

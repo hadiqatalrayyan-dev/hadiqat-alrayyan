@@ -32,7 +32,7 @@ export interface MarketingArticleData {
 export const marketingArticles: Record<string, MarketingArticleData> = {
   "artificial-grass": {
     slug: "artificial-grass",
-    seoMetaTitle: "دليل تركيب العشب الصناعي في السعودية 2026: الأسعار، الأنواع، وأفضل الشركات",
+    seoMetaTitle: "تركيب عشب صناعي بالرياض | أسعار وضمان 7 سنوات",
     postDate: "28 أغسطس 2026",
     viewsCount: "3,840 مشاهدة",
     targetKeywords: [
@@ -95,7 +95,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "natural-grass": {
     slug: "natural-grass",
-    seoMetaTitle: "اسعار الثيل الطبيعي في السعودية 2026: زراعة وتوريد نجيل باسبالم وسي ثري",
+    seoMetaTitle: "توريد وزراعة ثيل طبيعي بالرياض | نجيل باسبالم وسي ثري",
     postDate: "27 أغسطس 2026",
     viewsCount: "2,910 مشاهدة",
     targetKeywords: [
@@ -150,7 +150,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "garden-design": {
     slug: "garden-design",
-    seoMetaTitle: "تصميم وتنسيق حدائق فلل بالرياض وجدة 2026 | مخططات 3D مجاناً",
+    seoMetaTitle: "تصميم وتنسيق حدائق فلل بالرياض 2026 | مخططات 3D مجاناً",
     postDate: "26 أغسطس 2026",
     viewsCount: "4,200 مشاهدة",
     targetKeywords: [
@@ -190,7 +190,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "waterfalls-fountains": {
     slug: "waterfalls-fountains",
-    seoMetaTitle: "تركيب شلالات ونوافير منزلية جدارية بالرياض وجدة 2026 | ضمان عامين",
+    seoMetaTitle: "تصميم وتركيب شلالات ونوافير بالرياض | شلالات جدارية مودرن",
     postDate: "25 أغسطس 2026",
     viewsCount: "3,150 مشاهدة",
     targetKeywords: [
@@ -228,7 +228,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "pergolas-canopies": {
     slug: "pergolas-canopies",
-    seoMetaTitle: "تركيب مظلات وبرجولات حدائق بالرياض وجدة 2026 | جلسات خارجية خشب وحديد",
+    seoMetaTitle: "تركيب مظلات وبرجولات حدائق بالرياض | جلسات خارجية فاخرة",
     postDate: "24 أغسطس 2026",
     viewsCount: "3,670 مشاهدة",
     targetKeywords: [
@@ -266,7 +266,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "green-walls": {
     slug: "green-walls",
-    seoMetaTitle: "تركيب عشب جداري وبديل خشب بالرياض وجدة 2026 | تكسيات أسوار فاخرة",
+    seoMetaTitle: "تركيب عشب جداري وبديل خشب بالرياض | تكسيات أسوار 3D",
     postDate: "23 أغسطس 2026",
     viewsCount: "2,890 مشاهدة",
     targetKeywords: [
@@ -304,7 +304,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "irrigation-systems": {
     slug: "irrigation-systems",
-    seoMetaTitle: "تمديد شبكات ري اوتوماتيك بالرياض وجدة 2026 | تايمرات ورشاشات ذكية",
+    seoMetaTitle: "تمديد شبكات ري اوتوماتيكية بالرياض | تايمر ورشاشات ذكية",
     postDate: "22 أغسطس 2026",
     viewsCount: "2,430 مشاهدة",
     targetKeywords: [
@@ -342,7 +342,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "stone-pathways": {
     slug: "stone-pathways",
-    seoMetaTitle: "تنفيذ ممرات حجرية وبازلت للحدائق بالرياض وجدة 2026 | ارضيات مودرن",
+    seoMetaTitle: "تنفيذ ممرات حجرية وبازلت للحدائق بالرياض | أرضيات مودرن",
     postDate: "21 أغسطس 2026",
     viewsCount: "2,190 مشاهدة",
     targetKeywords: [
@@ -380,7 +380,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "trees-flowers": {
     slug: "trees-flowers",
-    seoMetaTitle: "زراعة وتكريب النخيل والاشجار والزهور بالرياض 2026 | افضل المشاتل الزراعية",
+    seoMetaTitle: "زراعة وتكريب النخيل والأشجار والزهور بالرياض | مشاتل زراعية",
     postDate: "20 أغسطس 2026",
     viewsCount: "2,760 مشاهدة",
     targetKeywords: [
@@ -418,7 +418,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "pest-control": {
     slug: "pest-control",
-    seoMetaTitle: "مكافحة حشرات الحدائق وسوسة النخيل بالرياض 2026 | رش مبيدات بدون رائحة",
+    seoMetaTitle: "مكافحة حشرات الحدائق وسوسة النخيل بالرياض | رش مبيدات آمنة",
     postDate: "19 أغسطس 2026",
     viewsCount: "2,310 مشاهدة",
     targetKeywords: [
@@ -456,7 +456,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "flower-beds": {
     slug: "flower-beds",
-    seoMetaTitle: "بناء احواض زهور وديكورات زراعية بالرياض وجدة 2026 | تصاميم اسمنتية وخشب",
+    seoMetaTitle: "بناء أحواض زهور وديكورات زراعية بالرياض | تصاميم إسمنتية وخشب",
     postDate: "18 أغسطس 2026",
     viewsCount: "1,980 مشاهدة",
     targetKeywords: [
@@ -494,7 +494,7 @@ export const marketingArticles: Record<string, MarketingArticleData> = {
   },
   "sport-turf": {
     slug: "sport-turf",
-    seoMetaTitle: "انشاء ملاعب عشب صناعي وبادل بالرياض 2026 | تخطيط وشباك وانارة",
+    seoMetaTitle: "إنشاء ملاعب عشب صناعي وبادل بالرياض | تخطيط وإنارة وشباك",
     postDate: "17 أغسطس 2026",
     viewsCount: "3,420 مشاهدة",
     targetKeywords: [
