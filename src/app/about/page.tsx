@@ -5,23 +5,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import { siteConfig } from "@/data/content";
-import Logo from "@/components/Logo";
 import {
   Phone,
-  MessageCircle,
-  CheckCircle2,
   ShieldCheck,
-  Star,
   Award,
-  Users,
   Building2,
-  Calendar,
-  Compass,
-  ArrowLeft,
-  Briefcase,
-  Layers,
-  Lightbulb,
-  Check,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -38,14 +26,14 @@ export const metadata: Metadata = {
     "شركات العشب الصناعي بالرياض",
     "تاريخ حدائق الريان",
     "مهندسو تنسيق حدائق"
-],
+  ],
   alternates: {
-    canonical: "https://hadiqat-alrayan.com/about",
+    canonical: "https://hadiqat-alrayan.com/about/",
   },
   openGraph: {
     title: "من نحن | مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
     description: "خبرة تفوق 15 عاماً في تصميم وتنفيذ أرقى الحدائق السكنية والتجارية بالرياض بأعلى معايير الجودة والضمان.",
-    url: "https://hadiqat-alrayan.com/about",
+    url: "https://hadiqat-alrayan.com/about/",
     siteName: "مؤسسة حدائق الريان لتنسيق الحدائق",
     locale: "ar_SA",
     type: "website",
@@ -221,7 +209,8 @@ export default function AboutPage() {
               {/* Feature 1 (Top Right) */}
               <div className="space-y-3 max-w-sm mx-auto">
                 <div className="w-14 h-14 rounded-full bg-white border-2 border-[#4d8834] text-[#4d8834] mx-auto flex items-center justify-center shadow-sm">
-                  </div>
+                  <Award className="w-7 h-7 text-[#4d8834]" />
+                </div>
                 <h3 className="text-lg font-bold text-gray-900">
                   اختيار تصميمات الحدائق قبل التركيب
                 </h3>

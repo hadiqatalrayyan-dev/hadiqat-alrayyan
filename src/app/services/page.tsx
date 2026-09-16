@@ -118,14 +118,14 @@ export const metadata: Metadata = {
     "تنسيق زرع صناعي",
     "ثيل صناعي الدمام",
     "حشيش صناعي للجدران"
-],
+  ],
   alternates: {
-    canonical: "https://hadiqat-alrayan.com/services",
+    canonical: "https://hadiqat-alrayan.com/services/",
   },
   openGraph: {
     title: "خدمات تنسيق وتصميم الحدائق المنزلية بالرياض | مؤسسة حدائق الريان",
     description: "باقات وعروض متكاملة لتنسيق حدائق الفلل والقصور والاستراحات مع المعاينة والتصميم 3D مجاناً والضمان حتى 7 سنوات.",
-    url: "https://hadiqat-alrayan.com/services",
+    url: "https://hadiqat-alrayan.com/services/",
     siteName: "مؤسسة حدائق الريان لتنسيق الحدائق",
     locale: "ar_SA",
     type: "website",

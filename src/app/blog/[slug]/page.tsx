@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = detailed ? `${detailed.title} | مدونة حدائق الريان بالرياض` : `${article.title} | مدونة حدائق الريان بالرياض`;
   const description = detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt;
-  const canonicalUrl = `https://hadiqat-alrayan.com/blog/${slug}`;
+  const canonicalUrl = `https://hadiqat-alrayan.com/blog/${slug}/`;
   const imgUrl = article.image.startsWith("http") ? article.image : `https://hadiqat-alrayan.com${article.image}`;
 
   return {

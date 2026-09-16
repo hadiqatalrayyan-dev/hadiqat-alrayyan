@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(mkt?.targetKeywords || []),
   ];
 
-  const canonicalUrl = `https://hadiqat-alrayan.com/services/${slug}`;
+  const canonicalUrl = `https://hadiqat-alrayan.com/services/${slug}/`;
   const imgUrl = service.image.startsWith("http") ? service.image : `https://hadiqat-alrayan.com${service.image}`;
 
   return {
