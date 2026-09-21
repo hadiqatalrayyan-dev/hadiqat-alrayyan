@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import { articlesData, siteConfig } from "@/data/content";
+import { articlesData } from "@/data/content";
+import { getUnifiedArticles } from "@/lib/articles";
+import { UnifiedArticle } from "@/types/article";
 import {
   Search,
   Calendar,
@@ -17,19 +19,35 @@ import {
 } from "lucide-react";
 
 export default function BlogIndexPage() {
+  const [articles, setArticles] = useState<UnifiedArticle[]>(articlesData as UnifiedArticle[]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+    getUnifiedArticles().then((unified) => {
+      if (isMounted && unified && unified.length > 0) {
+        setArticles(unified);
+      }
+    }).catch(() => {
+      // Graceful fallback to static articles
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const filteredArticles = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return articlesData;
-    return articlesData.filter(
+    if (!q) return articles;
+    return articles.filter(
       (a) =>
         a.title.toLowerCase().includes(q) ||
         a.excerpt.toLowerCase().includes(q) ||
         a.category.toLowerCase().includes(q) ||
-        a.pillText.toLowerCase().includes(q)
+        a.pillText.toLowerCase().includes(q) ||
+        (a.keywords && a.keywords.some((k) => k.toLowerCase().includes(q)))
     );
-  }, [searchQuery]);
+  }, [searchQuery, articles]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +123,7 @@ export default function BlogIndexPage() {
               </div>
 
               <div className="divide-y divide-gray-100 space-y-3 pt-1">
-                {articlesData.map((item) => (
+                {articles.map((item) => (
                   <div key={item.id || item.slug} className="pt-3 flex items-start gap-3 group">
                     <div className="flex-1 text-right space-y-1">
                       <Link

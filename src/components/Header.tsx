@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { siteConfig, services, articlesData } from "@/data/content";
+import { getUnifiedArticles } from "@/lib/articles";
+import { UnifiedArticle } from "@/types/article";
 import Logo from "@/components/Logo";
 import {
   Phone,
@@ -34,7 +36,24 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [articles, setArticles] = useState<UnifiedArticle[]>(articlesData as UnifiedArticle[]);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    getUnifiedArticles()
+      .then((unified) => {
+        if (isMounted && unified && unified.length > 0) {
+          setArticles(unified);
+        }
+      })
+      .catch(() => {
+        // Fallback to static articles
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,10 +93,13 @@ export default function Header() {
     : [];
 
   const filteredArticles = trimmedQuery
-    ? articlesData.filter(
+    ? articles.filter(
         (a) =>
           a.title.toLowerCase().includes(trimmedQuery) ||
-          a.excerpt.toLowerCase().includes(trimmedQuery)
+          a.excerpt.toLowerCase().includes(trimmedQuery) ||
+          a.category.toLowerCase().includes(trimmedQuery) ||
+          a.pillText.toLowerCase().includes(trimmedQuery) ||
+          (a.keywords && a.keywords.some((k) => k.toLowerCase().includes(trimmedQuery)))
       )
     : [];
 

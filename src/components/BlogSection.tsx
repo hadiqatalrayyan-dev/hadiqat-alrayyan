@@ -1,10 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { siteConfig, articlesData } from "@/data/content";
+import { articlesData } from "@/data/content";
+import { getUnifiedArticles } from "@/lib/articles";
+import { UnifiedArticle } from "@/types/article";
 
 export default function BlogSection() {
+  const [articles, setArticles] = useState<UnifiedArticle[]>(articlesData as UnifiedArticle[]);
+
+  useEffect(() => {
+    let isMounted = true;
+    getUnifiedArticles()
+      .then((unified) => {
+        if (isMounted && unified && unified.length > 0) {
+          setArticles(unified);
+        }
+      })
+      .catch(() => {
+        // Fallback to static articles
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Display top 6 articles
+  const displayArticles = articles.slice(0, 6);
+
   return (
     <section id="blog" className="py-20 sm:py-24 bg-white relative select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -29,7 +52,7 @@ export default function BlogSection() {
 
         {/* 6 Article Cards Grid (3 Columns x 2 Rows) matching screenshot 100% */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articlesData.map((item) => (
+          {displayArticles.map((item) => (
             <div
               key={item.id || item.slug}
               className="bg-white rounded-none shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden border border-gray-100/90 text-center group"

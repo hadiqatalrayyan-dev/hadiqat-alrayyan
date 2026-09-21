@@ -8,8 +8,13 @@ import FloatingActions from "@/components/FloatingActions";
 import ProfileCard from "@/components/ProfileCard";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ArticleShareBar from "@/components/ArticleShareBar";
-import { articlesData, getArticleBySlug, siteConfig } from "@/data/content";
+import { articlesData, siteConfig } from "@/data/content";
 import { detailedBlogArticles } from "@/data/blogArticlesDetailed";
+import {
+  getUnifiedArticleBySlug,
+  getUnifiedArticles,
+  getAllUnifiedSlugs,
+} from "@/lib/articles";
 import {
   Phone,
   MessageCircle,
@@ -39,24 +44,15 @@ interface Props {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
+  const allSlugs = await getAllUnifiedSlugs();
   const slugs = new Set<string>();
 
-  articlesData.forEach((article) => {
-    if (article.slug) {
-      slugs.add(article.slug);
+  allSlugs.forEach((s) => {
+    if (s) {
+      slugs.add(s);
       try {
-        slugs.add(encodeURIComponent(article.slug));
-        slugs.add(decodeURIComponent(article.slug));
-      } catch {}
-    }
-  });
-
-  Object.keys(detailedBlogArticles).forEach((slugKey) => {
-    if (slugKey) {
-      slugs.add(slugKey);
-      try {
-        slugs.add(encodeURIComponent(slugKey));
-        slugs.add(decodeURIComponent(slugKey));
+        slugs.add(encodeURIComponent(s));
+        slugs.add(decodeURIComponent(s));
       } catch {}
     }
   });
@@ -69,23 +65,42 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug || "");
-  const article = getArticleBySlug(slug) || getArticleBySlug(rawSlug);
-  const detailed = detailedBlogArticles[slug] || detailedBlogArticles[rawSlug];
+  const resolved = await getUnifiedArticleBySlug(slug);
 
-  if (!article) {
+  if (!resolved) {
     return {
       title: "المقال غير موجود | مؤسسة حدائق الريان بالرياض",
     };
   }
 
-  const title = detailed ? `${detailed.title} | مدونة حدائق الريان بالرياض` : `${article.title} | مدونة حدائق الريان بالرياض`;
-  const description = detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt;
-  const canonicalUrl = `https://hadiqat-alrayan.com/blog/${slug}/`;
-  const imgUrl = article.image.startsWith("http") ? article.image : `https://hadiqat-alrayan.com${article.image}`;
+  const { article, detailed, seo, isCms } = resolved;
+
+  const title =
+    (isCms && seo?.metaTitle) ||
+    (detailed
+      ? `${detailed.title} | مدونة حدائق الريان بالرياض`
+      : `${article.title} | مدونة حدائق الريان بالرياض`);
+
+  const description =
+    (isCms && seo?.metaDescription) ||
+    (detailed
+      ? detailed.metaDescription || detailed.subtitle
+      : article.excerpt);
+
+  const canonicalUrl =
+    (isCms && seo?.canonicalUrl) || `https://hadiqat-alrayan.com/blog/${slug}/`;
+
+  const rawImage = (isCms && seo?.ogImage) || article.image;
+  const imgUrl = rawImage.startsWith("http")
+    ? rawImage
+    : `https://hadiqat-alrayan.com${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
+
+  const keywords = isCms && seo?.keywords?.length ? seo.keywords.join(", ") : undefined;
 
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -117,58 +132,78 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug: rawSlug } = await params;
   const slug = decodeURIComponent(rawSlug || "");
-  const article = getArticleBySlug(slug) || getArticleBySlug(rawSlug);
+  const resolved = await getUnifiedArticleBySlug(slug);
 
-  if (!article) {
+  if (!resolved) {
     notFound();
   }
 
-  const detailed = detailedBlogArticles[slug] || detailedBlogArticles[rawSlug];
-  const currentIndex = articlesData.findIndex((a) => a.slug === slug || a.slug === rawSlug || a.slug === decodeURIComponent(rawSlug));
-  const prevArticle = currentIndex > 0 ? articlesData[currentIndex - 1] : null;
-  const nextArticle = currentIndex < articlesData.length - 1 ? articlesData[currentIndex + 1] : null;
-  const relatedArticles = articlesData.filter((a) => a.slug !== slug && a.slug !== rawSlug).slice(0, 4);
+  const { article, detailed, isCms } = resolved;
+  const allArticles = await getUnifiedArticles();
+
+  const currentIndex = allArticles.findIndex(
+    (a) =>
+      a.slug === slug ||
+      a.slug === rawSlug ||
+      a.slug === decodeURIComponent(rawSlug)
+  );
+  const prevArticle = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
+  const nextArticle =
+    currentIndex >= 0 && currentIndex < allArticles.length - 1
+      ? allArticles[currentIndex + 1]
+      : null;
+  const relatedArticles = allArticles
+    .filter((a) => a.slug !== slug && a.slug !== rawSlug)
+    .slice(0, 4);
 
   // SEO JSON-LD Schema
+  const articleImgUrl = article.image.startsWith("http")
+    ? article.image
+    : `https://hadiqat-alrayan.com${article.image.startsWith("/") ? "" : "/"}${article.image}`;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": detailed ? detailed.title : article.title,
-    "description": detailed ? (detailed.metaDescription || detailed.subtitle) : article.excerpt,
-    "image": `https://hadiqat-alrayan.com${article.image}`,
-    "author": {
+    headline: detailed ? detailed.title : article.title,
+    description: detailed
+      ? detailed.metaDescription || detailed.subtitle
+      : article.excerpt,
+    image: articleImgUrl,
+    author: {
       "@type": "Organization",
-      "name": "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
-      "url": "https://hadiqat-alrayan.com"
+      name: detailed?.author?.name || "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
+      url: "https://hadiqat-alrayan.com",
     },
-    "publisher": {
+    publisher: {
       "@type": "Organization",
-      "name": "مؤسسة حدائق الريان",
-      "logo": {
+      name: "مؤسسة حدائق الريان",
+      logo: {
         "@type": "ImageObject",
-        "url": "https://hadiqat-alrayan.com/logo.png"
-      }
+        url: "https://hadiqat-alrayan.com/logo.png",
+      },
     },
-    "datePublished": "2026-01-15T08:00:00+03:00",
-    "dateModified": new Date().toISOString(),
-    "mainEntityOfPage": {
+    datePublished: isCms ? new Date().toISOString() : "2026-01-15T08:00:00+03:00",
+    dateModified: new Date().toISOString(),
+    mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://hadiqat-alrayan.com/blog/${slug}`
-    }
+      "@id": `https://hadiqat-alrayan.com/blog/${slug}`,
+    },
   };
 
-  const faqSchema = detailed?.faqs?.length ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": detailed.faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
+  const faqSchema = detailed?.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: detailed.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
       }
-    }))
-  } : null;
+    : null;
 
   return (
     <div className="min-h-screen bg-[#fcfdfa] text-[#1c2e17] font-sans antialiased">
