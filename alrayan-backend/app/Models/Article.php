@@ -14,6 +14,7 @@ class Article extends Model
         'slug',
         'subtitle',
         'excerpt',
+        'content',
         'pill_text',
         'day',
         'month',

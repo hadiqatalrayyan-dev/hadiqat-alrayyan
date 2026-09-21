@@ -29,6 +29,40 @@ class ArticleResource extends JsonResource
     }
 
     /**
+     * Sanitize and normalize HTML content (absolute image URLs, strip dangerous scripts).
+     */
+    protected function normalizeHtmlContent(?string $html): ?string
+    {
+        if (empty($html)) {
+            return null;
+        }
+
+        // 1. Strip <script> and dangerous tags
+        $cleanHtml = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
+        $cleanHtml = preg_replace('#<iframe(.*?)>(.*?)</iframe>#is', '', $cleanHtml);
+        $cleanHtml = preg_replace('#\son\w+\s*=\s*(["\']).*?\1#i', '', $cleanHtml);
+        $cleanHtml = preg_replace('#javascript:#i', '', $cleanHtml);
+
+        // 2. Normalize relative image URLs to absolute storage URLs
+        $cleanHtml = preg_replace_callback('/<img([^>]+)src=["\']([^"\']+)["\']/i', function ($matches) {
+            $attrs = $matches[1];
+            $src = $matches[2];
+
+            if (!str_starts_with($src, 'http://') && !str_starts_with($src, 'https://')) {
+                $cleanPath = ltrim($src, '/');
+                if (str_starts_with($cleanPath, 'storage/')) {
+                    $cleanPath = substr($cleanPath, 8);
+                }
+                $src = asset('storage/' . $cleanPath);
+            }
+
+            return "<img{$attrs}src=\"{$src}\"";
+        }, $cleanHtml);
+
+        return $cleanHtml;
+    }
+
+    /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
@@ -38,6 +72,7 @@ class ArticleResource extends JsonResource
         $imageUrl = $this->resolveImageUrl($this->image, '/images/garden-costs-faq-banner.webp');
         $ogImageUrl = $this->resolveImageUrl($this->og_image, $imageUrl);
         $authorAvatar = $this->resolveImageUrl($this->author_avatar, '/images/rabea-shaban-profile.webp');
+        $htmlContent = $this->normalizeHtmlContent($this->content);
 
         return [
             'id'          => $this->id,
@@ -66,7 +101,9 @@ class ArticleResource extends JsonResource
                 'canonicalUrl'    => $this->canonical_url ?: "https://hadiqat-alrayan.com/blog/{$this->slug}/",
                 'ogImage'         => $ogImageUrl,
             ],
+            'htmlContent' => $htmlContent,
             'content'     => [
+                'mainHtml'        => $htmlContent,
                 'tableOfContents' => $this->table_of_contents ?: [],
                 'introduction'    => $this->introduction ?: [],
                 'keyTakeaways'    => $this->key_takeaways ?: [],

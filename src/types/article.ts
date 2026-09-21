@@ -75,6 +75,7 @@ export interface CmsTableOfContent {
  * Structured content block container returned by Laravel CMS API.
  */
 export interface CmsContentBlocks {
+  mainHtml?: string | null;
   tableOfContents?: CmsTableOfContent[];
   introduction?: string[];
   keyTakeaways?: string[];
@@ -122,6 +123,7 @@ export interface CmsArticleDetail {
   readTime: string;
   author: CmsAuthor;
   seo: CmsSeo;
+  htmlContent?: string | null;
   content: CmsContentBlocks;
   publishedAt?: string | null;
   createdAt?: string | null;
@@ -181,6 +183,7 @@ export interface CmsArticleFilterParams {
 export type UnifiedArticle = ArticleItem & {
   isCms?: boolean;
   keywords?: string[];
+  htmlContent?: string | null;
 };
 
 /**

@@ -37,13 +37,15 @@ export function normalizeCmsArticle(cmsDetail: CmsArticleDetail): {
   detailed: DetailedBlogArticle;
 } {
   const content = cmsDetail.content || {};
+  const htmlContent = cmsDetail.htmlContent || content.mainHtml || (typeof content === "string" ? content : null);
 
   const article: UnifiedArticle = {
     id: `cms-${cmsDetail.id}`,
     slug: cmsDetail.slug,
     title: cmsDetail.title,
     excerpt: cmsDetail.excerpt || "",
-    fullContent: content.fullContent || "",
+    fullContent: content.fullContent || htmlContent || "",
+    htmlContent: htmlContent || null,
     pillText: cmsDetail.pillText || "معلومات تهمك",
     day: cmsDetail.date?.day || "15",
     month: cmsDetail.date?.month || "سبتمبر",

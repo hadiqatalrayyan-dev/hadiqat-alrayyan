@@ -122,9 +122,41 @@ class ArticleResource extends Resource
                             ])
                             ->columns(2),
 
-                        // Tab 2: Structured Content
-                        Forms\Components\Tabs\Tab::make('المحتوى المهيكل')
+                        // Tab 2: WordPress-Like Rich Article Editor
+                        Forms\Components\Tabs\Tab::make('محرر المقال')
+                            ->icon('heroicon-o-pencil-square')
+                            ->schema([
+                                Forms\Components\RichEditor::make('content')
+                                    ->label('محتوى المقال (محرر ذكي شبيه بـ WordPress)')
+                                    ->placeholder('اكتب محتوى المقال هنا بحرية كاملة... يمكنك إضافة عناوين H2/H3، وتنسيق النصوص، والقوائم النقطية والرقمية، والاقتباسات، ورفع الصور داخل المقال مباشرة.')
+                                    ->toolbarButtons([
+                                        'attachFiles',
+                                        'blockquote',
+                                        'bold',
+                                        'bulletList',
+                                        'codeBlock',
+                                        'h2',
+                                        'h3',
+                                        'italic',
+                                        'link',
+                                        'orderedList',
+                                        'redo',
+                                        'strike',
+                                        'underline',
+                                        'undo',
+                                    ])
+                                    ->fileAttachmentsDisk('public')
+                                    ->fileAttachmentsDirectory('articles/content')
+                                    ->fileAttachmentsVisibility('public')
+                                    ->columnSpanFull()
+                                    ->helperText('يدعم الكتابة باللغة العربية RTL، السحب والإفلات للصور، والنسخ واللصق من Word ومستندات Google.'),
+                            ]),
+
+                        // Tab 3: Structured Content (Optional)
+                        Forms\Components\Tabs\Tab::make('المحتوى المهيكل المتقدم (اختياري)')
                             ->icon('heroicon-o-rectangle-stack')
+                            ->badge('اختياري')
+                            ->badgeColor('gray')
                             ->schema([
                                 Forms\Components\Section::make('فهرس الموضوعات (Table of Contents)')
                                     ->collapsed()

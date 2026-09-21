@@ -214,4 +214,65 @@ class ArticleApiTest extends TestCase
                 'data' => ['slug-1', 'slug-2'],
             ]);
     }
+
+    public function test_article_can_store_and_return_rich_html_content(): void
+    {
+        $html = '<h2>عنوان فرعي</h2><p>فقرة تجريبية مكتوبة بالمحرر الذكي.</p><blockquote>اقتباس مهم</blockquote>';
+        
+        Article::factory()->create([
+            'slug' => 'rich-article-test',
+            'status' => 'published',
+            'published_at' => now(),
+            'content' => $html,
+        ]);
+
+        $response = $this->getJson('/api/v1/articles/rich-article-test');
+
+        $response->assertStatus(200)
+            ->assertJsonPath('data.htmlContent', $html)
+            ->assertJsonPath('data.content.mainHtml', $html);
+    }
+
+    public function test_dangerous_html_is_sanitized_in_api_response(): void
+    {
+        $dirtyHtml = '<p>نص عادي</p><script>alert("xss")</script><iframe src="https://evil.com"></iframe><img src="/storage/test.png" onerror="alert(1)" />';
+
+        Article::factory()->create([
+            'slug' => 'sanitized-article-test',
+            'status' => 'published',
+            'published_at' => now(),
+            'content' => $dirtyHtml,
+        ]);
+
+        $response = $this->getJson('/api/v1/articles/sanitized-article-test');
+
+        $response->assertStatus(200);
+        $html = $response->json('data.htmlContent');
+
+        $this->assertStringNotContainsString('<script', $html);
+        $this->assertStringNotContainsString('</script>', $html);
+        $this->assertStringNotContainsString('<iframe', $html);
+        $this->assertStringNotContainsString('onerror=', $html);
+        $this->assertStringContainsString('<p>نص عادي</p>', $html);
+    }
+
+    public function test_relative_storage_images_are_converted_to_absolute_urls_in_rich_content(): void
+    {
+        $content = '<p>صورة داخل المقال:</p><img src="/storage/articles/content/photo.webp" alt="حديقة" />';
+
+        Article::factory()->create([
+            'slug' => 'image-url-test',
+            'status' => 'published',
+            'published_at' => now(),
+            'content' => $content,
+        ]);
+
+        $response = $this->getJson('/api/v1/articles/image-url-test');
+
+        $response->assertStatus(200);
+        $html = $response->json('data.htmlContent');
+
+        $this->assertStringContainsString('src="http', $html);
+        $this->assertStringContainsString('/storage/articles/content/photo.webp"', $html);
+    }
 }

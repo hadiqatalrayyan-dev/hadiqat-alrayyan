@@ -404,8 +404,16 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             )}
 
-            {/* Fallback for articles without detailed object */}
-            {!detailed && article.fullContent && (
+            {/* Main Rich HTML Content (WordPress-Like Editor Output) */}
+            {article.htmlContent && (
+              <div
+                className="article-rich-content space-y-6 text-gray-800 text-sm sm:text-base leading-relaxed text-right prose prose-emerald max-w-none [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-gray-900 [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-gray-100 [&_h3]:text-lg sm:[&_h3]:text-xl [&_h3]:font-black [&_h3]:text-[#0b3414] [&_h3]:mt-6 [&_h3]:mb-3 [&_p]:text-gray-700 [&_p]:leading-loose [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pr-6 [&_ul]:space-y-2 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pr-6 [&_ol]:space-y-2 [&_ol]:mb-4 [&_li]:text-gray-700 [&_blockquote]:border-r-4 [&_blockquote]:border-[#4d8834] [&_blockquote]:bg-[#edf7ea] [&_blockquote]:p-4 [&_blockquote]:rounded-l-xl [&_blockquote]:italic [&_blockquote]:my-6 [&_img]:rounded-2xl [&_img]:shadow-md [&_img]:mx-auto [&_img]:max-w-full [&_img]:h-auto [&_img]:my-6 [&_a]:text-[#4d8834] [&_a]:font-bold [&_a]:underline hover:[&_a]:text-[#3d6e29] [&_strong]:font-black [&_strong]:text-gray-900"
+                dangerouslySetInnerHTML={{ __html: article.htmlContent }}
+              />
+            )}
+
+            {/* Fallback for markdown-style articles without detailed object or htmlContent */}
+            {!article.htmlContent && !detailed && article.fullContent && (
               <div className="space-y-6 text-gray-800 text-sm sm:text-base leading-loose prose prose-emerald max-w-none">
                 {article.fullContent.split("\n\n").map((chunk, cIdx) => {
                   if (chunk.startsWith("### ")) {
@@ -447,7 +455,7 @@ export default async function BlogPostPage({ params }: Props) {
             )}
 
             {/* Introduction Section */}
-            {detailed && detailed.introduction && (
+            {detailed && detailed.introduction && detailed.introduction.length > 0 && (
               <section id="intro" className="space-y-4 text-gray-700 text-sm sm:text-base leading-loose">
                 {detailed.introduction.map((para, idx) => (
                   <p key={idx}>{para}</p>
