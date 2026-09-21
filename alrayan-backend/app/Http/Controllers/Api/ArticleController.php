@@ -13,6 +13,7 @@ class ArticleController extends Controller
 {
     /**
      * Display a paginated listing of published articles with optional search and category filters.
+     * Includes HTTP Cache headers for fast indexing and CDN caching.
      */
     public function index(Request $request): JsonResponse
     {
@@ -52,13 +53,15 @@ class ArticleController extends Controller
                 'perPage'     => $paginated->perPage(),
                 'total'       => $paginated->total(),
             ],
-        ]);
+        ])
+        ->header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
     }
 
     /**
      * Display the specified published article with its full structured content.
+     * Supports ETag, Last-Modified and CDN edge caching.
      */
-    public function show(string $slug): JsonResponse
+    public function show(Request $request, string $slug): JsonResponse
     {
         $decodedSlug = urldecode($slug);
 
@@ -77,26 +80,43 @@ class ArticleController extends Controller
             ], 404);
         }
 
+        $etag = md5($article->id . '-' . ($article->updated_at?->timestamp ?? 0));
+        $lastModified = ($article->updated_at ?? $article->published_at ?? $article->created_at);
+
+        if ($request->header('If-None-Match') === $etag) {
+            return response()->json(null, 304);
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'Article retrieved successfully',
             'data'    => new ArticleResource($article),
-        ]);
+        ])
+        ->header('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400')
+        ->header('ETag', $etag)
+        ->header('Last-Modified', $lastModified ? $lastModified->toRfc7231String() : now()->toRfc7231String());
     }
 
     /**
-     * Return all published article slugs for Next.js SSG and Sitemap.
+     * Return all published article slugs and sitemap metadata for Next.js SSG & Sitemap generation.
      */
     public function slugs(): JsonResponse
     {
-        $slugs = Article::where('status', 'published')
+        $articles = Article::where('status', 'published')
             ->orderByRaw('COALESCE(published_at, created_at) DESC')
-            ->pluck('slug')
-            ->values();
+            ->select(['id', 'slug', 'updated_at', 'published_at', 'created_at'])
+            ->get();
+
+        $slugs = $articles->pluck('slug')->values();
 
         return response()->json([
             'success' => true,
             'data'    => $slugs,
-        ]);
+            'entries' => $articles->map(fn ($a) => [
+                'slug'          => $a->slug,
+                'last_modified' => ($a->updated_at ?? $a->published_at ?? $a->created_at)?->toIso8601String(),
+            ]),
+        ])
+        ->header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
     }
 }

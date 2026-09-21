@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { services, articlesData } from "@/data/content";
-import { getCmsArticleSlugs } from "@/lib/api";
+import { getCmsSitemapEntries } from "@/lib/api";
 
 export const dynamic = "force-static";
 
@@ -60,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. Articles (Static + Published CMS)
   const articleUrlsMap = new Map<string, MetadataRoute.Sitemap[number]>();
 
-  // Static articles first
+  // Static legacy articles first
   articlesData.forEach((a) => {
     if (a.slug) {
       const slug = a.slug.replace(/^\/+|\/+$/g, "");
@@ -73,17 +73,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   });
 
-  // CMS articles overwrite / add with latest date
+  // CMS articles overwrite / dynamically add with exact last_modified date
   try {
-    const cmsSlugs = await getCmsArticleSlugs();
-    cmsSlugs.forEach((slug) => {
-      if (slug) {
-        const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
+    const cmsEntries = await getCmsSitemapEntries();
+    cmsEntries.forEach((entry) => {
+      if (entry && entry.slug) {
+        const cleanSlug = entry.slug.replace(/^\/+|\/+$/g, "");
+        const lastMod = entry.last_modified ? new Date(entry.last_modified).toISOString() : now;
         articleUrlsMap.set(cleanSlug, {
           url: `${BASE_URL}/blog/${cleanSlug}/`,
-          lastModified: now,
+          lastModified: lastMod,
           changeFrequency: "weekly",
-          priority: 0.85,
+          priority: 0.9,
         });
       }
     });

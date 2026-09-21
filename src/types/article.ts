@@ -159,12 +159,18 @@ export interface CmsArticleDetailResponse {
   data: CmsArticleDetail | null;
 }
 
+export interface CmsSitemapEntry {
+  slug: string;
+  last_modified?: string | null;
+}
+
 /**
  * Full API response envelope for GET /api/v1/articles-slugs.
  */
 export interface CmsArticleSlugsResponse {
   success: boolean;
   data: string[];
+  entries?: CmsSitemapEntry[];
 }
 
 /**

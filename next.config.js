@@ -5,8 +5,10 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  webpack: (config) => {
-    config.output.hashFunction = 'xxhash64';
+  webpack: (config, { isServer }) => {
+    if (config.output) {
+      config.output.hashFunction = 'xxhash64';
+    }
     return config;
   },
 };
