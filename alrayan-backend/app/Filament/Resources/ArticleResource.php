@@ -83,7 +83,9 @@ class ArticleResource extends Resource
 
                                 Forms\Components\FileUpload::make('image')
                                     ->label('الصورة البارزة للمقال')
+                                    ->disk('public')
                                     ->directory('articles')
+                                    ->visibility('public')
                                     ->image()
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->maxSize(5120)
@@ -403,6 +405,8 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('الصورة')
+                    ->disk('public')
+                    ->visibility('public')
                     ->circular()
                     ->defaultImageUrl('/images/garden-costs-faq-banner.webp'),
 
