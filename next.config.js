@@ -5,6 +5,10 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  webpack: (config) => {
+    config.output.hashFunction = 'xxhash64';
+    return config;
+  },
 };
 
 module.exports = nextConfig;
