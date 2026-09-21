@@ -10,6 +10,10 @@ Route::prefix('v1')->group(function () {
             'message' => 'Al Rayan API is running',
         ]);
     });
+
+    Route::get('/articles', [\App\Http\Controllers\Api\ArticleController::class, 'index']);
+    Route::get('/articles-slugs', [\App\Http\Controllers\Api\ArticleController::class, 'slugs']);
+    Route::get('/articles/{slug}', [\App\Http\Controllers\Api\ArticleController::class, 'show']);
 });
 
 Route::get('/user', function (Request $request) {
