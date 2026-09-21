@@ -7,13 +7,16 @@ import {
   CmsArticleSlugsResponse,
 } from "@/types/article";
 
-const API_BASE_URL =
-  (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_API_URL
-    ? process.env.NEXT_PUBLIC_API_URL
-    : process.env.NODE_ENV === "development"
-    ? "http://127.0.0.1:8000"
-    : "https://api.hadiqat-alrayan.com"
-  ).replace(/\/+$/, "");
+function resolveApiBaseUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
+  // If in production or running build without local backend, default to production API
+  if (process.env.NODE_ENV === "production" || !envUrl || envUrl.includes("127.0.0.1") || envUrl.includes("localhost")) {
+    return "https://api.hadiqat-alrayan.com";
+  }
+  return envUrl.replace(/\/+$/, "");
+}
+
+const API_BASE_URL = resolveApiBaseUrl();
 
 const DEFAULT_FETCH_TIMEOUT_MS = 5000;
 

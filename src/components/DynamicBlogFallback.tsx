@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 export default function DynamicBlogFallback({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [resolvedArticle, setResolvedArticle] = useState<{
     article: UnifiedArticle;
     detailed: DetailedBlogArticle;
@@ -37,35 +37,60 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
   } | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    let active = true;
 
-    const pathname = window.location.pathname;
-    const match = pathname.match(/^\/blog\/(.+?)\/?$/);
+    async function checkCmsArticle() {
+      if (typeof window === "undefined") return;
 
-    if (!match || !match[1]) {
-      setLoading(false);
-      return;
-    }
+      const pathname = window.location.pathname;
+      const match = pathname.match(/^\/blog\/(.+?)\/?$/);
 
-    const rawSlug = match[1];
-    const decodedSlug = decodeURIComponent(rawSlug);
+      if (!match || !match[1]) {
+        return;
+      }
 
-    // Fetch from CMS API
-    getCmsArticleBySlug(decodedSlug)
-      .then((cmsDetail) => {
-        if (cmsDetail) {
+      const rawSlug = match[1];
+      const decodedSlug = decodeURIComponent(rawSlug);
+
+      try {
+        const cmsDetail = await getCmsArticleBySlug(decodedSlug);
+        if (active && cmsDetail) {
           const { article, detailed } = normalizeCmsArticle(cmsDetail);
           setResolvedArticle({
             article,
             detailed,
             seo: cmsDetail.seo,
           });
+
+          // Dynamically update document title & remove 404/noindex tags
+          const articleTitle =
+            cmsDetail.seo?.metaTitle ||
+            `${article.title} | مدونة حدائق الريان بالرياض`;
+          document.title = articleTitle;
+
+          // Remove any noindex meta tag
+          const metaRobots = document.querySelector('meta[name="robots"]');
+          if (metaRobots) {
+            metaRobots.setAttribute(
+              "content",
+              "index, follow, max-image-preview:large"
+            );
+          }
         }
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      } catch {
+        // Ignore and stay on 404
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+
+    checkCmsArticle();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   if (loading) {
