@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'build_webhook' => [
+        'enabled' => env('BUILD_WEBHOOK_ENABLED', false),
+        'url' => env('BUILD_WEBHOOK_URL'),
+        'secret' => env('BUILD_WEBHOOK_SECRET'),
+        'timeout' => (int) env('BUILD_WEBHOOK_TIMEOUT', 10),
+    ],
+
 ];
