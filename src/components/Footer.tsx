@@ -235,20 +235,34 @@ export default function Footer() {
             <span>© {currentYear} جميع الحقوق محفوظة لصالح </span>
             <span className="font-bold text-[#4d8834]">مؤسسة حدائق الريان</span>
           </div>
-          <div className="text-xs text-gray-500 font-medium flex items-center gap-2">
-            <span>تصميم وتطوير الموقع:</span>
+          <div className="text-xs text-gray-500 font-medium flex flex-wrap items-center justify-center sm:justify-end gap-3">
+            <div className="flex items-center gap-2">
+              <span>تصميم وتطوير الموقع:</span>
+              <a
+                href="https://wa.me/201156807072?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%85.%20%D8%B1%D8%A8%D9%8A%D8%B9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D9%88%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-bold text-gray-900 bg-white hover:bg-[#edf7ea] hover:text-[#4d8834] px-3 py-1 rounded-full border border-[#4d8834]/30 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 group"
+                title="تواصل واتساب مع المطور م. ربيع شعبان"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>م. ربيع شعبان (Rabea Shaban)</span>
+                <svg className="w-3.5 h-3.5 fill-[#25D366] group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.13.559 4.129 1.536 5.869l-1.636 5.975 6.136-1.61c1.701.928 3.647 1.466 5.714 1.466 6.627 0 12-5.373 12-12s-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+
+            <span className="hidden md:inline text-gray-300 select-none">|</span>
+
             <a
-              href="https://wa.me/201156807072?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D9%85.%20%D8%B1%D8%A8%D9%8A%D8%B9%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D9%88%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9"
+              href="https://www.rabea-shaban.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-bold text-gray-900 bg-white hover:bg-[#edf7ea] hover:text-[#4d8834] px-3 py-1 rounded-full border border-[#4d8834]/30 shadow-xs hover:shadow-md transition-all duration-300 hover:scale-105 group"
-              title="تواصل واتساب مع المطور م. ربيع شعبان"
+              className="inline-flex items-center text-xs text-gray-500 hover:text-[#4d8834] transition-all duration-300 hover:-translate-y-0.5 group/dev"
+              title="Visit Rabea Shaban's Portfolio"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>م. ربيع شعبان (Rabea Shaban)</span>
-              <svg className="w-3.5 h-3.5 fill-[#25D366] group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.13.559 4.129 1.536 5.869l-1.636 5.975 6.136-1.61c1.701.928 3.647 1.466 5.714 1.466 6.627 0 12-5.373 12-12s-5.373-12-12-12z" />
-              </svg>
+              <span className="tracking-wide">Designed &amp; Built by <strong className="font-semibold text-gray-700 group-hover/dev:text-[#4d8834] transition-colors">Rabea Shaban</strong></span>
             </a>
           </div>
         </div>
