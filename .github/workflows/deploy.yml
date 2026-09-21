@@ -40,6 +40,8 @@ jobs:
 
       # Step 5: Build Next.js Static Export
       - name: Build Next.js Static Production Export
+        env:
+          NEXT_PUBLIC_API_URL: https://api.hadiqat-alrayan.com
         run: npm run build
 
       # Step 6: Ensure .htaccess is included in static export
