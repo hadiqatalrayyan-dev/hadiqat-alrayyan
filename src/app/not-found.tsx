@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DynamicBlogFallback from '@/components/DynamicBlogFallback';
 import { siteConfig } from '@/data/content';
 import {
   Home,
@@ -49,8 +50,9 @@ export default function NotFound() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-emerald-50/40 via-white to-gray-50 text-gray-800 font-sans selection:bg-emerald-600 selection:text-white">
-      <Header />
+    <DynamicBlogFallback>
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-emerald-50/40 via-white to-gray-50 text-gray-800 font-sans selection:bg-emerald-600 selection:text-white">
+        <Header />
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:py-20 relative overflow-hidden">
         {/* Decorative Background Elements */}
@@ -162,6 +164,7 @@ export default function NotFound() {
       </main>
 
       <Footer />
-    </div>
+      </div>
+    </DynamicBlogFallback>
   );
 }

@@ -59,4 +59,12 @@ class Article extends Model
             'published_at'      => 'datetime',
         ];
     }
+
+    public function setSlugAttribute($value): void
+    {
+        $clean = trim((string) $value);
+        $clean = preg_replace('/\s+/', '-', $clean);
+        $clean = preg_replace('/[^\p{L}\p{N}_\-]+/u', '', $clean);
+        $this->attributes['slug'] = trim($clean, '-') ?: 'article-' . time();
+    }
 }
