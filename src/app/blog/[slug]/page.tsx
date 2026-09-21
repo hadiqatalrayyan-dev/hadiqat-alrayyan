@@ -75,22 +75,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { article, detailed, seo, isCms } = resolved;
 
+  const isValidCustomTitle =
+    isCms &&
+    seo?.metaTitle &&
+    !seo.metaTitle.includes("عنوان الميتا") &&
+    !seo.metaTitle.includes("Meta Title") &&
+    seo.metaTitle.trim().length > 0;
+
   const title =
-    (isCms && seo?.metaTitle) ||
+    (isValidCustomTitle ? seo!.metaTitle! : null) ||
     (detailed
       ? `${detailed.title} | مدونة حدائق الريان بالرياض`
       : `${article.title} | مدونة حدائق الريان بالرياض`);
 
   const description =
-    (isCms && seo?.metaDescription) ||
+    (isCms && seo?.metaDescription && !seo.metaDescription.includes("وصف الميتا") ? seo.metaDescription : null) ||
     (detailed
       ? detailed.metaDescription || detailed.subtitle
       : article.excerpt);
 
-  const canonicalUrl =
-    (isCms && seo?.canonicalUrl) || `https://hadiqat-alrayan.com/blog/${slug}/`;
+  const isValidCanonical =
+    isCms &&
+    seo?.canonicalUrl &&
+    seo.canonicalUrl.startsWith("http") &&
+    !seo.canonicalUrl.includes("canonical_url");
 
-  const rawImage = (isCms && seo?.ogImage) || article.image;
+  const canonicalUrl =
+    (isValidCanonical ? seo!.canonicalUrl! : null) ||
+    `https://hadiqat-alrayan.com/blog/${slug}/`;
+
+  const isValidOgImage =
+    isCms &&
+    seo?.ogImage &&
+    (seo.ogImage.startsWith("http") || seo.ogImage.startsWith("/")) &&
+    !seo.ogImage.includes("og_image") &&
+    !seo.ogImage.includes("/blog/");
+
+  const rawImage = (isValidOgImage ? seo!.ogImage! : null) || article.image;
   const imgUrl = rawImage.startsWith("http")
     ? rawImage
     : `https://hadiqat-alrayan.com${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
