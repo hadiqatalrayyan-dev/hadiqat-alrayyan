@@ -183,7 +183,10 @@ export interface CmsArticleFilterParams {
 export type UnifiedArticle = ArticleItem & {
   isCms?: boolean;
   keywords?: string[];
+  focusKeyword?: string | null;
   htmlContent?: string | null;
+  publishedAt?: string | null;
+  updatedAt?: string | null;
 };
 
 /**

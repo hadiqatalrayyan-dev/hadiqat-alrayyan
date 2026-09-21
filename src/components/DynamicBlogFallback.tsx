@@ -26,6 +26,8 @@ import {
   Award,
   Layers,
   Check,
+  Tag,
+  Sparkles,
 } from "lucide-react";
 
 export default function DynamicBlogFallback({ children }: { children: React.ReactNode }) {
@@ -111,7 +113,7 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
     return <>{children}</>;
   }
 
-  const { article, detailed } = resolvedArticle;
+  const { article, detailed, seo } = resolvedArticle;
 
   return (
     <div className="min-h-screen bg-[#fcfdfa] text-[#1c2e17] font-sans antialiased">
@@ -241,6 +243,42 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
                 )}
               </section>
             ))}
+
+            {/* Keywords & Tags Section */}
+            {((seo?.keywords && seo.keywords.length > 0) || (article.keywords && article.keywords.length > 0) || seo?.focusKeyword) && (
+              <section className="bg-white border border-emerald-100/80 rounded-3xl p-6 sm:p-7 shadow-sm space-y-4 text-right">
+                <div className="flex items-center gap-2 text-gray-900 font-black text-sm sm:text-base border-b border-gray-100 pb-3">
+                  <Tag className="w-5 h-5 text-[#4d8834]" />
+                  <span>الكلمات المفتاحية والوسوم الدلالية:</span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                  {seo?.focusKeyword && (
+                    <Link
+                      href={`/blog?search=${encodeURIComponent(seo.focusKeyword)}`}
+                      className="inline-flex items-center gap-1.5 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-sm hover:scale-105 transition-all"
+                      title="الكلمة المفتاحية الرئيسية المستهدفة"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+                      <span>{seo.focusKeyword}</span>
+                    </Link>
+                  )}
+
+                  {Array.from(new Set([...(seo?.keywords || []), ...(article.keywords || [])]))
+                    .filter((kw) => kw && kw !== seo?.focusKeyword)
+                    .map((kw, kwIdx) => (
+                      <Link
+                        key={kwIdx}
+                        href={`/blog?search=${encodeURIComponent(kw)}`}
+                        className="inline-flex items-center gap-1 bg-[#edf7ea] hover:bg-[#4d8834] text-[#4d8834] hover:text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-xl border border-[#4d8834]/20 shadow-2xs hover:shadow-xs hover:scale-105 transition-all"
+                      >
+                        <span className="opacity-60 font-mono">#</span>
+                        <span>{kw}</span>
+                      </Link>
+                    ))}
+                </div>
+              </section>
+            )}
 
             {/* CTA Box */}
             <div className="bg-gradient-to-r from-[#0b3414] to-[#124d20] text-white p-8 sm:p-10 rounded-3xl shadow-xl text-center space-y-4">

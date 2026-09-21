@@ -35,6 +35,8 @@ import {
   MapPin,
   Flame,
   Check,
+  Tag,
+  Sparkles,
 } from "lucide-react";
 
 interface Props {
@@ -116,12 +118,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? rawImage
     : `https://hadiqat-alrayan.com${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
 
-  const keywords = isCms && seo?.keywords?.length ? seo.keywords.join(", ") : undefined;
+  // Aggregate all unique keywords from CMS SEO and Article tags
+  const allKeywordsSet = new Set<string>();
+  if (seo?.focusKeyword) allKeywordsSet.add(seo.focusKeyword.trim());
+  if (seo?.keywords && Array.isArray(seo.keywords)) {
+    seo.keywords.forEach((k) => k && allKeywordsSet.add(k.trim()));
+  }
+  if (article.keywords && Array.isArray(article.keywords)) {
+    article.keywords.forEach((k) => k && allKeywordsSet.add(k.trim()));
+  }
+  const keywordsList = Array.from(allKeywordsSet);
+  const keywordsString = keywordsList.length > 0 ? keywordsList.join(", ") : undefined;
 
   return {
     title,
     description,
-    keywords,
+    keywords: keywordsString,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -132,6 +144,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       locale: "ar_SA",
       type: "article",
+      authors: [article.author || "مؤسسة حدائق الريان"],
+      tags: keywordsList.length > 0 ? keywordsList : undefined,
       images: [
         {
           url: imgUrl,
@@ -147,6 +161,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [imgUrl],
     },
+    other: {
+      ...(seo?.focusKeyword ? { "focus-keyword": seo.focusKeyword } : {}),
+      "article:section": article.category || "معلومات عن تنسيق الحدائق",
+    },
   };
 }
 
@@ -159,7 +177,7 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  const { article, detailed, isCms } = resolved;
+  const { article, detailed, seo, isCms } = resolved;
   const allArticles = await getUnifiedArticles();
 
   const currentIndex = allArticles.findIndex(
@@ -177,22 +195,32 @@ export default async function BlogPostPage({ params }: Props) {
     .filter((a) => a.slug !== slug && a.slug !== rawSlug)
     .slice(0, 4);
 
-  // SEO JSON-LD Schema
+  // SEO JSON-LD Schema & Keywords
   const articleImgUrl = article.image.startsWith("http")
     ? article.image
     : `https://hadiqat-alrayan.com${article.image.startsWith("/") ? "" : "/"}${article.image}`;
+
+  const allArticleKeywords = Array.from(
+    new Set([
+      ...(seo?.focusKeyword ? [seo.focusKeyword.trim()] : []),
+      ...(seo?.keywords || []),
+      ...(article.keywords || []),
+    ])
+  ).filter(Boolean);
 
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: detailed ? detailed.title : article.title,
-    description: detailed
-      ? detailed.metaDescription || detailed.subtitle
-      : article.excerpt,
+    description: (seo?.metaDescription && !seo.metaDescription.includes("وصف الميتا") && seo.metaDescription.trim().length > 0)
+      ? seo.metaDescription
+      : (detailed ? detailed.metaDescription || detailed.subtitle : article.excerpt),
     image: articleImgUrl,
+    keywords: allArticleKeywords.length > 0 ? allArticleKeywords.join(", ") : undefined,
+    articleSection: article.category || "معلومات عن تنسيق الحدائق",
     author: {
       "@type": "Organization",
-      name: detailed?.author?.name || "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
+      name: detailed?.author?.name || article.author || "مؤسسة حدائق الريان لتنسيق الحدائق بالرياض",
       url: "https://hadiqat-alrayan.com",
     },
     publisher: {
@@ -203,12 +231,37 @@ export default async function BlogPostPage({ params }: Props) {
         url: "https://hadiqat-alrayan.com/logo.png",
       },
     },
-    datePublished: isCms ? new Date().toISOString() : "2026-01-15T08:00:00+03:00",
+    datePublished: isCms ? (article.publishedAt || new Date().toISOString()) : "2026-01-15T08:00:00+03:00",
     dateModified: new Date().toISOString(),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://hadiqat-alrayan.com/blog/${slug}`,
     },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "الرئيسية",
+        item: "https://hadiqat-alrayan.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "المدونة",
+        item: "https://hadiqat-alrayan.com/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: detailed ? detailed.title : article.title,
+        item: `https://hadiqat-alrayan.com/blog/${slug}`,
+      },
+    ],
   };
 
   const faqSchema = detailed?.faqs?.length
@@ -233,6 +286,10 @@ export default async function BlogPostPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {faqSchema && (
         <script
@@ -616,6 +673,42 @@ export default async function BlogPostPage({ params }: Props) {
                   {detailed.conclusion.map((cp, cIdx) => (
                     <p key={cIdx}>{cp}</p>
                   ))}
+                </div>
+              </section>
+            )}
+
+            {/* Keywords & Tags Section */}
+            {allArticleKeywords.length > 0 && (
+              <section className="bg-white border border-emerald-100/80 rounded-3xl p-6 sm:p-7 shadow-sm space-y-4 text-right">
+                <div className="flex items-center gap-2 text-gray-900 font-black text-sm sm:text-base border-b border-gray-100 pb-3">
+                  <Tag className="w-5 h-5 text-[#4d8834]" />
+                  <span>الكلمات المفتاحية والوسوم الدلالية:</span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                  {seo?.focusKeyword && (
+                    <Link
+                      href={`/blog?search=${encodeURIComponent(seo.focusKeyword)}`}
+                      className="inline-flex items-center gap-1.5 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-sm hover:scale-105 transition-all"
+                      title="الكلمة المفتاحية الرئيسية المستهدفة"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+                      <span>{seo.focusKeyword}</span>
+                    </Link>
+                  )}
+
+                  {allArticleKeywords
+                    .filter((kw) => kw !== seo?.focusKeyword)
+                    .map((kw, kwIdx) => (
+                      <Link
+                        key={kwIdx}
+                        href={`/blog?search=${encodeURIComponent(kw)}`}
+                        className="inline-flex items-center gap-1 bg-[#edf7ea] hover:bg-[#4d8834] text-[#4d8834] hover:text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-xl border border-[#4d8834]/20 shadow-2xs hover:shadow-xs hover:scale-105 transition-all"
+                      >
+                        <span className="opacity-60 font-mono">#</span>
+                        <span>{kw}</span>
+                      </Link>
+                    ))}
                 </div>
               </section>
             )}

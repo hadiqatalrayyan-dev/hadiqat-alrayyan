@@ -54,7 +54,10 @@ export function normalizeCmsArticle(cmsDetail: CmsArticleDetail): {
     readTime: cmsDetail.readTime || "8 دقائق",
     author: cmsDetail.author?.name || "مؤسسة حدائق الريان",
     isCms: true,
-    keywords: cmsDetail.seo?.keywords || [],
+    keywords: Array.isArray(cmsDetail.seo?.keywords) ? cmsDetail.seo.keywords : [],
+    focusKeyword: cmsDetail.seo?.focusKeyword || null,
+    publishedAt: cmsDetail.publishedAt || null,
+    updatedAt: cmsDetail.updatedAt || null,
   };
 
   const detailed: DetailedBlogArticle = {
