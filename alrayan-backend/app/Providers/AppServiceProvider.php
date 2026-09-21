@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
+use App\Models\User;
+use App\Observers\ArticleObserver;
+use App\Policies\ArticlePolicy;
+use App\Policies\UserPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \App\Models\Article::observe(\App\Observers\ArticleObserver::class);
+        Article::observe(ArticleObserver::class);
+
+        Gate::policy(User::class, UserPolicy::class);
+        Gate::policy(Article::class, ArticlePolicy::class);
     }
 }

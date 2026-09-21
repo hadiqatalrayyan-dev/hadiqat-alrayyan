@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'     => 'مدير النظام (Admin)',
                 'password' => 'admin123456',
+                'role'     => User::ROLE_ADMIN,
             ]
         );
     }

@@ -13,6 +13,9 @@ class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
 
+    public const ROLE_ADMIN = 'ADMIN';
+    public const ROLE_USER = 'USER';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,7 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -47,8 +51,40 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
+    /**
+     * Check if the user is an Administrator.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    /**
+     * Check if the user is a standard User/Editor.
+     */
+    public function isUser(): bool
+    {
+        return $this->role === self::ROLE_USER;
+    }
+
+    /**
+     * Control Filament Admin Panel access.
+     */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_USER], true);
+    }
+
+    /**
+     * The "booted" method of the model.
+     * Prevents any user with ADMIN role from being deleted.
+     */
+    protected static function booted(): void
+    {
+        static::deleting(function (User $user) {
+            if ($user->isAdmin()) {
+                throw new \Exception('لا يمكن حذف المستخدمين ذوي صلاحية مدير النظام (ADMIN).');
+            }
+        });
     }
 }
