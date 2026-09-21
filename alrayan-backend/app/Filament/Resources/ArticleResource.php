@@ -165,15 +165,16 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('table_of_contents')
                                             ->label('عناصر الفهرس')
+                                            ->defaultItems(0)
                                             ->schema([
                                                 Forms\Components\TextInput::make('id')
                                                     ->label('معرف الرابط (Anchor ID)')
                                                     ->placeholder('landscaping-cost')
-                                                    ->required(),
+                                                    ->nullable(),
                                                 Forms\Components\TextInput::make('title')
                                                     ->label('عنوان الموضوع')
                                                     ->placeholder('تكلفة تنسيق الحدائق بالرياض')
-                                                    ->required(),
+                                                    ->nullable(),
                                             ])
                                             ->columns(2)
                                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? null),
@@ -184,11 +185,12 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('introduction')
                                             ->label('فقرات المقدمة')
+                                            ->defaultItems(0)
                                             ->simple(
                                                 Forms\Components\Textarea::make('item')
                                                     ->label('الفقرة')
                                                     ->rows(2)
-                                                    ->required()
+                                                    ->nullable()
                                             ),
                                     ]),
 
@@ -197,68 +199,81 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('key_takeaways')
                                             ->label('قائمة النقاط الرئيسية المميزة')
+                                            ->defaultItems(0)
                                             ->simple(
                                                 Forms\Components\TextInput::make('item')
                                                     ->label('نقطة جوهرية')
-                                                    ->required()
+                                                    ->nullable()
                                             ),
                                     ]),
 
                                 Forms\Components\Section::make('أقسام المقال التفصيلية (Sections)')
+                                    ->collapsed()
                                     ->schema([
                                         Forms\Components\Repeater::make('sections')
                                             ->label('الأقسام الرئيسية')
+                                            ->defaultItems(0)
                                             ->schema([
                                                 Forms\Components\TextInput::make('id')
                                                     ->label('معرّف القسم (ID)')
                                                     ->placeholder('step-1')
-                                                    ->required(),
+                                                    ->nullable(),
 
                                                 Forms\Components\TextInput::make('numTitle')
                                                     ->label('عنوان القسم المرقم')
                                                     ->placeholder('1. اختيار نوع العشب المناسب')
-                                                    ->required(),
+                                                    ->nullable(),
 
                                                 Forms\Components\Repeater::make('paragraphs')
                                                     ->label('فقرات القسم')
+                                                    ->defaultItems(0)
                                                     ->simple(
                                                         Forms\Components\Textarea::make('item')
                                                             ->label('نص الفقرة')
                                                             ->rows(2)
+                                                            ->nullable()
                                                     )
                                                     ->collapsible(),
 
                                                 Forms\Components\Repeater::make('bullets')
                                                     ->label('نقاط القسم المميزة')
+                                                    ->defaultItems(0)
                                                     ->simple(
                                                         Forms\Components\TextInput::make('item')
                                                             ->label('النقطة')
+                                                            ->nullable()
                                                     )
                                                     ->collapsible(),
 
                                                 Forms\Components\Textarea::make('highlightBox')
                                                     ->label('صندوق تمييز خاص بالقسم (اختياري)')
-                                                    ->rows(2),
+                                                    ->rows(2)
+                                                    ->nullable(),
 
                                                 Forms\Components\Repeater::make('subsections')
                                                     ->label('الأقسام الفرعية (Subsections)')
+                                                    ->defaultItems(0)
                                                     ->schema([
                                                         Forms\Components\TextInput::make('subtitle')
                                                             ->label('العنوان الفرعي')
-                                                            ->required(),
+                                                            ->nullable(),
 
                                                         Forms\Components\Repeater::make('paragraphs')
                                                             ->label('فقرات القسم الفرعي')
+                                                            ->defaultItems(0)
                                                             ->simple(
                                                                 Forms\Components\Textarea::make('item')
                                                                     ->rows(2)
+                                                                    ->nullable()
                                                             )
                                                             ->collapsible(),
 
                                                         Forms\Components\Repeater::make('bullets')
                                                             ->label('نقاط القسم الفرعي')
+                                                            ->defaultItems(0)
                                                             ->simple(
                                                                 Forms\Components\TextInput::make('item')
+                                                                    ->nullable()
                                                             )
                                                             ->collapsible(),
                                                     ])
@@ -274,7 +289,8 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\TextInput::make('comparison_table.title')
                                             ->label('عنوان جدول المقارنة')
-                                            ->placeholder('مقارنة بين العشب الطبيعي والصناعي'),
+                                            ->placeholder('مقارنة بين العشب الطبيعي والصناعي')
+                                            ->nullable(),
 
                                         Forms\Components\TagsInput::make('comparison_table.headers')
                                             ->label('أعمدة الجدول (Headers)')
@@ -282,6 +298,7 @@ class ArticleResource extends Resource
 
                                         Forms\Components\Repeater::make('comparison_table.rows')
                                             ->label('صفوف الجدول (Rows)')
+                                            ->defaultItems(0)
                                             ->schema([
                                                 Forms\Components\TagsInput::make('0')
                                                     ->label('بيانات خلايا الصف')
@@ -294,10 +311,11 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('fatal_mistakes')
                                             ->label('قائمة الأخطاء الهندسية والتحذيرات')
+                                            ->defaultItems(0)
                                             ->simple(
                                                 Forms\Components\TextInput::make('item')
                                                     ->label('تحذير')
-                                                    ->required()
+                                                    ->nullable()
                                             ),
                                     ]),
 
@@ -306,13 +324,14 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('faqs')
                                             ->label('الأسئلة والأجوبة (تستخدم أيضاً في FAQPage Schema)')
+                                            ->defaultItems(0)
                                             ->schema([
                                                 Forms\Components\TextInput::make('question')
                                                     ->label('السؤال')
-                                                    ->required(),
+                                                    ->nullable(),
                                                 Forms\Components\Textarea::make('answer')
                                                     ->label('الإجابة الشاملة')
-                                                    ->required()
+                                                    ->nullable()
                                                     ->rows(3),
                                             ])
                                             ->collapsible()
@@ -324,21 +343,25 @@ class ArticleResource extends Resource
                                     ->schema([
                                         Forms\Components\Repeater::make('conclusion')
                                             ->label('فقرات الخلاصة')
+                                            ->defaultItems(0)
                                             ->simple(
                                                 Forms\Components\Textarea::make('item')
                                                     ->label('فقرة التوصية')
                                                     ->rows(2)
+                                                    ->nullable()
                                             ),
                                     ]),
 
                                 Forms\Components\Textarea::make('summary_box')
                                     ->label('نص بانر الحجز و CTA السفلي')
                                     ->rows(3)
+                                    ->nullable()
                                     ->helperText('النص الترويجي المعروض فوق أزرار الاتصال وحجز المعاينة المجانية في أسفل المقال.'),
 
                                 Forms\Components\Textarea::make('full_content')
                                     ->label('المحتوى الاحتياطي الكامل (Fallback Content)')
                                     ->rows(6)
+                                    ->nullable()
                                     ->helperText('محتوى نصي بديل اختياري.'),
                             ]),
 
