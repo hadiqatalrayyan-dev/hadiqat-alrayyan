@@ -87,8 +87,12 @@ class ArticleResource extends Resource
                                     ->directory('articles')
                                     ->visibility('public')
                                     ->image()
+                                    ->imagePreviewHeight('250')
+                                    ->imageEditor()
+                                    ->openable()
+                                    ->downloadable()
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                                    ->maxSize(5120)
+                                    ->maxSize(10240)
                                     ->columnSpanFull(),
 
                                 Forms\Components\Textarea::make('excerpt')
