@@ -5,6 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  turbopack: {},
   webpack: (config, { isServer }) => {
     if (config.output) {
       config.output.hashFunction = 'xxhash64';
