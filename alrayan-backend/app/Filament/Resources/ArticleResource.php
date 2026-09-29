@@ -428,10 +428,28 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('الصورة')
-                    ->disk('public')
-                    ->visibility('public')
                     ->circular()
-                    ->defaultImageUrl('/images/garden-costs-faq-banner.webp'),
+                    ->defaultImageUrl('https://hadiqat-alrayan.com/images/garden-costs-faq-banner.webp')
+                    ->state(function (Article $record): ?string {
+                        $path = $record->image;
+                        if (empty($path)) {
+                            return 'https://hadiqat-alrayan.com/images/garden-costs-faq-banner.webp';
+                        }
+                        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
+                            return $path;
+                        }
+                        if (str_starts_with($path, '/images/')) {
+                            return 'https://hadiqat-alrayan.com' . $path;
+                        }
+                        if (str_starts_with($path, 'images/')) {
+                            return 'https://hadiqat-alrayan.com/' . $path;
+                        }
+                        $cleanPath = ltrim($path, '/');
+                        if (str_starts_with($cleanPath, 'storage/')) {
+                            $cleanPath = substr($cleanPath, 8);
+                        }
+                        return asset('storage/' . $cleanPath);
+                    }),
 
                 Tables\Columns\TextColumn::make('title')
                     ->label('عنوان المقال')
