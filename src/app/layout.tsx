@@ -425,6 +425,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-VK24RMDTQ8" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-VK24RMDTQ8');`,
+          }}
+        />
+        {/* End Google tag (gtag.js) */}
         <meta name="theme-color" content="#064e3b" />
         <meta name="google-site-verification" content="IIp7Th_4N5vVBGytCbONXYH77cuOxjvXSkAkGibSEHw" />
         <link rel="preload" as="image" href="/images/service-waterfalls-fountains.webp" fetchPriority="high" />
