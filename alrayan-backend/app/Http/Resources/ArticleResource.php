@@ -21,11 +21,16 @@ class ArticleResource extends JsonResource
         if (str_starts_with($path, '/images/')) {
             return $path;
         }
+        if (str_starts_with($path, 'images/')) {
+            return '/' . $path;
+        }
         $cleanPath = ltrim($path, '/');
-        if (str_starts_with($cleanPath, 'storage/')) {
+        if (str_starts_with($cleanPath, 'storage/app/public/')) {
+            $cleanPath = substr($cleanPath, 19);
+        } elseif (str_starts_with($cleanPath, 'storage/')) {
             $cleanPath = substr($cleanPath, 8);
         }
-        return asset('storage/' . $cleanPath);
+        return 'https://api.hadiqat-alrayan.com/storage/app/public/' . $cleanPath;
     }
 
     /**
@@ -49,11 +54,17 @@ class ArticleResource extends JsonResource
             $src = $matches[2];
 
             if (!str_starts_with($src, 'http://') && !str_starts_with($src, 'https://')) {
-                $cleanPath = ltrim($src, '/');
-                if (str_starts_with($cleanPath, 'storage/')) {
-                    $cleanPath = substr($cleanPath, 8);
+                if (str_starts_with($src, '/images/')) {
+                    $src = 'https://hadiqat-alrayan.com' . $src;
+                } else {
+                    $cleanPath = ltrim($src, '/');
+                    if (str_starts_with($cleanPath, 'storage/app/public/')) {
+                        $cleanPath = substr($cleanPath, 19);
+                    } elseif (str_starts_with($cleanPath, 'storage/')) {
+                        $cleanPath = substr($cleanPath, 8);
+                    }
+                    $src = 'https://api.hadiqat-alrayan.com/storage/app/public/' . $cleanPath;
                 }
-                $src = asset('storage/' . $cleanPath);
             }
 
             return "<img{$attrs}src=\"{$src}\"";

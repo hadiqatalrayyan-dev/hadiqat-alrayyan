@@ -21,11 +21,16 @@ class ArticleListResource extends JsonResource
         if (str_starts_with($path, '/images/')) {
             return $path;
         }
+        if (str_starts_with($path, 'images/')) {
+            return '/' . $path;
+        }
         $cleanPath = ltrim($path, '/');
-        if (str_starts_with($cleanPath, 'storage/')) {
+        if (str_starts_with($cleanPath, 'storage/app/public/')) {
+            $cleanPath = substr($cleanPath, 19);
+        } elseif (str_starts_with($cleanPath, 'storage/')) {
             $cleanPath = substr($cleanPath, 8);
         }
-        return asset('storage/' . $cleanPath);
+        return 'https://api.hadiqat-alrayan.com/storage/app/public/' . $cleanPath;
     }
 
     /**

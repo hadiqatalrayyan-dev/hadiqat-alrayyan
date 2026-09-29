@@ -445,10 +445,12 @@ class ArticleResource extends Resource
                             return 'https://hadiqat-alrayan.com/' . $path;
                         }
                         $cleanPath = ltrim($path, '/');
-                        if (str_starts_with($cleanPath, 'storage/')) {
+                        if (str_starts_with($cleanPath, 'storage/app/public/')) {
+                            $cleanPath = substr($cleanPath, 19);
+                        } elseif (str_starts_with($cleanPath, 'storage/')) {
                             $cleanPath = substr($cleanPath, 8);
                         }
-                        return asset('storage/' . $cleanPath);
+                        return 'https://api.hadiqat-alrayan.com/storage/app/public/' . $cleanPath;
                     }),
 
                 Tables\Columns\TextColumn::make('title')
