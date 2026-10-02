@@ -21,12 +21,6 @@ import {
   FileText,
 } from "lucide-react";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaXTwitter,
-  FaPinterestP,
-  FaLinkedinIn,
-  FaYoutube,
   FaWhatsapp,
 } from "react-icons/fa6";
 
@@ -145,65 +139,7 @@ export default function Header() {
                 <span>{siteConfig.phoneDisplay}</span>
               </a>
 
-              <span className="text-white/40 hidden sm:inline">|</span>
 
-              {/* Social Icons */}
-              <div className="flex items-center gap-1.5 text-white">
-                <a
-                  href={siteConfig.socials.facebook}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="Facebook"
-                >
-                  <FaFacebookF className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={siteConfig.socials.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={siteConfig.socials.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="Twitter / X"
-                >
-                  <FaXTwitter className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={siteConfig.socials.pinterest}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="Pinterest"
-                >
-                  <FaPinterestP className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={siteConfig.socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedinIn className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={siteConfig.socials.youtube}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-7 h-7 rounded-full bg-white/10 hover:bg-white hover:text-[#1d5512] transition-all flex items-center justify-center"
-                  aria-label="YouTube"
-                >
-                  <FaYoutube className="w-3.5 h-3.5" />
-                </a>
-              </div>
             </div>
           </div>
         </div>

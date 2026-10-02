@@ -8,12 +8,6 @@ import { ChevronLeft } from "lucide-react";
 import {
   FaPhoneVolume,
   FaEnvelope,
-  FaFacebookF,
-  FaInstagram,
-  FaXTwitter,
-  FaPinterestP,
-  FaLinkedinIn,
-  FaYoutube,
   FaWhatsapp,
 } from "react-icons/fa6";
 
@@ -110,81 +104,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Social Media Links */}
-            <div className="pt-3">
-              <span className="block text-gray-800 font-bold text-sm mb-3 text-right">
-                تابعنا على:
-              </span>
-              <div className="flex items-center justify-start gap-2">
-                
-                {/* Facebook */}
-                <a
-                  href={siteConfig.socials.facebook}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#1877F2] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="Facebook"
-                >
-                  <FaFacebookF className="w-3.5 h-3.5" />
-                </a>
 
-                {/* Instagram */}
-                <a
-                  href={siteConfig.socials.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#E4405F] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram className="w-3.5 h-3.5" />
-                </a>
-
-                {/* Twitter / X */}
-                <a
-                  href={siteConfig.socials.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-black hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="Twitter"
-                >
-                  <FaXTwitter className="w-3.5 h-3.5" />
-                </a>
-
-                {/* Pinterest */}
-                <a
-                  href={siteConfig.socials.pinterest}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#BD081C] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="Pinterest"
-                >
-                  <FaPinterestP className="w-3.5 h-3.5" />
-                </a>
-
-                {/* LinkedIn */}
-                <a
-                  href={siteConfig.socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#0A66C2] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedinIn className="w-3.5 h-3.5" />
-                </a>
-
-                {/* YouTube */}
-                <a
-                  href={siteConfig.socials.youtube}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-700 hover:bg-[#FF0000] hover:text-white shadow-sm transition-all hover:-translate-y-0.5"
-                  aria-label="YouTube"
-                >
-                  <FaYoutube className="w-3.5 h-3.5" />
-                </a>
-
-              </div>
-            </div>
           </div>
 
           {/* Col 3: Services Links with arrow on the right */}
