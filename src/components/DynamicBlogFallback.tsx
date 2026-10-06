@@ -10,7 +10,6 @@ import { siteConfig } from "@/data/content";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import ProfileCard from "@/components/ProfileCard";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ArticleShareBar from "@/components/ArticleShareBar";
 import {
@@ -178,8 +177,6 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
                 </ul>
               </div>
             )}
-
-            <ProfileCard />
 
             <div className="bg-[#0b3414] text-white rounded-3xl p-6 shadow-xl space-y-4 text-center">
               <span className="inline-block text-amber-400 font-bold text-xs">استشارة ومعاينة مجانية بالرياض</span>

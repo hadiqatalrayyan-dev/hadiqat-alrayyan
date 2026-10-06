@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import ProfileCard from "@/components/ProfileCard";
 import { services, getServiceBySlug, siteConfig } from "@/data/content";
 import { serviceArticles } from "@/data/serviceArticles";
 import { marketingArticles } from "@/data/marketingArticles";
@@ -887,9 +886,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <span className="font-bold text-gray-700">{siteConfig.workingHours}</span>
                 </div>
               </div>
-
-              {/* Professional Profile Card */}
-              <ProfileCard />
 
               {/* Other Services Navigation */}
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">

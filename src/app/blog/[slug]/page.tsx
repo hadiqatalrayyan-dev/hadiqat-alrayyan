@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
-import ProfileCard from "@/components/ProfileCard";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import ArticleShareBar from "@/components/ArticleShareBar";
 import { articlesData, siteConfig } from "@/data/content";
@@ -369,9 +368,6 @@ export default async function BlogPostPage({ params }: Props) {
                 </ul>
               </div>
             )}
-
-            {/* Professional Author / Profile Card */}
-            <ProfileCard />
 
             {/* Quick Call Action Card */}
             <div className="bg-[#0b3414] text-white rounded-3xl p-6 shadow-xl space-y-4 text-center">
