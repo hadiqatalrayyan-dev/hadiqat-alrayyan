@@ -42,8 +42,8 @@ export default function Footer() {
     { label: "خدماتنا", href: "/services" },
     { label: "معلومات ونصائح عن تنسيق الحدائق", href: "/blog" },
     { label: "أعمالنا في تنسيق الحدائق", href: "/portfolio" },
-    { label: "أفضل شركات تنسيق حدائق", href: "/about" },
-    { label: "أسعار تنسيق الحدائق", href: "/contact" },
+    { label: "أفضل شركات تنسيق حدائق", href: "/blog/best-landscaping-company-riyadh" },
+    { label: "أسعار تنسيق الحدائق", href: "/blog/landscaping-prices-riyadh-2026-cost-guide" },
   ];
 
   return (
