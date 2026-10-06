@@ -26,7 +26,10 @@ import {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [gardenDropdown, setGardenDropdown] = useState(false);
+  const [grassDropdown, setGrassDropdown] = useState(false);
+  const [mobileGardenOpen, setMobileGardenOpen] = useState(false);
+  const [mobileGrassOpen, setMobileGrassOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,7 +75,21 @@ export default function Header() {
     };
   }, [searchOpen]);
 
-  const navServices = services.slice(0, 7);
+  const gardenDropdownItems = [
+    { title: "تنسيق حدائق منزلية", href: "/blog/home-garden-landscaping-riyadh-ideas" },
+    { title: "تصميم حدائق فلل", href: "/blog/garden-design-riyadh-latest-ideas-villas" },
+    { title: "تنسيق حدائق قصور", href: "/blog/luxury-villa-landscaping-offers-riyadh-competitive-prices" },
+    { title: "تنسيق حدائق استراحات", href: "/blog/landscaping-decorations-company-riyadh-villas-chalets" },
+    { title: "تصميم لاندسكيب", href: "/blog/landscape-riyadh-ultimate-guide-companies" },
+  ];
+
+  const artificialGrassDropdownItems = [
+    { title: "توريد عشب صناعي", href: "/blog/best-artificial-grass-company-riyadh" },
+    { title: "تركيب عشب صناعي", href: "/blog/top-artificial-grass-company-riyadh-prices" },
+    { title: "عشب صناعي للحدائق", href: "/services/artificial-grass" },
+    { title: "عشب صناعي للملاعب", href: "/services/sport-turf" },
+    { title: "عشب جداري", href: "/services/green-walls" },
+  ];
 
   // Filter Services and Articles based on search query
   const trimmedQuery = searchQuery.trim().toLowerCase();
@@ -161,7 +178,7 @@ export default function Header() {
           </Link>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-[14px] font-bold text-gray-700">
+          <nav className="hidden xl:flex items-center gap-2.5 2xl:gap-4 text-[13px] 2xl:text-[14px] font-bold text-gray-700 whitespace-nowrap">
             <Link
               href="/"
               className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
@@ -169,11 +186,113 @@ export default function Header() {
               الرئيسية
             </Link>
 
+            {/* تنسيق حدائق Dropdown */}
+            <div
+              className="relative group py-2"
+              onMouseEnter={() => setGardenDropdown(true)}
+              onMouseLeave={() => setGardenDropdown(false)}
+            >
+              <Link
+                href="/services/garden-design"
+                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
+              >
+                <span>تنسيق حدائق</span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+              </Link>
+
+              {gardenDropdown && (
+                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                  <Link
+                    href="/services/garden-design"
+                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    onClick={() => setGardenDropdown(false)}
+                  >
+                    كافة خدمات تنسيق الحدائق ←
+                  </Link>
+                  {gardenDropdownItems.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      onClick={() => setGardenDropdown(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* العشب الصناعي Dropdown */}
+            <div
+              className="relative group py-2"
+              onMouseEnter={() => setGrassDropdown(true)}
+              onMouseLeave={() => setGrassDropdown(false)}
+            >
+              <Link
+                href="/services/artificial-grass"
+                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
+              >
+                <span>العشب الصناعي</span>
+                <ChevronDown className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+              </Link>
+
+              {grassDropdown && (
+                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                  <Link
+                    href="/services/artificial-grass"
+                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    onClick={() => setGrassDropdown(false)}
+                  >
+                    كافة خدمات العشب الصناعي ←
+                  </Link>
+                  {artificialGrassDropdownItems.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      onClick={() => setGrassDropdown(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
-              href="/about"
+              href="/services/natural-grass"
               className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
-              من نحن
+              العشب الطبيعي
+            </Link>
+
+            <Link
+              href="/services/waterfalls-fountains"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+            >
+              الشلالات والنوافير
+            </Link>
+
+            <Link
+              href="/services/pergolas-canopies"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+            >
+              البرجولات والمظلات
+            </Link>
+
+            <Link
+              href="/services/irrigation-systems"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+            >
+              شبكات الري
+            </Link>
+
+            <Link
+              href="/services/sport-turf"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+            >
+              الملاعب
             </Link>
 
             <Link
@@ -183,52 +302,18 @@ export default function Header() {
               أعمالنا
             </Link>
 
-            {/* Services Dropdown */}
-            <div
-              className="relative group py-2"
-              onMouseEnter={() => setServicesDropdown(true)}
-              onMouseLeave={() => setServicesDropdown(false)}
+            <Link
+              href="/blog"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
-              <Link
-                href="/services"
-                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
-              >
-                <span>خدماتنا</span>
-                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
-              </Link>
-
-              {servicesDropdown && (
-                <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-3 z-50 animate-fadeIn">
-                  <Link
-                    href="/services"
-                    className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-50 hover:bg-emerald-50"
-                    onClick={() => setServicesDropdown(false)}
-                  >
-                    تصفح كافة الخدمات ←
-                  </Link>
-                  {navServices.map((srv) => (
-                    <Link
-                      key={srv.id}
-                      href={`/services/${srv.slug}`}
-                      className="block px-4 py-2.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
-                      onClick={() => setServicesDropdown(false)}
-                    >
-                      {srv.title}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+              مدونة تنسيق الحدائق
+            </Link>
 
             <Link
               href="/contact"
-              className="hover:text-[#4d8834] transition-colors py-2"
+              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               تواصل معنا
-            </Link>
-
-            <Link href="/blog" className="hover:text-[#4d8834] transition-colors py-2">
-              مدونة تنسيق الحدائق
             </Link>
 
             {/* Live Interactive Search Box & Popup */}
@@ -405,7 +490,7 @@ export default function Header() {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-gray-700 hover:text-[#4d8834] focus:outline-none transition-colors"
+              className="xl:hidden p-2 text-gray-700 hover:text-[#4d8834] focus:outline-none transition-colors"
               aria-label="القائمة"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -415,10 +500,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 3. Off-Canvas Mobile Sidebar Drawer matching screenshot 100% */}
+      {/* 3. Off-Canvas Mobile Sidebar Drawer */}
       {/* Dark Backdrop Overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 backdrop-blur-[2px] z-50 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-[2px] z-50 transition-opacity duration-300 xl:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsOpen(false)}
@@ -426,7 +511,7 @@ export default function Header() {
 
       {/* Slide-out Sidebar from Right */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-72 sm:w-80 bg-white z-50 shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:hidden font-sans ${
+        className={`fixed top-0 right-0 bottom-0 w-72 sm:w-80 bg-white z-50 shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out xl:hidden font-sans ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -435,7 +520,7 @@ export default function Header() {
           
           {/* Top Bar: Social Media Icons & Close Button */}
           <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-            {/* Social Icons matching screenshot */}
+            {/* Social Icons */}
             <div className="flex items-center gap-2 text-gray-500">
               <a
                 href={siteConfig.socials.facebook}
@@ -515,89 +600,172 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Navigation Links matching screenshot */}
+          {/* Navigation Links in exact order */}
           <div className="py-2 text-right divide-y divide-gray-100">
             <Link
               href="/"
-              className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               الرئيسية
             </Link>
 
-            <Link
-              href="/about"
-              className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              من نحن
-            </Link>
-
-            <Link
-              href="/portfolio"
-              className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              أعمالنا
-            </Link>
-
-            {/* Services with Dropdown Accordion */}
+            {/* 1. تنسيق حدائق Accordion */}
             <div>
               <div
-                className="flex items-center justify-between px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors cursor-pointer"
-                onClick={() => setServicesDropdown(!servicesDropdown)}
+                className="flex items-center justify-between px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors cursor-pointer"
+                onClick={() => setMobileGardenOpen(!mobileGardenOpen)}
               >
-                <span>خدماتنا</span>
+                <span>تنسيق حدائق</span>
                 <ChevronDown
                   className={`w-4 h-4 text-gray-500 transition-transform ${
-                    servicesDropdown ? "rotate-180 text-[#4d8834]" : ""
+                    mobileGardenOpen ? "rotate-180 text-[#4d8834]" : ""
                   }`}
                 />
               </div>
 
-              {servicesDropdown && (
+              {mobileGardenOpen && (
                 <div className="bg-gray-50/80 py-1.5 px-4 space-y-1">
                   <Link
-                    href="/services"
-                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] hover:underline"
+                    href="/services/garden-design"
+                    className="block px-4 py-1.5 text-xs font-bold text-[#4d8834] hover:underline"
                     onClick={() => {
                       setIsOpen(false);
-                      setServicesDropdown(false);
+                      setMobileGardenOpen(false);
                     }}
                   >
-                    تصفح كافة الخدمات ←
+                    كافة خدمات تنسيق الحدائق ←
                   </Link>
-                  {navServices.map((srv) => (
+                  {gardenDropdownItems.map((item, idx) => (
                     <Link
-                      key={srv.id}
-                      href={`/services/${srv.slug}`}
-                      className="block px-4 py-2 text-xs text-gray-700 hover:text-[#4d8834] font-medium transition-colors"
+                      key={idx}
+                      href={item.href}
+                      className="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => {
                         setIsOpen(false);
-                        setServicesDropdown(false);
+                        setMobileGardenOpen(false);
                       }}
                     >
-                      {srv.title}
+                      {item.title}
                     </Link>
                   ))}
                 </div>
               )}
             </div>
 
+            {/* 2. العشب الصناعي Accordion */}
+            <div>
+              <div
+                className="flex items-center justify-between px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors cursor-pointer"
+                onClick={() => setMobileGrassOpen(!mobileGrassOpen)}
+              >
+                <span>العشب الصناعي</span>
+                <ChevronDown
+                  className={`w-4 h-4 text-gray-500 transition-transform ${
+                    mobileGrassOpen ? "rotate-180 text-[#4d8834]" : ""
+                  }`}
+                />
+              </div>
+
+              {mobileGrassOpen && (
+                <div className="bg-gray-50/80 py-1.5 px-4 space-y-1">
+                  <Link
+                    href="/services/artificial-grass"
+                    className="block px-4 py-1.5 text-xs font-bold text-[#4d8834] hover:underline"
+                    onClick={() => {
+                      setIsOpen(false);
+                      setMobileGrassOpen(false);
+                    }}
+                  >
+                    كافة خدمات العشب الصناعي ←
+                  </Link>
+                  {artificialGrassDropdownItems.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="block px-4 py-1.5 text-xs text-gray-700 hover:text-[#4d8834] font-medium transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setMobileGrassOpen(false);
+                      }}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* 3. العشب الطبيعي */}
             <Link
-              href="/contact"
-              className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              href="/services/natural-grass"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              تواصل معنا
+              العشب الطبيعي
             </Link>
 
+            {/* 4. الشلالات والنوافير */}
+            <Link
+              href="/services/waterfalls-fountains"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              الشلالات والنوافير
+            </Link>
+
+            {/* 5. البرجولات والمظلات */}
+            <Link
+              href="/services/pergolas-canopies"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              البرجولات والمظلات
+            </Link>
+
+            {/* 6. شبكات الري */}
+            <Link
+              href="/services/irrigation-systems"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              شبكات الري
+            </Link>
+
+            {/* 7. الملاعب */}
+            <Link
+              href="/services/sport-turf"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              الملاعب
+            </Link>
+
+            {/* 8. أعمالنا */}
+            <Link
+              href="/portfolio"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              أعمالنا
+            </Link>
+
+            {/* 9. مدونة تنسيق الحدائق */}
             <Link
               href="/blog"
-              className="block px-6 py-3 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               مدونة تنسيق الحدائق
+            </Link>
+
+            {/* 10. تواصل معنا */}
+            <Link
+              href="/contact"
+              className="block px-6 py-2.5 text-sm font-bold text-gray-800 hover:text-[#4d8834] hover:bg-emerald-50/50 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              تواصل معنا
             </Link>
           </div>
 
