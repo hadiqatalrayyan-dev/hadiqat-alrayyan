@@ -177,34 +177,34 @@ export default function Header() {
             <Logo size="sm" />
           </Link>
 
-          {/* Center: Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1.5 2xl:gap-3 text-[12px] 2xl:text-[13.5px] font-bold text-gray-700 whitespace-nowrap">
+          {/* Center: Desktop Navigation Links with enlarged readable typography */}
+          <nav className="hidden xl:flex items-center gap-2 2xl:gap-3.5 text-[14px] 2xl:text-[15.5px] font-bold text-gray-800 whitespace-nowrap">
             <Link
               href="/"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الرئيسية
             </Link>
 
             {/* تنسيق حدائق Dropdown */}
             <div
-              className="relative group py-1.5 px-1"
+              className="relative group py-2 px-1"
               onMouseEnter={() => setGardenDropdown(true)}
               onMouseLeave={() => setGardenDropdown(false)}
             >
               <Link
                 href="/services/garden-design"
-                className="flex items-center gap-0.5 hover:text-[#4d8834] transition-colors"
+                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
               >
                 <span>تنسيق حدائق</span>
-                <ChevronDown className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
               </Link>
 
               {gardenDropdown && (
-                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
                   <Link
                     href="/services/garden-design"
-                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
                     onClick={() => setGardenDropdown(false)}
                   >
                     كافة خدمات تنسيق الحدائق ←
@@ -213,7 +213,7 @@ export default function Header() {
                     <Link
                       key={idx}
                       href={item.href}
-                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      className="block px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => setGardenDropdown(false)}
                     >
                       {item.title}
@@ -225,7 +225,7 @@ export default function Header() {
 
             {/* العشب الصناعي Dropdown */}
             <div
-              className="relative group py-2"
+              className="relative group py-2 px-1"
               onMouseEnter={() => setGrassDropdown(true)}
               onMouseLeave={() => setGrassDropdown(false)}
             >
@@ -234,14 +234,14 @@ export default function Header() {
                 className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
               >
                 <span>العشب الصناعي</span>
-                <ChevronDown className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
               </Link>
 
               {grassDropdown && (
-                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
                   <Link
                     href="/services/artificial-grass"
-                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
                     onClick={() => setGrassDropdown(false)}
                   >
                     كافة خدمات العشب الصناعي ←
@@ -250,7 +250,7 @@ export default function Header() {
                     <Link
                       key={idx}
                       href={item.href}
-                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      className="block px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => setGrassDropdown(false)}
                     >
                       {item.title}
@@ -262,214 +262,68 @@ export default function Header() {
 
             <Link
               href="/services/natural-grass"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               العشب الطبيعي
             </Link>
 
             <Link
               href="/services/waterfalls-fountains"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الشلالات والنوافير
             </Link>
 
             <Link
               href="/services/pergolas-canopies"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               البرجولات والمظلات
             </Link>
 
             <Link
               href="/services/irrigation-systems"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               شبكات الري
             </Link>
 
             <Link
               href="/services/sport-turf"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الملاعب
             </Link>
 
             <Link
               href="/portfolio"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               أعمالنا
             </Link>
 
             <Link
               href="/blog"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               مدونة تنسيق الحدائق
             </Link>
 
             <Link
               href="/contact"
-              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               تواصل معنا
             </Link>
           </nav>
 
-          {/* Left Side: Action Buttons & Search */}
-          <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-            {/* Live Interactive Search Box & Popup */}
-            <div className="relative" ref={searchRef}>
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-sm ${
-                  searchOpen ? "bg-[#e07b22] text-white rotate-90" : "bg-[#4d8834] text-white hover:bg-[#3d6e29]"
-                }`}
-                aria-label="بحث في الموقع"
-              >
-                {searchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
-              </button>
-
-              {searchOpen && (
-                <div className="absolute top-full left-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 z-50 animate-fadeIn text-right font-sans">
-                  
-                  {/* Search Input Box */}
-                  <div className="flex items-center gap-2 border-2 border-[#4d8834] focus-within:border-[#e07b22] rounded-xl px-3 py-2 bg-gray-50 transition-colors shadow-inner">
-                    <Search className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <input
-                      id="desktop-search-input"
-                      aria-label="ابحث عن الخدمات والمقالات"
-                      type="text"
-                      placeholder="ابحث عن خدمة، شلال، عشب، مظلات..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full text-xs sm:text-sm outline-none bg-transparent text-gray-800 font-medium placeholder:text-gray-400"
-                      autoFocus
-                    />
-                    {searchQuery && (
-                      <button
-                        onClick={() => setSearchQuery("")}
-                        aria-label="مسح البحث"
-                        className="text-gray-400 hover:text-gray-600"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Results Container */}
-                  <div className="mt-3 max-h-80 overflow-y-auto divide-y divide-gray-100">
-                    {trimmedQuery === "" ? (
-                      <div className="py-4 text-center text-xs text-gray-500 space-y-2">
-                        <p className="font-semibold text-gray-700">عمليات البحث الشائعة:</p>
-                        <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
-                          {["عشب صناعي", "شلالات", "برجولات", "ثيل طبيعي", "شبكات ري", "تصميم حدائق"].map(
-                            (term, idx) => (
-                              <button
-                                key={idx}
-                                onClick={() => setSearchQuery(term)}
-                                className="text-[11px] bg-[#edf7ea] text-[#4d8834] hover:bg-[#4d8834] hover:text-white px-2.5 py-1 rounded-md transition-colors font-medium"
-                              >
-                                {term}
-                              </button>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    ) : hasResults ? (
-                      <div className="space-y-3 py-2">
-                        
-                        {/* Matching Services */}
-                        {filteredServices.length > 0 && (
-                          <div className="space-y-1.5">
-                            <span className="text-[11px] font-bold text-[#4d8834] flex items-center gap-1 px-1">
-                              <Layers className="w-3 h-3" />
-                              <span>الخدمات ({filteredServices.length}):</span>
-                            </span>
-                            {filteredServices.map((srv) => (
-                              <Link
-                                key={srv.id}
-                                href={`/services/${srv.slug}`}
-                                onClick={() => {
-                                  setSearchOpen(false);
-                                  setSearchQuery("");
-                                }}
-                                className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#edf7ea] transition-all group"
-                              >
-                                <img
-                                  src={srv.image}
-                                  alt={srv.title}
-                                  className="w-10 h-10 rounded-lg object-cover flex-shrink-0 border border-gray-200"
-                                />
-                                <div className="flex-1 min-w-0 text-right">
-                                  <h4 className="text-xs font-bold text-gray-900 group-hover:text-[#4d8834] truncate">
-                                    {srv.title}
-                                  </h4>
-                                  <p className="text-[11px] text-gray-500 truncate">
-                                    {srv.shortDesc}
-                                  </p>
-                                </div>
-                                <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#4d8834] flex-shrink-0" />
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Matching Articles */}
-                        {filteredArticles.length > 0 && (
-                          <div className="space-y-1.5 pt-2">
-                            <span className="text-[11px] font-bold text-[#e07b22] flex items-center gap-1 px-1">
-                              <BookOpen className="w-3 h-3" />
-                              <span>المقالات ({filteredArticles.length}):</span>
-                            </span>
-                            {filteredArticles.map((art) => (
-                              <Link
-                                key={art.id}
-                                href={`/blog/${art.slug}`}
-                                onClick={() => {
-                                  setSearchOpen(false);
-                                  setSearchQuery("");
-                                }}
-                                className="flex items-center gap-3 p-2 rounded-xl hover:bg-amber-50 transition-all group"
-                              >
-                                <img
-                                  src={art.image}
-                                  alt={art.title}
-                                  className="w-10 h-10 rounded-lg object-cover flex-shrink-0 border border-gray-200"
-                                />
-                                <div className="flex-1 min-w-0 text-right">
-                                  <h4 className="text-xs font-bold text-gray-900 group-hover:text-[#e07b22] truncate">
-                                    {art.title}
-                                  </h4>
-                                  <p className="text-[11px] text-gray-500 truncate">
-                                    {art.excerpt}
-                                  </p>
-                                </div>
-                                <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#e07b22] flex-shrink-0" />
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-
-                      </div>
-                    ) : (
-                      <div className="py-6 text-center text-xs text-gray-500 space-y-1">
-                        <p className="font-bold text-gray-800">لا توجد نتائج مطابقة لـ "{searchQuery}"</p>
-                        <p className="text-[11px] text-gray-400">جرب البحث بكلمات أخرى مثل: عشب، شلال، نخيل، مظلات</p>
-                      </div>
-                    )}
-                  </div>
-
-                </div>
-              )}
-            </div>
-
+          {/* Left Side: Action Buttons */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             {/* Desktop 'اتصل بنا' Button */}
             <a
               href={`tel:${siteConfig.phone}`}
               aria-label={`اتصل بنا هاتفياً على ${siteConfig.phoneDisplay}`}
-              className="hidden 2xl:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden sm:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>اتصل بنا</span>
@@ -481,7 +335,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="طلب عرض أسعار عبر الواتساب"
-              className="hidden 2xl:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden sm:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
             >
               <FaWhatsapp className="w-3.5 h-3.5" />
               <span>طلب عرض سعر</span>
