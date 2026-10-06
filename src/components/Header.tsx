@@ -166,35 +166,35 @@ export default function Header() {
       <div
         className={`w-full bg-white transition-all duration-300 z-50 ${
           isScrolled
-            ? "fixed top-0 left-0 right-0 shadow-md py-3"
-            : "relative py-3.5 sm:py-4 shadow-sm border-b border-gray-100"
+            ? "fixed top-0 left-0 right-0 shadow-md py-2.5"
+            : "relative py-3 shadow-sm border-b border-gray-100"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <div className="max-w-[1550px] mx-auto px-2 sm:px-4 lg:px-6 flex items-center justify-between gap-2">
           
           {/* Right Side: Brand Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <Logo />
+          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
+            <Logo size="sm" />
           </Link>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-2.5 2xl:gap-4 text-[13px] 2xl:text-[14px] font-bold text-gray-700 whitespace-nowrap">
+          <nav className="hidden xl:flex items-center gap-1.5 2xl:gap-3 text-[12px] 2xl:text-[13.5px] font-bold text-gray-700 whitespace-nowrap">
             <Link
               href="/"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الرئيسية
             </Link>
 
             {/* تنسيق حدائق Dropdown */}
             <div
-              className="relative group py-2"
+              className="relative group py-1.5 px-1"
               onMouseEnter={() => setGardenDropdown(true)}
               onMouseLeave={() => setGardenDropdown(false)}
             >
               <Link
                 href="/services/garden-design"
-                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
+                className="flex items-center gap-0.5 hover:text-[#4d8834] transition-colors"
               >
                 <span>تنسيق حدائق</span>
                 <ChevronDown className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
@@ -262,60 +262,63 @@ export default function Header() {
 
             <Link
               href="/services/natural-grass"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               العشب الطبيعي
             </Link>
 
             <Link
               href="/services/waterfalls-fountains"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الشلالات والنوافير
             </Link>
 
             <Link
               href="/services/pergolas-canopies"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               البرجولات والمظلات
             </Link>
 
             <Link
               href="/services/irrigation-systems"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               شبكات الري
             </Link>
 
             <Link
               href="/services/sport-turf"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الملاعب
             </Link>
 
             <Link
               href="/portfolio"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               أعمالنا
             </Link>
 
             <Link
               href="/blog"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               مدونة تنسيق الحدائق
             </Link>
 
             <Link
               href="/contact"
-              className="hover:text-[#4d8834] transition-colors py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1.5 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               تواصل معنا
             </Link>
+          </nav>
 
+          {/* Left Side: Action Buttons & Search */}
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
             {/* Live Interactive Search Box & Popup */}
             <div className="relative" ref={searchRef}>
               <button
@@ -461,15 +464,12 @@ export default function Header() {
                 </div>
               )}
             </div>
-          </nav>
 
-          {/* Left Side: Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
             {/* Desktop 'اتصل بنا' Button */}
             <a
               href={`tel:${siteConfig.phone}`}
               aria-label={`اتصل بنا هاتفياً على ${siteConfig.phoneDisplay}`}
-              className="hidden sm:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden 2xl:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>اتصل بنا</span>
@@ -481,7 +481,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="طلب عرض أسعار عبر الواتساب"
-              className="hidden sm:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden 2xl:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
             >
               <FaWhatsapp className="w-3.5 h-3.5" />
               <span>طلب عرض سعر</span>
