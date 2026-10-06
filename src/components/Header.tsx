@@ -177,34 +177,34 @@ export default function Header() {
             <Logo size="sm" />
           </Link>
 
-          {/* Center: Desktop Navigation Links with enlarged readable typography */}
-          <nav className="hidden xl:flex items-center gap-2 2xl:gap-3.5 text-[14px] 2xl:text-[15.5px] font-bold text-gray-800 whitespace-nowrap">
+          {/* Center: Desktop Navigation Links */}
+          <nav className="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 text-[11.5px] 2xl:text-[13px] font-bold text-gray-800 whitespace-nowrap">
             <Link
               href="/"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الرئيسية
             </Link>
 
             {/* تنسيق حدائق Dropdown */}
             <div
-              className="relative group py-2 px-1"
+              className="relative group py-1 px-0.5"
               onMouseEnter={() => setGardenDropdown(true)}
               onMouseLeave={() => setGardenDropdown(false)}
             >
               <Link
                 href="/services/garden-design"
-                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
+                className="flex items-center gap-0.5 hover:text-[#4d8834] transition-colors"
               >
                 <span>تنسيق حدائق</span>
-                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-3 h-3 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
               </Link>
 
               {gardenDropdown && (
-                <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-fadeIn text-right">
                   <Link
                     href="/services/garden-design"
-                    className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
                     onClick={() => setGardenDropdown(false)}
                   >
                     كافة خدمات تنسيق الحدائق ←
@@ -213,7 +213,7 @@ export default function Header() {
                     <Link
                       key={idx}
                       href={item.href}
-                      className="block px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      className="block px-4 py-1.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => setGardenDropdown(false)}
                     >
                       {item.title}
@@ -225,23 +225,23 @@ export default function Header() {
 
             {/* العشب الصناعي Dropdown */}
             <div
-              className="relative group py-2 px-1"
+              className="relative group py-1 px-0.5"
               onMouseEnter={() => setGrassDropdown(true)}
               onMouseLeave={() => setGrassDropdown(false)}
             >
               <Link
                 href="/services/artificial-grass"
-                className="flex items-center gap-1 hover:text-[#4d8834] transition-colors"
+                className="flex items-center gap-0.5 hover:text-[#4d8834] transition-colors"
               >
                 <span>العشب الصناعي</span>
-                <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-3 h-3 text-gray-500 group-hover:text-[#4d8834] transition-transform group-hover:rotate-180" />
               </Link>
 
               {grassDropdown && (
-                <div className="absolute top-full right-0 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2.5 z-50 animate-fadeIn text-right">
+                <div className="absolute top-full right-0 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-fadeIn text-right">
                   <Link
                     href="/services/artificial-grass"
-                    className="block px-4 py-2.5 text-sm font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
+                    className="block px-4 py-2 text-xs font-bold text-[#4d8834] border-b border-gray-100 hover:bg-emerald-50"
                     onClick={() => setGrassDropdown(false)}
                   >
                     كافة خدمات العشب الصناعي ←
@@ -250,7 +250,7 @@ export default function Header() {
                     <Link
                       key={idx}
                       href={item.href}
-                      className="block px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
+                      className="block px-4 py-1.5 text-xs text-gray-700 hover:bg-emerald-50 hover:text-[#4d8834] font-medium transition-colors"
                       onClick={() => setGrassDropdown(false)}
                     >
                       {item.title}
@@ -262,70 +262,70 @@ export default function Header() {
 
             <Link
               href="/services/natural-grass"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               العشب الطبيعي
             </Link>
 
             <Link
               href="/services/waterfalls-fountains"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الشلالات والنوافير
             </Link>
 
             <Link
               href="/services/pergolas-canopies"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               البرجولات والمظلات
             </Link>
 
             <Link
               href="/services/irrigation-systems"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               شبكات الري
             </Link>
 
             <Link
               href="/services/sport-turf"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               الملاعب
             </Link>
 
             <Link
               href="/portfolio"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               أعمالنا
             </Link>
 
             <Link
               href="/blog"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               مدونة تنسيق الحدائق
             </Link>
 
             <Link
               href="/contact"
-              className="hover:text-[#4d8834] transition-colors px-1.5 2xl:px-2 py-2 border-b-2 border-transparent hover:border-[#4d8834]"
+              className="hover:text-[#4d8834] transition-colors px-1 py-1 border-b-2 border-transparent hover:border-[#4d8834]"
             >
               تواصل معنا
             </Link>
           </nav>
 
           {/* Left Side: Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             {/* Desktop 'اتصل بنا' Button */}
             <a
               href={`tel:${siteConfig.phone}`}
               aria-label={`اتصل بنا هاتفياً على ${siteConfig.phoneDisplay}`}
-              className="hidden sm:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden sm:inline-flex bg-[#c27607] hover:bg-[#a36306] text-white font-bold text-[11px] 2xl:text-xs px-2.5 2xl:px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1"
             >
-              <PhoneCall className="w-3.5 h-3.5" />
+              <PhoneCall className="w-3 h-3" />
               <span>اتصل بنا</span>
             </a>
 
@@ -335,9 +335,9 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="طلب عرض أسعار عبر الواتساب"
-              className="hidden sm:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1.5"
+              className="hidden sm:inline-flex bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-[11px] 2xl:text-xs px-2.5 2xl:px-3 py-1.5 rounded-md shadow-sm transition-all hover:shadow hover:-translate-y-0.5 items-center gap-1"
             >
-              <FaWhatsapp className="w-3.5 h-3.5" />
+              <FaWhatsapp className="w-3 h-3" />
               <span>طلب عرض سعر</span>
             </a>
 
