@@ -76,16 +76,16 @@ export default function Header() {
   }, [searchOpen]);
 
   const gardenDropdownItems = [
-    { title: "تنسيق حدائق منزلية", href: "/blog/home-garden-landscaping-riyadh-ideas" },
-    { title: "تصميم حدائق فلل", href: "/blog/garden-design-riyadh-latest-ideas-villas" },
-    { title: "تنسيق حدائق قصور", href: "/blog/luxury-villa-landscaping-offers-riyadh-competitive-prices" },
-    { title: "تنسيق حدائق استراحات", href: "/blog/landscaping-decorations-company-riyadh-villas-chalets" },
-    { title: "تصميم لاندسكيب", href: "/blog/landscape-riyadh-ultimate-guide-companies" },
+    { title: "تنسيق حدائق منزلية", href: "/services/garden-design" },
+    { title: "تصميم حدائق فلل", href: "/services/garden-design" },
+    { title: "تنسيق حدائق قصور", href: "/services/garden-design" },
+    { title: "تنسيق حدائق استراحات", href: "/services/garden-design" },
+    { title: "تصميم لاندسكيب", href: "/services/garden-design" },
   ];
 
   const artificialGrassDropdownItems = [
-    { title: "توريد عشب صناعي", href: "/blog/best-artificial-grass-company-riyadh" },
-    { title: "تركيب عشب صناعي", href: "/blog/top-artificial-grass-company-riyadh-prices" },
+    { title: "توريد عشب صناعي", href: "/services/artificial-grass" },
+    { title: "تركيب عشب صناعي", href: "/services/artificial-grass" },
     { title: "عشب صناعي للحدائق", href: "/services/artificial-grass" },
     { title: "عشب صناعي للملاعب", href: "/services/sport-turf" },
     { title: "عشب جداري", href: "/services/green-walls" },
