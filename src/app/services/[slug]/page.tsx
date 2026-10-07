@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import { services, getServiceBySlug, siteConfig } from "@/data/content";
+import { seoStrategyMap } from "@/data/seoStrategyData";
 import { serviceArticles } from "@/data/serviceArticles";
 import { marketingArticles } from "@/data/marketingArticles";
 import { megaEncyclopedia } from "@/data/megaEncyclopedia";
@@ -61,13 +62,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const mkt = marketingArticles[slug];
-  const pageTitle = mkt?.seoMetaTitle 
-    ? `${mkt.seoMetaTitle} | مؤسسة حدائق الريان بالرياض`
-    : `${service.title} بالرياض | مؤسسة حدائق الريان`;
+  const seoConfig = seoStrategyMap[slug];
 
-  const pageDescription = `${service.shortDesc} أفضل أسعار توريد وتركيب مع ضمان معتمد يصل إلى 7 سنوات وتصميم 3D مجاناً بالرياض. اتصل الآن: ${siteConfig.phoneDisplay}`;
+  const pageTitle = seoConfig?.metaTitle 
+    ? seoConfig.metaTitle
+    : mkt?.seoMetaTitle 
+      ? `${mkt.seoMetaTitle} | مؤسسة حدائق الريان بالرياض`
+      : `${service.title} بالرياض | مؤسسة حدائق الريان`;
+
+  const pageDescription = seoConfig?.metaDescription
+    ? seoConfig.metaDescription
+    : `${service.shortDesc} أفضل أسعار توريد وتركيب مع ضمان معتمد يصل إلى 7 سنوات وتصميم 3D مجاناً بالرياض. اتصل الآن: ${siteConfig.phoneDisplay}`;
 
   const allKeywords = [
+    ...(seoConfig?.primaryKeyword ? [seoConfig.primaryKeyword] : []),
+    ...(seoConfig?.secondaryKeywords || []),
     service.title,
     `${service.title} بالرياض`,
     `${service.title} شمال الرياض`,
