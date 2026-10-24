@@ -50,11 +50,22 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
         return;
       }
 
+      setLoading(true);
+
       const rawSlug = match[1];
-      const decodedSlug = decodeURIComponent(rawSlug);
+      let decodedSlug = rawSlug;
+      try {
+        decodedSlug = decodeURIComponent(rawSlug);
+      } catch {
+        // use rawSlug if decoding fails
+      }
 
       try {
-        const cmsDetail = await getCmsArticleBySlug(decodedSlug);
+        let cmsDetail = await getCmsArticleBySlug(decodedSlug);
+        if (!cmsDetail && decodedSlug !== rawSlug) {
+          cmsDetail = await getCmsArticleBySlug(rawSlug);
+        }
+
         if (active && cmsDetail) {
           const { article, detailed } = normalizeCmsArticle(cmsDetail);
           setResolvedArticle({
