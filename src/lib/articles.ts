@@ -6,7 +6,12 @@ import {
   UnifiedArticle,
   UnifiedArticleDetailResult,
 } from "@/types/article";
-import { getCmsArticles, getCmsArticleBySlug, getCmsArticleSlugs } from "./api";
+import {
+  getCmsArticles,
+  getCmsArticleBySlug,
+  getCmsArticleSlugs,
+  getCmsArticleDetailResult,
+} from "./api";
 
 /**
  * Normalizes a CMS API card item into the standard UnifiedArticle shape.
@@ -133,34 +138,26 @@ export function getStaticArticlesSync(): UnifiedArticle[] {
   return articlesData as UnifiedArticle[];
 }
 
+export type UnifiedArticleResult =
+  | { status: "success"; data: UnifiedArticleDetailResult }
+  | { status: "not_found" }
+  | { status: "error"; error: string };
+
 /**
- * Resolves an individual article:
- * 1. Queries Laravel CMS API first.
- * 2. If found, returns normalized CMS article.
- * 3. If not found or API is offline, falls back to Static articles (`getArticleBySlug` & `detailedBlogArticles`).
+ * Resolves an individual article with explicit status:
+ * 1. Checks static articles first for instant resolution.
+ * 2. Queries Laravel CMS API.
+ * 3. Returns distinct status (success, not_found, or error) to prevent false 404s on network/server glitches.
  */
-export async function getUnifiedArticleBySlug(
+export async function getUnifiedArticleResult(
   slug: string
-): Promise<UnifiedArticleDetailResult | null> {
-  const decodedSlug = decodeURIComponent(slug || "");
-
-  // 1. Check CMS API first
+): Promise<UnifiedArticleResult> {
+  let decodedSlug = slug || "";
   try {
-    const cmsDetail = await getCmsArticleBySlug(decodedSlug);
-    if (cmsDetail) {
-      const { article, detailed } = normalizeCmsArticle(cmsDetail);
-      return {
-        article,
-        detailed,
-        seo: cmsDetail.seo,
-        isCms: true,
-      };
-    }
-  } catch (err) {
-    // Continue to static fallback
-  }
+    decodedSlug = decodeURIComponent(slug || "");
+  } catch {}
 
-  // 2. Static Fallback
+  // 1. Static fallback check
   const staticArticle =
     getArticleBySlug(decodedSlug) ||
     getArticleBySlug(slug) ||
@@ -171,6 +168,23 @@ export async function getUnifiedArticleBySlug(
     detailedBlogArticles[slug] ||
     null;
 
+  // 2. Query CMS API
+  const cmsResult = await getCmsArticleDetailResult(decodedSlug);
+
+  if (cmsResult.status === "success") {
+    const { article, detailed } = normalizeCmsArticle(cmsResult.data);
+    return {
+      status: "success",
+      data: {
+        article,
+        detailed,
+        seo: cmsResult.data.seo,
+        isCms: true,
+      },
+    };
+  }
+
+  // If CMS gave not_found or error, but we have static content, use static content
   if (staticArticle || staticDetailed) {
     const finalArticle: UnifiedArticle = staticArticle
       ? { ...staticArticle, isCms: false }
@@ -191,14 +205,35 @@ export async function getUnifiedArticleBySlug(
         };
 
     return {
-      article: finalArticle,
-      detailed: staticDetailed,
-      seo: null,
-      isCms: false,
+      status: "success",
+      data: {
+        article: finalArticle,
+        detailed: staticDetailed,
+        seo: null,
+        isCms: false,
+      },
     };
   }
 
-  return null;
+  // If CMS returned network/server error and no static fallback, return error state
+  if (cmsResult.status === "error") {
+    return { status: "error", error: cmsResult.error };
+  }
+
+  return { status: "not_found" };
+}
+
+/**
+ * Resolves an individual article:
+ * 1. Queries Laravel CMS API first.
+ * 2. If found, returns normalized CMS article.
+ * 3. If not found or API is offline, falls back to Static articles (`getArticleBySlug` & `detailedBlogArticles`).
+ */
+export async function getUnifiedArticleBySlug(
+  slug: string
+): Promise<UnifiedArticleDetailResult | null> {
+  const result = await getUnifiedArticleResult(slug);
+  return result.status === "success" ? result.data : null;
 }
 
 /**

@@ -410,7 +410,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {relatedArticles.map((rel) => (
                   <Link
                     key={rel.id}
-                    href={`/blog/${rel.slug}`}
+                    href={`/blog/${rel.slug}/`}
                     className="pt-3 flex items-start gap-3 group text-right"
                   >
                     <div className="flex-1 space-y-1">
@@ -719,7 +719,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
               {prevArticle ? (
                 <Link
-                  href={`/blog/${prevArticle.slug}`}
+                  href={`/blog/${prevArticle.slug}/`}
                   className="bg-white hover:bg-emerald-50/50 border border-gray-200 hover:border-[#4d8834] p-4 rounded-2xl transition-all group flex flex-col justify-between space-y-2 text-right"
                 >
                   <span className="text-[11px] font-bold text-[#4d8834] flex items-center gap-1">
@@ -734,7 +734,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               {nextArticle ? (
                 <Link
-                  href={`/blog/${nextArticle.slug}`}
+                  href={`/blog/${nextArticle.slug}/`}
                   className="bg-white hover:bg-emerald-50/50 border border-gray-200 hover:border-[#4d8834] p-4 rounded-2xl transition-all group flex flex-col justify-between space-y-2 text-left"
                 >
                   <span className="text-[11px] font-bold text-[#4d8834] flex items-center justify-end gap-1">

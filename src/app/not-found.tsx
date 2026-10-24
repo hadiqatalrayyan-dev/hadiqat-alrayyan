@@ -55,11 +55,43 @@ export default function NotFound() {
         <Header />
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:py-20 relative overflow-hidden">
+        {/* Instant layout guard to eliminate 404 flash for un-prerendered blog routes */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (window.location.pathname.startsWith('/blog/')) {
+                  var c = document.getElementById('not-found-main-content');
+                  if (c) c.style.display = 'none';
+                  var l = document.getElementById('not-found-blog-preloader');
+                  if (l) l.style.display = 'block';
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+
         {/* Decorative Background Elements */}
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl w-full mx-auto text-center space-y-8">
+        {/* Pre-hydration blog loader */}
+        <div
+          id="not-found-blog-preloader"
+          style={{ display: "none" }}
+          className="relative z-10 max-w-xl w-full mx-auto text-center py-16 space-y-4"
+        >
+          <div className="w-14 h-14 border-4 border-[#4d8834] border-t-transparent rounded-full animate-spin mx-auto" />
+          <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+            جاري تحميل وتجهيز المقال...
+          </h2>
+          <p className="text-gray-500 text-xs sm:text-sm">
+            لحظات ويتم عرض كامل تفاصيل المقال من مؤسسة حدائق الريان
+          </p>
+        </div>
+
+        {/* 404 Main Content Wrapper */}
+        <div id="not-found-main-content" className="relative z-10 max-w-3xl w-full mx-auto text-center space-y-8">
           
           {/* 404 Hero Illustration & Badge */}
           <div className="space-y-4">

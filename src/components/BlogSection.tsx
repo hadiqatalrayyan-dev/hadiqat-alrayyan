@@ -59,7 +59,7 @@ export default function BlogSection() {
             >
               {/* Card Image with Date Badge and Floating Pill */}
               <div>
-                <Link href={`/blog/${item.slug}`} className="block relative h-60 w-full overflow-hidden bg-gray-100 cursor-pointer">
+                <Link href={`/blog/${item.slug}/`} className="block relative h-60 w-full overflow-hidden bg-gray-100 cursor-pointer">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -91,7 +91,7 @@ export default function BlogSection() {
                 {/* Title */}
                 <div className="px-6 pt-5 pb-2">
                   <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-snug group-hover:text-[#1d5512] transition-colors line-clamp-2">
-                    <Link href={`/blog/${item.slug}`}>
+                    <Link href={`/blog/${item.slug}/`}>
                       {item.title}
                     </Link>
                   </h3>
@@ -108,7 +108,7 @@ export default function BlogSection() {
               {/* Read More Button leading to dedicated article page */}
               <div className="px-6 pb-6 pt-1 flex justify-center">
                 <Link
-                  href={`/blog/${item.slug}`}
+                  href={`/blog/${item.slug}/`}
                   aria-label={`قراءة مقال ${item.title}`}
                   className="px-6 py-1.5 rounded-full border-2 border-[#1d5512] text-[#1d5512] hover:bg-[#1d5512] hover:text-white font-bold text-xs transition-colors duration-200 shadow-sm inline-block"
                 >

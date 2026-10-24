@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { getCmsArticleBySlug } from "@/lib/api";
-import { normalizeCmsArticle } from "@/lib/articles";
+import { getUnifiedArticleResult } from "@/lib/articles";
 import { UnifiedArticle, CmsSeo } from "@/types/article";
 import { DetailedBlogArticle } from "@/data/blogArticlesDetailed";
 import { siteConfig } from "@/data/content";
@@ -27,103 +26,171 @@ import {
   Check,
   Tag,
   Sparkles,
+  RefreshCw,
+  Home,
+  ArrowRight,
 } from "lucide-react";
 
+type FallbackState =
+  | { status: "idle" }
+  | { status: "loading"; slug: string }
+  | {
+      status: "success";
+      article: UnifiedArticle;
+      detailed: DetailedBlogArticle | null;
+      seo: CmsSeo | null;
+    }
+  | { status: "not_found" }
+  | { status: "error"; message: string; slug: string };
+
+function extractBlogSlug(): string | null {
+  if (typeof window === "undefined") return null;
+  const pathname = window.location.pathname;
+  const match = pathname.match(/^\/blog\/(.+?)\/?$/);
+  if (!match || !match[1]) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
+}
+
 export default function DynamicBlogFallback({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(false);
-  const [resolvedArticle, setResolvedArticle] = useState<{
-    article: UnifiedArticle;
-    detailed: DetailedBlogArticle;
-    seo: CmsSeo;
-  } | null>(null);
+  const [state, setState] = useState<FallbackState>(() => {
+    const slug = extractBlogSlug();
+    if (slug) {
+      return { status: "loading", slug };
+    }
+    return { status: "idle" };
+  });
 
-  useEffect(() => {
-    let active = true;
+  const fetchArticle = useCallback(async (slugToFetch: string) => {
+    setState({ status: "loading", slug: slugToFetch });
 
-    async function checkCmsArticle() {
-      if (typeof window === "undefined") return;
+    try {
+      const result = await getUnifiedArticleResult(slugToFetch);
 
-      const pathname = window.location.pathname;
-      const match = pathname.match(/^\/blog\/(.+?)\/?$/);
+      if (result.status === "success") {
+        const { article, detailed, seo } = result.data;
+        setState({
+          status: "success",
+          article,
+          detailed,
+          seo,
+        });
 
-      if (!match || !match[1]) {
+        // Dynamically update document title & meta tags for client-rendered article
+        const articleTitle =
+          seo?.metaTitle ||
+          `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
+        document.title = articleTitle;
+
+        const metaRobots = document.querySelector('meta[name="robots"]');
+        if (metaRobots) {
+          metaRobots.setAttribute(
+            "content",
+            "index, follow, max-image-preview:large"
+          );
+        }
         return;
       }
 
-      setLoading(true);
-
-      const rawSlug = match[1];
-      let decodedSlug = rawSlug;
-      try {
-        decodedSlug = decodeURIComponent(rawSlug);
-      } catch {
-        // use rawSlug if decoding fails
+      if (result.status === "not_found") {
+        setState({ status: "not_found" });
+        return;
       }
 
-      try {
-        let cmsDetail = await getCmsArticleBySlug(decodedSlug);
-        if (!cmsDetail && decodedSlug !== rawSlug) {
-          cmsDetail = await getCmsArticleBySlug(rawSlug);
-        }
-
-        if (active && cmsDetail) {
-          const { article, detailed } = normalizeCmsArticle(cmsDetail);
-          setResolvedArticle({
-            article,
-            detailed,
-            seo: cmsDetail.seo,
-          });
-
-          // Dynamically update document title & remove 404/noindex tags
-          const articleTitle =
-            cmsDetail.seo?.metaTitle ||
-            `${article.title} | مدونة حدائق الريان بالرياض`;
-          document.title = articleTitle;
-
-          // Remove any noindex meta tag
-          const metaRobots = document.querySelector('meta[name="robots"]');
-          if (metaRobots) {
-            metaRobots.setAttribute(
-              "content",
-              "index, follow, max-image-preview:large"
-            );
-          }
-        }
-      } catch {
-        // Ignore and stay on 404
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
+      // Explicit error state (network glitch, timeout, 500)
+      setState({
+        status: "error",
+        message: result.error || "تعذر الاتصال بخادم المقالات حالياً",
+        slug: slugToFetch,
+      });
+    } catch (err) {
+      setState({
+        status: "error",
+        message: err instanceof Error ? err.message : "حدث خطأ غير متوقع",
+        slug: slugToFetch,
+      });
     }
-
-    checkCmsArticle();
-
-    return () => {
-      active = false;
-    };
   }, []);
 
-  if (loading) {
+  useEffect(() => {
+    const slug = extractBlogSlug();
+    if (slug) {
+      fetchArticle(slug);
+    } else {
+      setState({ status: "idle" });
+    }
+  }, [fetchArticle]);
+
+  // 1. Loading State (Explicit & never flashes 404)
+  if (state.status === "loading") {
     return (
       <div className="min-h-screen bg-[#fcfdfa] flex flex-col justify-between">
         <Header />
-        <div className="max-w-4xl mx-auto px-4 py-24 text-center space-y-6">
+        <div className="max-w-4xl mx-auto px-4 py-28 text-center space-y-6">
           <div className="w-16 h-16 border-4 border-[#4d8834] border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-gray-600 font-bold text-base">جاري تحميل المقال...</p>
+          <div className="space-y-2">
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+              جاري تحميل وتجهيز المقال...
+            </h2>
+            <p className="text-gray-500 text-xs sm:text-sm">
+              لحظات ويتم عرض كامل تفاصيل المقال من مؤسسة حدائق الريان بالرياض
+            </p>
+          </div>
         </div>
         <Footer />
       </div>
     );
   }
 
-  // If not a blog article or not found in CMS, render standard 404 page
-  if (!resolvedArticle) {
+  // 2. Server Error or Network Glitch State (Explicitly separated from 404!)
+  if (state.status === "error") {
+    return (
+      <div className="min-h-screen bg-[#fcfdfa] flex flex-col justify-between">
+        <Header />
+        <div className="max-w-xl mx-auto px-4 py-24 text-center space-y-6">
+          <div className="w-16 h-16 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center mx-auto text-amber-600 shadow-sm">
+            <AlertTriangle className="w-8 h-8" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
+              تعذر الاتصال بالخادم حالياً
+            </h2>
+            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-md mx-auto">
+              حدث خطأ مؤقت أثناء جلب بيانات المقال من الخادم. لم يتم العثور على مشكلة في الرابط.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            <button
+              type="button"
+              onClick={() => fetchArticle(state.slug)}
+              className="inline-flex items-center gap-2 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all cursor-pointer"
+            >
+              <RefreshCw className="w-4 h-4" />
+              <span>إعادة المحاولة الآن</span>
+            </button>
+            <Link
+              href="/blog/"
+              className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs sm:text-sm px-6 py-3 rounded-xl transition-all"
+            >
+              <span>تصفح المدونة</span>
+            </Link>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // 3. Genuine 404 or Non-Blog Route -> Render standard 404 page
+  if (state.status === "not_found" || state.status === "idle") {
     return <>{children}</>;
   }
 
-  const { article, detailed, seo } = resolvedArticle;
+  // 4. Success State -> Render complete article layout
+  const { article, detailed, seo } = state;
 
   return (
     <div className="min-h-screen bg-[#fcfdfa] text-[#1c2e17] font-sans antialiased">
@@ -138,7 +205,7 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-semibold text-emerald-100 border border-white/10">
             <Link href="/" className="hover:text-amber-300 transition-colors">الرئيسية</Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-amber-300 transition-colors">المدونة الزراعية</Link>
+            <Link href="/blog/" className="hover:text-amber-300 transition-colors">المدونة الزراعية</Link>
             <span>/</span>
             <span className="text-amber-300 truncate max-w-[200px] sm:max-w-xs">{article.category}</span>
           </div>
