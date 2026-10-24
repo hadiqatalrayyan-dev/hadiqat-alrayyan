@@ -37,8 +37,8 @@ type FallbackState =
   | {
       status: "success";
       article: UnifiedArticle;
-      detailed: DetailedBlogArticle | null;
-      seo: CmsSeo | null;
+      detailed?: DetailedBlogArticle | null;
+      seo?: CmsSeo | null;
     }
   | { status: "not_found" }
   | { status: "error"; message: string; slug: string };
@@ -72,8 +72,8 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
         setState({
           status: "success",
           article: result.data.article,
-          detailed: result.data.detailed,
-          seo: result.data.seo,
+          detailed: result.data.detailed ?? null,
+          seo: result.data.seo ?? null,
         });
         const articleTitle =
           result.data.seo?.metaTitle ||
@@ -110,12 +110,11 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
         if (!active) return;
 
         if (result.status === "success") {
-          const { article, detailed, seo } = result.data;
           setState({
             status: "success",
-            article,
-            detailed,
-            seo,
+            article: result.data.article,
+            detailed: result.data.detailed ?? null,
+            seo: result.data.seo ?? null,
           });
 
           // Dynamically update document title & meta tags for client-rendered article
