@@ -64,65 +64,99 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
     return { status: "idle" };
   });
 
-  const fetchArticle = useCallback(async (slugToFetch: string) => {
-    setState({ status: "loading", slug: slugToFetch });
-
+  const handleRetry = useCallback(async (slugToRetry: string) => {
+    setState({ status: "loading", slug: slugToRetry });
     try {
-      const result = await getUnifiedArticleResult(slugToFetch);
-
+      const result = await getUnifiedArticleResult(slugToRetry);
       if (result.status === "success") {
-        const { article, detailed, seo } = result.data;
         setState({
           status: "success",
-          article,
-          detailed,
-          seo,
+          article: result.data.article,
+          detailed: result.data.detailed,
+          seo: result.data.seo,
         });
-
-        // Dynamically update document title & meta tags for client-rendered article
         const articleTitle =
-          seo?.metaTitle ||
-          `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
+          result.data.seo?.metaTitle ||
+          `${result.data.detailed?.title || result.data.article.title} | مدونة حدائق الريان بالرياض`;
         document.title = articleTitle;
-
-        const metaRobots = document.querySelector('meta[name="robots"]');
-        if (metaRobots) {
-          metaRobots.setAttribute(
-            "content",
-            "index, follow, max-image-preview:large"
-          );
-        }
-        return;
-      }
-
-      if (result.status === "not_found") {
+      } else if (result.status === "not_found") {
         setState({ status: "not_found" });
-        return;
+      } else {
+        setState({
+          status: "error",
+          message: result.error || "تعذر الاتصال بخادم المقالات حالياً",
+          slug: slugToRetry,
+        });
       }
-
-      // Explicit error state (network glitch, timeout, 500)
-      setState({
-        status: "error",
-        message: result.error || "تعذر الاتصال بخادم المقالات حالياً",
-        slug: slugToFetch,
-      });
     } catch (err) {
       setState({
         status: "error",
         message: err instanceof Error ? err.message : "حدث خطأ غير متوقع",
-        slug: slugToFetch,
+        slug: slugToRetry,
       });
     }
   }, []);
 
   useEffect(() => {
+    let active = true;
     const slug = extractBlogSlug();
-    if (slug) {
-      fetchArticle(slug);
-    } else {
-      setState({ status: "idle" });
+    if (!slug) {
+      return;
     }
-  }, [fetchArticle]);
+
+    async function loadArticle() {
+      try {
+        const result = await getUnifiedArticleResult(slug as string);
+        if (!active) return;
+
+        if (result.status === "success") {
+          const { article, detailed, seo } = result.data;
+          setState({
+            status: "success",
+            article,
+            detailed,
+            seo,
+          });
+
+          // Dynamically update document title & meta tags for client-rendered article
+          const articleTitle =
+            seo?.metaTitle ||
+            `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
+          document.title = articleTitle;
+
+          const metaRobots = document.querySelector('meta[name="robots"]');
+          if (metaRobots) {
+            metaRobots.setAttribute(
+              "content",
+              "index, follow, max-image-preview:large"
+            );
+          }
+        } else if (result.status === "not_found") {
+          setState({ status: "not_found" });
+        } else {
+          // Explicit error state (network glitch, timeout, 500)
+          setState({
+            status: "error",
+            message: result.error || "تعذر الاتصال بخادم المقالات حالياً",
+            slug: slug as string,
+          });
+        }
+      } catch (err) {
+        if (!active) return;
+        setState({
+          status: "error",
+          message: err instanceof Error ? err.message : "حدث خطأ غير متوقع",
+          slug: slug as string,
+        });
+      }
+    }
+
+    loadArticle();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // 1. Loading State (Explicit & never flashes 404)
   if (state.status === "loading") {
@@ -165,7 +199,7 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               type="button"
-              onClick={() => fetchArticle(state.slug)}
+              onClick={() => handleRetry(state.slug)}
               className="inline-flex items-center gap-2 bg-[#4d8834] hover:bg-[#3d6e29] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-xl shadow-md transition-all cursor-pointer"
             >
               <RefreshCw className="w-4 h-4" />
