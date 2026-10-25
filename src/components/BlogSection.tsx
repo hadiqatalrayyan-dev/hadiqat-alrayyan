@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { articlesData } from "@/data/content";
 import { getUnifiedArticles } from "@/lib/articles";
+import { prefetchArticle } from "@/lib/api";
 import { UnifiedArticle } from "@/types/article";
 
 export default function BlogSection() {
@@ -87,6 +88,8 @@ export default function BlogSection() {
           {displayArticles.map((item) => (
             <div
               key={item.id || item.slug}
+              onMouseEnter={() => prefetchArticle(item.slug)}
+              onTouchStart={() => prefetchArticle(item.slug)}
               className="bg-white rounded-none shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between overflow-hidden border border-gray-100/90 text-center group"
             >
               {/* Card Image with Date Badge and Floating Pill */}

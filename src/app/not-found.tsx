@@ -55,16 +55,26 @@ export default function NotFound() {
         <Header />
 
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-16 sm:py-20 relative overflow-hidden">
-        {/* Instant layout guard to eliminate 404 flash for un-prerendered blog routes */}
+        {/* Instant layout guard & parallel early API prefetch */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                if (window.location.pathname.startsWith('/blog/')) {
+                var p = window.location.pathname;
+                if (p.startsWith('/blog/')) {
                   var c = document.getElementById('not-found-main-content');
                   if (c) c.style.display = 'none';
                   var l = document.getElementById('not-found-blog-preloader');
                   if (l) l.style.display = 'block';
+                  var parts = p.split('/').filter(Boolean);
+                  if (parts.length >= 2) {
+                    var s = decodeURIComponent(parts[1]);
+                    if (s && !window.__ALRAYAN_PREFETCH__) {
+                      window.__ALRAYAN_PREFETCH__ = fetch('https://api.hadiqat-alrayan.com/api/v1/articles/' + encodeURIComponent(s) + '?_t=' + Date.now(), {
+                        headers: { 'Accept': 'application/json' }
+                      }).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; });
+                    }
+                  }
                 }
               } catch(e) {}
             `,
@@ -75,19 +85,48 @@ export default function NotFound() {
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Pre-hydration blog loader */}
+        {/* Pre-hydration blog skeleton */}
         <div
           id="not-found-blog-preloader"
           style={{ display: "none" }}
-          className="relative z-10 max-w-xl w-full mx-auto text-center py-16 space-y-4"
+          className="relative z-10 max-w-4xl w-full mx-auto text-right py-8 sm:py-12 space-y-6 animate-pulse"
         >
-          <div className="w-14 h-14 border-4 border-[#4d8834] border-t-transparent rounded-full animate-spin mx-auto" />
-          <h2 className="text-xl sm:text-2xl font-black text-gray-900">
-            جاري تحميل وتجهيز المقال...
-          </h2>
-          <p className="text-gray-500 text-xs sm:text-sm">
-            لحظات ويتم عرض كامل تفاصيل المقال من مؤسسة حدائق الريان
-          </p>
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <span className="h-3 w-14 bg-gray-200 rounded" />
+            <span>/</span>
+            <span className="h-3 w-16 bg-gray-200 rounded" />
+            <span>/</span>
+            <span className="h-3 w-28 bg-gray-200 rounded" />
+          </div>
+
+          <div className="space-y-3 pt-2">
+            <div className="h-8 sm:h-12 w-4/5 bg-gray-200 rounded-xl" />
+            <div className="h-5 sm:h-6 w-3/5 bg-gray-100 rounded-lg" />
+          </div>
+
+          <div className="flex items-center justify-between py-4 border-y border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-gray-200 flex-shrink-0" />
+              <div className="space-y-1.5 text-right">
+                <div className="h-3.5 w-36 bg-gray-200 rounded" />
+                <div className="h-2.5 w-24 bg-gray-100 rounded" />
+              </div>
+            </div>
+            <div className="h-7 w-28 bg-emerald-50 rounded-full" />
+          </div>
+
+          <div className="w-full h-64 sm:h-96 bg-gradient-to-br from-gray-100 via-gray-200/80 to-gray-100 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-xs">
+            <div className="flex items-center gap-2.5 text-[#4d8834] font-bold text-sm bg-white/95 backdrop-blur-xs px-5 py-2.5 rounded-full shadow-sm">
+              <div className="w-4 h-4 border-2 border-[#4d8834] border-t-transparent rounded-full animate-spin" />
+              <span>جاري تحميل وتجهيز المقال...</span>
+            </div>
+          </div>
+
+          <div className="space-y-3 pt-4">
+            <div className="h-4 w-full bg-gray-100 rounded" />
+            <div className="h-4 w-11/12 bg-gray-100 rounded" />
+            <div className="h-4 w-5/6 bg-gray-100 rounded" />
+          </div>
         </div>
 
         {/* 404 Main Content Wrapper */}

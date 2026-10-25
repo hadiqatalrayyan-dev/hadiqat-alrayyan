@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import { articlesData } from "@/data/content";
 import { getUnifiedArticles } from "@/lib/articles";
+import { prefetchArticle } from "@/lib/api";
 import { UnifiedArticle } from "@/types/article";
 import {
   Search,
@@ -158,7 +159,12 @@ export default function BlogIndexPage() {
 
               <div className="divide-y divide-gray-100 space-y-3 pt-1">
                 {articles.map((item) => (
-                  <div key={item.id || item.slug} className="pt-3 flex items-start gap-3 group">
+                  <div
+                    key={item.id || item.slug}
+                    onMouseEnter={() => prefetchArticle(item.slug)}
+                    onTouchStart={() => prefetchArticle(item.slug)}
+                    className="pt-3 flex items-start gap-3 group"
+                  >
                     <div className="flex-1 text-right space-y-1">
                       <Link
                         href={`/blog/${item.slug}/`}
@@ -209,7 +215,12 @@ export default function BlogIndexPage() {
 
             {filteredArticles.length > 0 ? (
               filteredArticles.map((article) => (
-                <article key={article.id} className="space-y-4 pb-14 border-b border-gray-200 last:border-b-0 text-center animate-fadeIn">
+                <article
+                  key={article.id}
+                  onMouseEnter={() => prefetchArticle(article.slug)}
+                  onTouchStart={() => prefetchArticle(article.slug)}
+                  className="space-y-4 pb-14 border-b border-gray-200 last:border-b-0 text-center animate-fadeIn"
+                >
                   
                   {/* 1. Category Tag */}
                   <span className="block text-xs font-bold text-[#4d8834]">

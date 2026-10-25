@@ -243,3 +243,12 @@ export async function getCmsSitemapEntries(): Promise<CmsSitemapEntry[]> {
 
   return [];
 }
+
+/**
+ * High-speed fire-and-forget prefetch to warm up client cache before the user clicks an article.
+ */
+export function prefetchArticle(slug: string): void {
+  if (typeof window === "undefined" || !slug) return;
+  const endpoint = `/api/v1/articles/${encodeURIComponent(slug)}?_t=${Date.now()}`;
+  fetchWithStatus(endpoint).catch(() => {});
+}

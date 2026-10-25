@@ -110,6 +110,36 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
 
     async function loadArticle() {
       try {
+        // 1. Consume early parallel prefetch from inline script
+        let prefetchData = null;
+        if (typeof window !== "undefined") {
+          const prefetchPromise = (window as unknown as { __ALRAYAN_PREFETCH__?: Promise<{ success?: boolean; data?: CmsArticleDetail } | null> }).__ALRAYAN_PREFETCH__;
+          if (prefetchPromise) {
+            try {
+              const res = await prefetchPromise;
+              if (res && res.success && res.data) {
+                prefetchData = res.data;
+              }
+            } catch {}
+          }
+        }
+
+        if (prefetchData) {
+          if (!active) return;
+          const { article, detailed } = normalizeCmsArticle(prefetchData);
+          setState({
+            status: "success",
+            article,
+            detailed: detailed ?? null,
+            seo: prefetchData.seo ?? null,
+          });
+          const articleTitle =
+            prefetchData.seo?.metaTitle ||
+            `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
+          document.title = articleTitle;
+          return;
+        }
+
         const result = await getUnifiedArticleResult(slug as string);
         if (!active) return;
 
@@ -162,22 +192,57 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
     };
   }, []);
 
-  // 1. Loading State (Explicit & never flashes 404)
+  // 1. Loading State (Rich realistic Skeleton View - instant & sleek)
   if (state.status === "loading") {
     return (
       <div className="min-h-screen bg-[#fcfdfa] flex flex-col justify-between">
         <Header />
-        <div className="max-w-4xl mx-auto px-4 py-28 text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-[#4d8834] border-t-transparent rounded-full animate-spin mx-auto" />
-          <div className="space-y-2">
-            <h2 className="text-xl sm:text-2xl font-black text-gray-900">
-              جاري تحميل وتجهيز المقال...
-            </h2>
-            <p className="text-gray-500 text-xs sm:text-sm">
-              لحظات ويتم عرض كامل تفاصيل المقال من مؤسسة حدائق الريان بالرياض
-            </p>
+        <main className="max-w-4xl w-full mx-auto px-4 py-8 sm:py-12 text-right space-y-6">
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <span className="h-3 w-14 bg-gray-200 rounded animate-pulse" />
+            <span>/</span>
+            <span className="h-3 w-16 bg-gray-200 rounded animate-pulse" />
+            <span>/</span>
+            <span className="h-3 w-28 bg-gray-200 rounded animate-pulse" />
           </div>
-        </div>
+
+          <div className="space-y-3 pt-2">
+            <div className="h-8 sm:h-12 w-4/5 bg-gray-200 rounded-xl animate-pulse" />
+            <div className="h-5 sm:h-6 w-3/5 bg-gray-100 rounded-lg animate-pulse" />
+          </div>
+
+          <div className="flex items-center justify-between py-4 border-y border-gray-100">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-gray-200 animate-pulse flex-shrink-0" />
+              <div className="space-y-1.5 text-right">
+                <div className="h-3.5 w-36 bg-gray-200 rounded animate-pulse" />
+                <div className="h-2.5 w-24 bg-gray-100 rounded animate-pulse" />
+              </div>
+            </div>
+            <div className="h-7 w-28 bg-emerald-50 rounded-full animate-pulse" />
+          </div>
+
+          <div className="w-full h-64 sm:h-96 bg-gradient-to-br from-gray-100 via-gray-200/80 to-gray-100 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-xs">
+            <div className="flex items-center gap-2.5 text-[#4d8834] font-bold text-sm bg-white/95 backdrop-blur-xs px-5 py-2.5 rounded-full shadow-sm">
+              <div className="w-4 h-4 border-2 border-[#4d8834] border-t-transparent rounded-full animate-spin" />
+              <span>جاري تحميل وتجهيز المقال...</span>
+            </div>
+          </div>
+
+          <div className="bg-emerald-50/50 border border-emerald-100/70 rounded-2xl p-6 space-y-3">
+            <div className="h-5 w-40 bg-emerald-200/60 rounded animate-pulse" />
+            <div className="space-y-2 pt-1">
+              <div className="h-3.5 w-full bg-emerald-100/50 rounded animate-pulse" />
+              <div className="h-3.5 w-4/5 bg-emerald-100/50 rounded animate-pulse" />
+            </div>
+          </div>
+
+          <div className="space-y-3 pt-4">
+            <div className="h-4 w-full bg-gray-100 rounded animate-pulse" />
+            <div className="h-4 w-11/12 bg-gray-100 rounded animate-pulse" />
+            <div className="h-4 w-5/6 bg-gray-100 rounded animate-pulse" />
+          </div>
+        </main>
         <Footer />
       </div>
     );
