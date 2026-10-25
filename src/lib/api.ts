@@ -44,8 +44,8 @@ export async function fetchWithStatus<T>(
   const url = `${API_BASE_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
   const isGet = !options.method || options.method === "GET";
 
-  // Check client memory cache for GET requests
-  if (isGet && typeof window !== "undefined") {
+  // Check client memory cache for GET requests (bypassed if cache-busting _t is present)
+  if (isGet && typeof window !== "undefined" && !url.includes("_t=")) {
     const cached = memoryCache.get(url);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
       return { status: "success", data: cached.data as T };
@@ -65,6 +65,7 @@ export async function fetchWithStatus<T>(
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
+        const isClient = typeof window !== "undefined";
         const response = await fetch(url, {
           ...options,
           signal: controller.signal,
@@ -72,7 +73,7 @@ export async function fetchWithStatus<T>(
             Accept: "application/json",
             ...(options.headers || {}),
           },
-          next: { revalidate: 60 },
+          ...(isClient ? { cache: "no-store" } : { next: { revalidate: 60 } }),
         });
 
         clearTimeout(timeoutId);
@@ -95,7 +96,7 @@ export async function fetchWithStatus<T>(
 
         const data: T = await response.json();
 
-        if (isGet && typeof window !== "undefined" && data) {
+        if (isGet && typeof window !== "undefined" && data && !url.includes("_t=")) {
           memoryCache.set(url, { data, timestamp: Date.now() });
         }
 
@@ -151,6 +152,11 @@ export async function getCmsArticles(
   if (params.page) searchParams.set("page", String(params.page));
   if (params.per_page) searchParams.set("per_page", String(params.per_page));
 
+  // On client-side, add cache-busting timestamp to bypass CDN edge cache and guarantee real-time data
+  if (typeof window !== "undefined") {
+    searchParams.set("_t", String(Date.now()));
+  }
+
   const qs = searchParams.toString();
   const endpoint = `/api/v1/articles${qs ? `?${qs}` : ""}`;
 
@@ -177,7 +183,8 @@ export async function getCmsArticleDetailResult(
 ): Promise<CmsArticleDetailResult> {
   if (!slug) return { status: "not_found" };
 
-  const endpoint = `/api/v1/articles/${encodeURIComponent(slug)}`;
+  const cacheBust = typeof window !== "undefined" ? `?_t=${Date.now()}` : "";
+  const endpoint = `/api/v1/articles/${encodeURIComponent(slug)}${cacheBust}`;
   const res = await fetchWithStatus<CmsArticleDetailResponse>(endpoint);
 
   if (res.status === "success") {

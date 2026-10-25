@@ -7,21 +7,53 @@ import { getUnifiedArticles } from "@/lib/articles";
 import { UnifiedArticle } from "@/types/article";
 
 export default function BlogSection() {
-  const [articles, setArticles] = useState<UnifiedArticle[]>(articlesData as UnifiedArticle[]);
+  const [articles, setArticles] = useState<UnifiedArticle[]>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const cached = sessionStorage.getItem("alrayan_cached_articles");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+      } catch {}
+    }
+    return articlesData as UnifiedArticle[];
+  });
 
   useEffect(() => {
     let isMounted = true;
-    getUnifiedArticles()
-      .then((unified) => {
+
+    const fetchArticles = async () => {
+      try {
+        const unified = await getUnifiedArticles();
         if (isMounted && unified && unified.length > 0) {
           setArticles(unified);
+          try {
+            sessionStorage.setItem("alrayan_cached_articles", JSON.stringify(unified));
+          } catch {}
         }
-      })
-      .catch(() => {
+      } catch {
         // Fallback to static articles
-      });
+      }
+    };
+
+    fetchArticles();
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchArticles();
+      }
+    };
+
+    window.addEventListener("focus", fetchArticles);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     return () => {
       isMounted = false;
+      window.removeEventListener("focus", fetchArticles);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 

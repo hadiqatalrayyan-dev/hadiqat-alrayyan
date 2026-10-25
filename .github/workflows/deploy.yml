@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  repository_dispatch:
+    types: [build-production, article-published, article-updated, article-deleted]
 
 concurrency:
   group: hostinger-production-deploy

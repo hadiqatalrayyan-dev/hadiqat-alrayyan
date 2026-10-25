@@ -54,7 +54,7 @@ class ArticleController extends Controller
                 'total'       => $paginated->total(),
             ],
         ])
-        ->header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
+        ->header('Cache-Control', 'public, max-age=5, s-maxage=10, stale-while-revalidate=30');
     }
 
     /**
@@ -117,6 +117,6 @@ class ArticleController extends Controller
                 'last_modified' => ($a->updated_at ?? $a->published_at ?? $a->created_at)?->toIso8601String(),
             ]),
         ])
-        ->header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
+        ->header('Cache-Control', 'public, max-age=5, s-maxage=10, stale-while-revalidate=30');
     }
 }

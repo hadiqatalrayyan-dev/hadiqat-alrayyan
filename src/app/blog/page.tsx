@@ -19,20 +19,54 @@ import {
 } from "lucide-react";
 
 export default function BlogIndexPage() {
-  const [articles, setArticles] = useState<UnifiedArticle[]>(articlesData as UnifiedArticle[]);
+  const [articles, setArticles] = useState<UnifiedArticle[]>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const cached = sessionStorage.getItem("alrayan_cached_articles");
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+      } catch {}
+    }
+    return articlesData as UnifiedArticle[];
+  });
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     let isMounted = true;
-    getUnifiedArticles().then((unified) => {
-      if (isMounted && unified && unified.length > 0) {
-        setArticles(unified);
+
+    const fetchArticles = async () => {
+      try {
+        const unified = await getUnifiedArticles();
+        if (isMounted && unified && unified.length > 0) {
+          setArticles(unified);
+          try {
+            sessionStorage.setItem("alrayan_cached_articles", JSON.stringify(unified));
+          } catch {}
+        }
+      } catch {
+        // Graceful fallback to static articles
       }
-    }).catch(() => {
-      // Graceful fallback to static articles
-    });
+    };
+
+    fetchArticles();
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        fetchArticles();
+      }
+    };
+
+    window.addEventListener("focus", fetchArticles);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     return () => {
       isMounted = false;
+      window.removeEventListener("focus", fetchArticles);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
