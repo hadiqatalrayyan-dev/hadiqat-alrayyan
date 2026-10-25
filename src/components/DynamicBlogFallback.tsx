@@ -66,18 +66,20 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
 
   const handleRetry = useCallback(async (slugToRetry: string) => {
     setState({ status: "loading", slug: slugToRetry });
+    document.title = "جاري تحميل المقال... | مدونة حدائق الريان بالرياض";
     try {
       const result = await getUnifiedArticleResult(slugToRetry);
       if (result.status === "success") {
+        const { article, detailed, seo } = result.data;
         setState({
           status: "success",
-          article: result.data.article,
-          detailed: result.data.detailed ?? null,
-          seo: result.data.seo ?? null,
+          article,
+          detailed: detailed ?? null,
+          seo: seo ?? null,
         });
         const articleTitle =
-          result.data.seo?.metaTitle ||
-          `${result.data.detailed?.title || result.data.article.title} | مدونة حدائق الريان بالرياض`;
+          seo?.metaTitle ||
+          `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
         document.title = articleTitle;
       } else if (result.status === "not_found") {
         setState({ status: "not_found" });
@@ -104,17 +106,20 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
       return;
     }
 
+    document.title = "جاري تحميل المقال... | مدونة حدائق الريان بالرياض";
+
     async function loadArticle() {
       try {
         const result = await getUnifiedArticleResult(slug as string);
         if (!active) return;
 
         if (result.status === "success") {
+          const { article, detailed, seo } = result.data;
           setState({
             status: "success",
-            article: result.data.article,
-            detailed: result.data.detailed ?? null,
-            seo: result.data.seo ?? null,
+            article,
+            detailed: detailed ?? null,
+            seo: seo ?? null,
           });
 
           // Dynamically update document title & meta tags for client-rendered article

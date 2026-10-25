@@ -19,7 +19,7 @@ function resolveApiBaseUrl(): string {
 
 const API_BASE_URL = resolveApiBaseUrl();
 
-const DEFAULT_FETCH_TIMEOUT_MS = 6000;
+const DEFAULT_FETCH_TIMEOUT_MS = 15000; // 15 seconds to ensure reliable fetching on all networks
 
 // High-speed in-memory cache for client-side navigation
 const memoryCache = new Map<string, { data: unknown; timestamp: number }>();
@@ -34,7 +34,7 @@ export type FetchStatusResult<T> =
   | { status: "error"; error: string; statusCode?: number };
 
 /**
- * Enhanced fetch wrapper with request deduplication, timeout, and explicit error status tracking.
+ * Enhanced fetch wrapper with request deduplication, resilient timeout, auto-retry, and explicit error status tracking.
  */
 export async function fetchWithStatus<T>(
   endpoint: string,
@@ -58,52 +58,65 @@ export async function fetchWithStatus<T>(
   }
 
   const fetchPromise = (async (): Promise<FetchStatusResult<T>> => {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    let attempt = 0;
+    while (attempt < 2) {
+      attempt++;
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      const response = await fetch(url, {
-        ...options,
-        signal: controller.signal,
-        headers: {
-          Accept: "application/json",
-          ...(options.headers || {}),
-        },
-        next: { revalidate: 60 },
-      });
+        const response = await fetch(url, {
+          ...options,
+          signal: controller.signal,
+          headers: {
+            Accept: "application/json",
+            ...(options.headers || {}),
+          },
+          next: { revalidate: 60 },
+        });
 
-      clearTimeout(timeoutId);
+        clearTimeout(timeoutId);
 
-      if (response.status === 404) {
-        return { status: "not_found" };
-      }
+        if (response.status === 404) {
+          return { status: "not_found" };
+        }
 
-      if (!response.ok) {
+        if (!response.ok) {
+          if (attempt < 2 && response.status >= 500) {
+            await new Promise((r) => setTimeout(r, 600));
+            continue;
+          }
+          return {
+            status: "error",
+            statusCode: response.status,
+            error: `Server responded with HTTP ${response.status}`,
+          };
+        }
+
+        const data: T = await response.json();
+
+        if (isGet && typeof window !== "undefined" && data) {
+          memoryCache.set(url, { data, timestamp: Date.now() });
+        }
+
+        return { status: "success", data };
+      } catch (error: unknown) {
+        if (attempt < 2) {
+          await new Promise((r) => setTimeout(r, 600));
+          continue;
+        }
+        const isAbort = error instanceof Error && error.name === "AbortError";
         return {
           status: "error",
-          statusCode: response.status,
-          error: `Server responded with HTTP ${response.status}`,
+          error: isAbort ? "Request timed out" : (error instanceof Error ? error.message : "Network failure"),
         };
-      }
-
-      const data: T = await response.json();
-
-      if (isGet && typeof window !== "undefined" && data) {
-        memoryCache.set(url, { data, timestamp: Date.now() });
-      }
-
-      return { status: "success", data };
-    } catch (error: unknown) {
-      const isAbort = error instanceof Error && error.name === "AbortError";
-      return {
-        status: "error",
-        error: isAbort ? "Request timed out" : (error instanceof Error ? error.message : "Network failure"),
-      };
-    } finally {
-      if (isGet) {
-        inFlightRequests.delete(url);
+      } finally {
+        if (isGet) {
+          inFlightRequests.delete(url);
+        }
       }
     }
+    return { status: "error", error: "Request failed after retry" };
   })();
 
   if (isGet) {
