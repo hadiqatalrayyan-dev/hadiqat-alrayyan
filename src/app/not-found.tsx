@@ -64,11 +64,14 @@ export default function NotFound() {
                 if (p.startsWith('/blog/')) {
                   var c = document.getElementById('not-found-main-content');
                   if (c) c.style.display = 'none';
-                  var l = document.getElementById('not-found-blog-preloader');
-                  if (l) l.style.display = 'block';
                   var parts = p.split('/').filter(Boolean);
                   if (parts.length >= 2) {
                     var s = decodeURIComponent(parts[1]);
+                    var cached = sessionStorage.getItem('alrayan_full_article_' + s) || localStorage.getItem('alrayan_full_article_' + s) || sessionStorage.getItem('alrayan_raw_article_' + s) || localStorage.getItem('alrayan_raw_article_' + s);
+                    if (!cached) {
+                      var l = document.getElementById('not-found-blog-preloader');
+                      if (l) l.style.display = 'block';
+                    }
                     if (s && !window.__ALRAYAN_PREFETCH__) {
                       window.__ALRAYAN_PREFETCH__ = fetch('https://api.hadiqat-alrayan.com/api/v1/articles/' + encodeURIComponent(s) + '?_t=' + Date.now(), {
                         headers: { 'Accept': 'application/json' }

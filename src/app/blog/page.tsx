@@ -46,6 +46,12 @@ export default function BlogIndexPage() {
           setArticles(unified);
           try {
             sessionStorage.setItem("alrayan_cached_articles", JSON.stringify(unified));
+            // Automatically pre-load full content of all articles in the background
+            unified.forEach((art) => {
+              if (art.slug) {
+                prefetchArticle(art.slug);
+              }
+            });
           } catch {}
         }
       } catch {

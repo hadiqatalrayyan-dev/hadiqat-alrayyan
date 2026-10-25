@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { getUnifiedArticleResult } from "@/lib/articles";
-import { UnifiedArticle, CmsSeo } from "@/types/article";
+import { getUnifiedArticleResult, normalizeCmsArticle } from "@/lib/articles";
+import { UnifiedArticle, CmsSeo, CmsArticleDetail, CmsArticleDetailResponse } from "@/types/article";
 import { DetailedBlogArticle } from "@/data/blogArticlesDetailed";
 import { siteConfig } from "@/data/content";
 import Header from "@/components/Header";
@@ -59,6 +59,49 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
   const [state, setState] = useState<FallbackState>(() => {
     const slug = extractBlogSlug();
     if (slug) {
+      // 1. Instant render if article was already preloaded from blog listing
+      if (typeof window !== "undefined") {
+        try {
+          const cachedRaw =
+            sessionStorage.getItem(`alrayan_raw_article_${slug}`) ||
+            localStorage.getItem(`alrayan_raw_article_${slug}`);
+          if (cachedRaw) {
+            const rawItem = JSON.parse(cachedRaw);
+            if (rawItem && rawItem.title) {
+              const { article, detailed } = normalizeCmsArticle(rawItem);
+              const articleTitle =
+                rawItem.seo?.metaTitle ||
+                `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
+              document.title = articleTitle;
+              return {
+                status: "success",
+                article,
+                detailed: detailed ?? null,
+                seo: rawItem.seo ?? null,
+              };
+            }
+          }
+
+          const cached =
+            sessionStorage.getItem(`alrayan_full_article_${slug}`) ||
+            localStorage.getItem(`alrayan_full_article_${slug}`);
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.article) {
+              const articleTitle =
+                parsed.seo?.metaTitle ||
+                `${parsed.detailed?.title || parsed.article.title} | مدونة حدائق الريان بالرياض`;
+              document.title = articleTitle;
+              return {
+                status: "success",
+                article: parsed.article,
+                detailed: parsed.detailed ?? null,
+                seo: parsed.seo ?? null,
+              };
+            }
+          }
+        } catch {}
+      }
       return { status: "loading", slug };
     }
     return { status: "idle" };
@@ -137,6 +180,11 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
             prefetchData.seo?.metaTitle ||
             `${detailed?.title || article.title} | مدونة حدائق الريان بالرياض`;
           document.title = articleTitle;
+          try {
+            const cachePayload = JSON.stringify({ article, detailed: detailed ?? null, seo: prefetchData.seo ?? null });
+            sessionStorage.setItem(`alrayan_full_article_${slug}`, cachePayload);
+            localStorage.setItem(`alrayan_full_article_${slug}`, cachePayload);
+          } catch {}
           return;
         }
 
@@ -151,6 +199,11 @@ export default function DynamicBlogFallback({ children }: { children: React.Reac
             detailed: detailed ?? null,
             seo: seo ?? null,
           });
+          try {
+            const cachePayload = JSON.stringify({ article, detailed: detailed ?? null, seo: seo ?? null });
+            sessionStorage.setItem(`alrayan_full_article_${slug}`, cachePayload);
+            localStorage.setItem(`alrayan_full_article_${slug}`, cachePayload);
+          } catch {}
 
           // Dynamically update document title & meta tags for client-rendered article
           const articleTitle =

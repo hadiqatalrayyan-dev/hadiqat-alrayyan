@@ -245,10 +245,18 @@ export async function getCmsSitemapEntries(): Promise<CmsSitemapEntry[]> {
 }
 
 /**
- * High-speed fire-and-forget prefetch to warm up client cache before the user clicks an article.
+ * High-speed prefetch that warms up client cache and preloads article into storage.
  */
 export function prefetchArticle(slug: string): void {
   if (typeof window === "undefined" || !slug) return;
   const endpoint = `/api/v1/articles/${encodeURIComponent(slug)}?_t=${Date.now()}`;
-  fetchWithStatus(endpoint).catch(() => {});
+  fetchWithStatus<CmsArticleDetailResponse>(endpoint).then((res) => {
+    if (res.status === "success" && res.data && res.data.success && res.data.data) {
+      try {
+        const rawJson = JSON.stringify(res.data.data);
+        sessionStorage.setItem(`alrayan_raw_article_${slug}`, rawJson);
+        localStorage.setItem(`alrayan_raw_article_${slug}`, rawJson);
+      } catch {}
+    }
+  }).catch(() => {});
 }

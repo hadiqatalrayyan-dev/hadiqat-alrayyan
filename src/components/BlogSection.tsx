@@ -33,6 +33,11 @@ export default function BlogSection() {
           setArticles(unified);
           try {
             sessionStorage.setItem("alrayan_cached_articles", JSON.stringify(unified));
+            unified.forEach((art) => {
+              if (art.slug) {
+                prefetchArticle(art.slug);
+              }
+            });
           } catch {}
         }
       } catch {
